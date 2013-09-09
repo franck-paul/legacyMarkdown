@@ -3,7 +3,7 @@
 #
 # This file is part of Dotclear 2.
 #
-# Copyright (c) 2003-2008 Olivier Meunier and contributors
+# Copyright (c) 2003-2013 Olivier Meunier and contributors
 # Licensed under the GPL version 2.0 license.
 # See LICENSE file or
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -12,9 +12,9 @@
 
 $this->registerModule(
 	/* Name */			"Markdown syntax",
-	/* Description*/		"Brings you markdown (extra) syntax for your entries",
+	/* Description*/		"Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)",
 	/* Author */			"Michel Fortin",
-	/* Version */			'1.0-r2601',
+	/* Version */			'1.1',
 	/* Permissions */		'usage,contentadmin'
 );
 ?>
