@@ -3,7 +3,7 @@
 #
 # This file is part of Dotclear 2.
 #
-# Copyright (c) 2003-2013 Olivier Meunier and contributors
+# Copyright (c) 2003-2013 Olivier Meunier, Franck Paul and contributors
 # Licensed under the GPL version 2.0 license.
 # See LICENSE file or
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -33,13 +33,16 @@ class dcMarkdown
 		"jsToolBar.prototype.elements.md_blocks.options.h4 = '".html::escapeJS(__('Level 4 header'))."'; ".
 		"jsToolBar.prototype.elements.md_blocks.options.h5 = '".html::escapeJS(__('Level 5 header'))."'; ".
 		"jsToolBar.prototype.elements.md_blocks.options.h6 = '".html::escapeJS(__('Level 6 header'))."'; ".
+
 		"jsToolBar.prototype.elements.md_strong.title = '".html::escapeJS(__('Strong emphasis'))."'; ".
 		"jsToolBar.prototype.elements.md_em.title = '".html::escapeJS(__('Emphasis'))."'; ".
 		"jsToolBar.prototype.elements.md_ins.title = '".html::escapeJS(__('Inserted'))."'; ".
 		"jsToolBar.prototype.elements.md_del.title = '".html::escapeJS(__('Deleted'))."'; ".
 		"jsToolBar.prototype.elements.md_quote.title = '".html::escapeJS(__('Inline quote'))."'; ".
 		"jsToolBar.prototype.elements.md_code.title = '".html::escapeJS(__('Code'))."'; ".
+
 		"jsToolBar.prototype.elements.md_br.title = '".html::escapeJS(__('Line break'))."'; ".
+
 		"jsToolBar.prototype.elements.md_blockquote.title = '".html::escapeJS(__('Blockquote'))."'; ".
 		"jsToolBar.prototype.elements.md_pre.title = '".html::escapeJS(__('Preformated text'))."'; ".
 		"jsToolBar.prototype.elements.md_ul.title = '".html::escapeJS(__('Unordered list'))."'; ".
@@ -51,16 +54,14 @@ class dcMarkdown
 
 		"jsToolBar.prototype.elements.md_img.title = '".html::escapeJS(__('External image'))."'; ".
 		"jsToolBar.prototype.elements.md_img.src_prompt = '".html::escapeJS(__('URL?'))."'; ".
-		"jsToolBar.prototype.elements.md_img.title_prompt = '".html::escapeJS(__('Title?'))."'; ";
+		"jsToolBar.prototype.elements.md_img.title_prompt = '".html::escapeJS(__('Title?'))."'; ".
 
-/*
 		"jsToolBar.prototype.elements.md_img_select.title = '".html::escapeJS(__('Media chooser'))."'; ".
 		"jsToolBar.prototype.elements.md_post_link.title = '".html::escapeJS(__('Link to an entry'))."'; ";
 
 		if (!$GLOBALS['core']->auth->check('media,media_admin',$GLOBALS['core']->blog->id)) {
-			$res .= "jsToolBar.prototype.elements.img_select.disabled = true;\n";
+			$res .= "jsToolBar.prototype.elements.md_img_select.disabled = true;\n";
 		}
-*/
 		$res .=
 		"\n//]]>\n".
 		"</script>\n";
