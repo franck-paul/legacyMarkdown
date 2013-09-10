@@ -1,5 +1,8 @@
 msgid ""
 msgstr ""
 
+msgid "Markdown syntax"
+msgstr "Syntaxe Markdown"
+
 msgid "Title?"
 msgstr "Titre ?"
