@@ -14,6 +14,7 @@ $GLOBALS['__autoload']['MarkdownExtra_Parser'] = dirname(__FILE__).'/markdown.ph
 $core->addFormater('markdown', array('dcMarkdown','convert'));
 
 $core->addBehavior('adminPostHeaders',array('dcMarkdown','adminPostHeaders'));
+$core->addBehavior('adminPageHeaders',array('dcMarkdown','adminPostHeaders'));
 
 class dcMarkdown
 {
