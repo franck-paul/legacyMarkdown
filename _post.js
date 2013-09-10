@@ -2,372 +2,372 @@
 
 // block format (paragraph, headers)
 jsToolBar.prototype.elements.md_blocks = {
-  type: 'combo',
-  title: 'block format',
-  options: {
-    none: '-- none --', // only for wysiwyg mode
-    nonebis: '- block format -', // only for xhtml mode
-    p: 'Paragraph',
-    h1: 'Header 1',
-    h2: 'Header 2',
-    h3: 'Header 3',
-    h4: 'Header 4',
-    h5: 'Header 5',
-    h6: 'Header 6'
-  },
-  markdown: {
-    list: ['nonebis','h3','h4','h5'],
-    fn: function(opt) {
-      switch (opt) {
-        case 'nonebis': this.textarea.focus(); break;
-        case 'h3': this.encloseSelection('### '); break;
-        case 'h4': this.encloseSelection('#### '); break;
-        case 'h5': this.encloseSelection('##### '); break;
-      }
-      this.toolNodes.blocks.value = 'nonebis';
-    }
-  }
+	type: 'combo',
+	title: 'block format',
+	options: {
+		none: '-- none --', // only for wysiwyg mode
+		nonebis: '- block format -', // only for xhtml mode
+		p: 'Paragraph',
+		h1: 'Header 1',
+		h2: 'Header 2',
+		h3: 'Header 3',
+		h4: 'Header 4',
+		h5: 'Header 5',
+		h6: 'Header 6'
+	},
+	markdown: {
+		list: ['nonebis','h3','h4','h5'],
+		fn: function(opt) {
+			switch (opt) {
+				case 'nonebis': this.textarea.focus(); break;
+				case 'h3': this.encloseSelection('### '); break;
+				case 'h4': this.encloseSelection('#### '); break;
+				case 'h5': this.encloseSelection('##### '); break;
+			}
+			this.toolNodes.blocks.value = 'nonebis';
+		}
+	}
 };
 
 // spacer
 jsToolBar.prototype.elements.md_space0 = {
-  type:'space',
-  format:{
-    markdown:true
-  }
+	type: 'space',
+	format: {
+		markdown: true
+	}
 };
 
 // strong
 jsToolBar.prototype.elements.md_strong = {
-  type: 'button',
-  title: 'Strong emphasis',
-  icon: 'style/jsToolBar/bt_strong.png',
-  fn: {
-    markdown: function() { this.singleTag('**') }
-  }
+	type: 'button',
+	title: 'Strong emphasis',
+	icon: 'style/jsToolBar/bt_strong.png',
+	fn: {
+		markdown: function() { this.singleTag('**') }
+	}
 };
 
 // em
 jsToolBar.prototype.elements.md_em = {
-  type: 'button',
-  title: 'Emphasis',
-  icon: 'style/jsToolBar/bt_em.png',
-  fn: {
-    markdown: function() { this.singleTag('*') }
-  }
+	type: 'button',
+	title: 'Emphasis',
+	icon: 'style/jsToolBar/bt_em.png',
+	fn: {
+		markdown: function() { this.singleTag('*') }
+	}
 };
 
 // ins
 jsToolBar.prototype.elements.md_ins = {
-  type: 'button',
-  title: 'Inserted',
-  icon: 'style/jsToolBar/bt_ins.png',
-  fn: {
-    markdown: function() { this.singleTag('<ins>','</ins>') }
-  }
+	type: 'button',
+	title: 'Inserted',
+	icon: 'style/jsToolBar/bt_ins.png',
+	fn: {
+		markdown: function() { this.singleTag('<ins>','</ins>') }
+	}
 };
 
 // del
 jsToolBar.prototype.elements.md_del = {
-  type: 'button',
-  title: 'Deleted',
-  icon: 'style/jsToolBar/bt_del.png',
-  fn: {
-    markdown: function() { this.singleTag('<del>','</del>') }
-  }
+	type: 'button',
+	title: 'Deleted',
+	icon: 'style/jsToolBar/bt_del.png',
+	fn: {
+		markdown: function() { this.singleTag('<del>','</del>') }
+	}
 };
 
 // quote
 jsToolBar.prototype.elements.md_quote = {
-  type: 'button',
-  title: 'Inline quote',
-  icon: 'style/jsToolBar/bt_quote.png',
-  fn: {
-    markdown: function() { this.singleTag('<q>','</q>') }
-  }
+	type: 'button',
+	title: 'Inline quote',
+	icon: 'style/jsToolBar/bt_quote.png',
+	fn: {
+		markdown: function() { this.singleTag('<q>','</q>') }
+	}
 };
 
 // code
 jsToolBar.prototype.elements.md_code = {
-  type: 'button',
-  title: 'Code',
-  icon: 'style/jsToolBar/bt_code.png',
-  fn: {
-    markdown: function() { this.singleTag('`') }
-  }
+	type: 'button',
+	title: 'Code',
+	icon: 'style/jsToolBar/bt_code.png',
+	fn: {
+		markdown: function() { this.singleTag('`') }
+	}
 };
 
 // spacer
 jsToolBar.prototype.elements.md_space1 = {
-  type:'space',
-  format:{
-    markdown:true
-  }
+	type: 'space',
+	format: {
+		markdown: true
+	}
 };
 
 // br
 jsToolBar.prototype.elements.md_br = {
-  type: 'button',
-  title: 'Line break',
-  icon: 'style/jsToolBar/bt_br.png',
-  fn: {
-    markdown: function() { this.encloseSelection("  \n",'') }
-  }
+	type: 'button',
+	title: 'Line break',
+	icon: 'style/jsToolBar/bt_br.png',
+	fn: {
+		markdown: function() { this.encloseSelection("  \n",'') }
+	}
 };
 
 // spacer
 jsToolBar.prototype.elements.md_space2 = {
-  type:'space',
-  format:{
-    markdown:true
-  }
+	type: 'space',
+	format: {
+		markdown: true
+	}
 };
 
 // blockquote
 jsToolBar.prototype.elements.md_blockquote = {
-  type: 'button',
-  title: 'Blockquote',
-  icon: 'style/jsToolBar/bt_bquote.png',
-  fn: {
-    markdown: function() {
-      this.encloseSelection("\n",'',
-      function(str) {
-        str = str.replace(/\r/g,'');
-        return '> '+str.replace(/\n/g,"\n> ");
-      });
-    }
-  }
+	type: 'button',
+	title: 'Blockquote',
+	icon: 'style/jsToolBar/bt_bquote.png',
+	fn: {
+		markdown: function() {
+			this.encloseSelection("\n",'',
+			function(str) {
+				str = str.replace(/\r/g,'');
+				return '> '+str.replace(/\n/g,"\n> ");
+			});
+		}
+	}
 };
 
 // pre
 jsToolBar.prototype.elements.md_pre = {
-  type: 'button',
-  title: 'Preformated text',
-  icon: 'style/jsToolBar/bt_pre.png',
-  fn: {
-    markdown: function() {
-      this.encloseSelection("\n",'',
-      function(str) {
-        str = str.replace(/\r/g,'');
-        return '    '+str.replace(/\n/g,"\n    ");
-      });
-    }
-  }
+	type: 'button',
+	title: 'Preformated text',
+	icon: 'style/jsToolBar/bt_pre.png',
+	fn: {
+		markdown: function() {
+			this.encloseSelection("\n",'',
+			function(str) {
+				str = str.replace(/\r/g,'');
+				return '    '+str.replace(/\n/g,"\n    ");
+			});
+		}
+	}
 };
 
 // ul
 jsToolBar.prototype.elements.md_ul = {
-  type: 'button',
-  title: 'Unordered list',
-  icon: 'style/jsToolBar/bt_ul.png',
-  fn: {
-    markdown: function() {
-      this.encloseSelection('','',function(str) {
-        str = str.replace(/\r/g,'');
-        return '* '+str.replace(/\n/g,"\n* ");
-      });
-    }
-  }
+	type: 'button',
+	title: 'Unordered list',
+	icon: 'style/jsToolBar/bt_ul.png',
+	fn: {
+		markdown: function() {
+			this.encloseSelection('','',function(str) {
+				str = str.replace(/\r/g,'');
+				return '* '+str.replace(/\n/g,"\n* ");
+			});
+		}
+	}
 };
 
 // ol
 jsToolBar.prototype.elements.md_ol = {
-  type: 'button',
-  title: 'Ordered list',
-  icon: 'style/jsToolBar/bt_ol.png',
-  fn: {
-    markdown: function() {
-      this.encloseSelection('','',function(str) {
-        str = str.replace(/\r/g,'');
-        return '1. '+str.replace(/\n/g,"\n1. ");
-      });
-    }
-  }
+	type: 'button',
+	title: 'Ordered list',
+	icon: 'style/jsToolBar/bt_ol.png',
+	fn: {
+		markdown: function() {
+			this.encloseSelection('','',function(str) {
+				str = str.replace(/\r/g,'');
+				return '1. '+str.replace(/\n/g,"\n1. ");
+			});
+		}
+	}
 };
 
 // spacer
 jsToolBar.prototype.elements.md_space3 = {
-  type:'space',
-  format:{
-    markdown:true
-  }
+	type: 'space',
+	format: {
+		markdown: true
+	}
 };
 
 // link
 jsToolBar.prototype.elements.md_link = {
-  type: 'button',
-  title: 'Link',
-  icon: 'style/jsToolBar/bt_link.png',
-  fn: {},
-  href_prompt: 'Please give URL:',
-  title_prompt: 'Title for this URL:',
-  default_title: '',
-  prompt: function(href,title) {
-    href = href || '';
-    title = title || this.elements.md_link.default_title;
-    
-    href = window.prompt(this.elements.md_link.href_prompt,href);
-    if (!href) { return false; }
-    
-    title = window.prompt(this.elements.md_link.title_prompt,title);
-    
-    return { href: this.stripBaseURL(href), title: title };
-  }
+	type: 'button',
+	title: 'Link',
+	icon: 'style/jsToolBar/bt_link.png',
+	fn: {},
+	href_prompt: 'Please give URL:',
+	title_prompt: 'Title for this URL:',
+	default_title: '',
+	prompt: function(href,title) {
+		href = href || '';
+		title = title || this.elements.md_link.default_title;
+
+		href = window.prompt(this.elements.md_link.href_prompt,href);
+		if (!href) { return false; }
+
+		title = window.prompt(this.elements.md_link.title_prompt,title);
+
+		return { href: this.stripBaseURL(href), title: title };
+	}
 };
 
 jsToolBar.prototype.elements.md_link.fn.markdown = function() {
-  var link = this.elements.md_link.prompt.call(this);
-  if (link) {
-    var stag = '[';
-    var etag = ']('+link.href;
-    if (link.title) { etag = etag+' "'+link.title+'"'; }
-    etag = etag+')';
-    
-    this.encloseSelection(stag,etag);
-  }
+	var link = this.elements.md_link.prompt.call(this);
+	if (link) {
+		var stag = '[';
+		var etag = ']('+link.href;
+		if (link.title) { etag = etag+' "'+link.title+'"'; }
+		etag = etag+')';
+
+		this.encloseSelection(stag,etag);
+	}
 };
 
 // img
 jsToolBar.prototype.elements.md_img = {
-  type: 'button',
-  title: 'External image',
-  icon: 'style/jsToolBar/bt_img.png',
-  fn: {},
-  src_prompt: 'Please give image URL:',
-  title_prompt: 'Title for this image:',
-  default_title: '',
-  prompt: function(src,title) {
-    src = src || '';
-    title = title || this.elements.md_img.default_title;
+	type: 'button',
+	title: 'External image',
+	icon: 'style/jsToolBar/bt_img.png',
+	fn: {},
+	src_prompt: 'Please give image URL:',
+	title_prompt: 'Title for this image:',
+	default_title: '',
+	prompt: function(src,title) {
+		src = src || '';
+		title = title || this.elements.md_img.default_title;
 
-    src = window.prompt(this.elements.md_img.src_prompt,src);
-    if (!src) { return false; }
+		src = window.prompt(this.elements.md_img.src_prompt,src);
+		if (!src) { return false; }
 
-    title = window.prompt(this.elements.md_img.title_prompt,title);
+		title = window.prompt(this.elements.md_img.title_prompt,title);
 
-    return { src: this.stripBaseURL(src), title: title };
-  }
+		return { src: this.stripBaseURL(src), title: title };
+	}
 };
 
 jsToolBar.prototype.elements.md_img.fn.markdown = function() {
-  var image = this.elements.md_img.prompt.call(this);
-  if (image) {
-    var stag = '![';
-    var etag = ']('+image.src;
-    if (image.title) { etag = etag+' "'+image.title+'"'; }
-    etag = etag+')';
+	var image = this.elements.md_img.prompt.call(this);
+	if (image) {
+		var stag = '![';
+		var etag = ']('+image.src;
+		if (image.title) { etag = etag+' "'+image.title+'"'; }
+		etag = etag+')';
 
-    this.encloseSelection(stag,etag);
-  }
+		this.encloseSelection(stag,etag);
+	}
 };
 
 /* Image selector
 -------------------------------------------------------- */
 jsToolBar.prototype.elements.md_img_select = {
-  type: 'button',
-  title: 'Image chooser',
-  icon: 'style/jsToolBar/bt_img_select.png',
-  fn: {},
-  fncall: {},
-  open_url: 'media.php?popup=1',
-  data: {},
-  popup: function() {
-    window.the_toolbar = this;
-    this.elements.md_img_select.data = {};
-    
-    var p_win = window.open(this.elements.md_img_select.open_url,'dc_popup',
-    'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,'+
-    'menubar=no,resizable=yes,scrollbars=yes,status=no');
-  }
+	type: 'button',
+	title: 'Image chooser',
+	icon: 'style/jsToolBar/bt_img_select.png',
+	fn: {},
+	fncall: {},
+	open_url: 'media.php?popup=1',
+	data: {},
+	popup: function() {
+		window.the_toolbar = this;
+		this.elements.md_img_select.data = {};
+
+		var p_win = window.open(this.elements.md_img_select.open_url,'dc_popup',
+		'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,'+
+		'menubar=no,resizable=yes,scrollbars=yes,status=no');
+	}
 };
 jsToolBar.prototype.elements.md_img_select.fn.markdown = function() {
-  this.elements.md_img_select.popup.call(this);
+	this.elements.md_img_select.popup.call(this);
 };
 jsToolBar.prototype.elements.img_select.fncall.markdown = function() {
-  var d = this.elements.img_select.data;
-  if (d.src == undefined) { return; }
-  
-  this.encloseSelection('','',function(str) {
-    var alt = (str) ? str : d.title;
-    var res = '<img src="'+d.src+'" alt="'+alt.replace('&','&amp;').replace('>','&gt;').replace('<','&lt;').replace('"','&quot;')+'"';
-    
-    if (d.alignment == 'left') {
-      res += ' style="float: left; margin: 0 1em 1em 0;"';
-    } else if (d.alignment == 'right') {
-      res += ' style="float: right; margin: 0 0 1em 1em;"';
-    } else if (d.alignment == 'center') {
-      res += ' style="margin: 0 auto; display: block;"';
-    }
-    
-    if (d.description) {
-      res += ' title="'+d.description.replace('&','&amp;').replace('>','&gt;').replace('<','&lt;').replace('"','&quot;')+'"';
-    }
-    
-    res += ' />';
-    
-    if (d.link) {
-      var ltitle = (alt) ? ' title="'+alt.replace('&','&amp;').replace('>','&gt;').replace('<','&lt;').replace('"','&quot;')+'"' : '';
-      res = '<a href="'+d.url+'"'+ltitle+'>'+res+'</a>';
-    }
-    
-    return res;
-  });
+	var d = this.elements.img_select.data;
+	if (d.src == undefined) { return; }
+
+	this.encloseSelection('','',function(str) {
+		var alt = (str) ? str : d.title;
+		var res = '<img src="'+d.src+'" alt="'+alt.replace('&','&amp;').replace('>','&gt;').replace('<','&lt;').replace('"','&quot;')+'"';
+
+		if (d.alignment == 'left') {
+			res += ' style="float: left; margin: 0 1em 1em 0;"';
+		} else if (d.alignment == 'right') {
+			res += ' style="float: right; margin: 0 0 1em 1em;"';
+		} else if (d.alignment == 'center') {
+			res += ' style="margin: 0 auto; display: block;"';
+		}
+
+		if (d.description) {
+			res += ' title="'+d.description.replace('&','&amp;').replace('>','&gt;').replace('<','&lt;').replace('"','&quot;')+'"';
+		}
+
+		res += ' />';
+
+		if (d.link) {
+			var ltitle = (alt) ? ' title="'+alt.replace('&','&amp;').replace('>','&gt;').replace('<','&lt;').replace('"','&quot;')+'"' : '';
+			res = '<a href="'+d.url+'"'+ltitle+'>'+res+'</a>';
+		}
+
+		return res;
+	});
 };
 
 // MP3 helpers
 //jsToolBar.prototype.elements.mp3_insert = { fncall: {}, data: {} };
 jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function() {
-  var d = this.elements.mp3_insert.data;
-  if (d.player == undefined) { return; }
-  
-  this.encloseSelection('','',function(str) {
-    return '\n' + d.player + '\n';
-  });
+	var d = this.elements.mp3_insert.data;
+	if (d.player == undefined) { return; }
+
+	this.encloseSelection('','',function(str) {
+		return '\n' + d.player + '\n';
+	});
 };
 
 // FLV helpers
 //jsToolBar.prototype.elements.flv_insert = { fncall: {}, data: {} };
 jsToolBar.prototype.elements.flv_insert.fncall.markdown = function() {
-  var d = this.elements.flv_insert.data;
-  if (d.player == undefined) { return; }
-  
-  this.encloseSelection('','',function(str) {
-    return '\n' + d.player + '\n';
-  });
+	var d = this.elements.flv_insert.data;
+	if (d.player == undefined) { return; }
+
+	this.encloseSelection('','',function(str) {
+		return '\n' + d.player + '\n';
+	});
 };
 
 
 /* Posts selector
 -------------------------------------------------------- */
 jsToolBar.prototype.elements.md_post_link = {
-  type: 'button',
-  title: 'Link to an entry',
-  icon: 'style/jsToolBar/bt_post.png',
-  fn: {},
-  open_url: 'popup_posts.php',
-  data: {},
-  popup: function() {
-    window.the_toolbar = this;
-    this.elements.link.data = {};
-    
-    var p_win = window.open(this.elements.md_post_link.open_url,'dc_popup',
-    'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,'+
-    'menubar=no,resizable=yes,scrollbars=yes,status=no');
-  }
+	type: 'button',
+	title: 'Link to an entry',
+	icon: 'style/jsToolBar/bt_post.png',
+	fn: {},
+	open_url: 'popup_posts.php',
+	data: {},
+	popup: function() {
+		window.the_toolbar = this;
+		this.elements.link.data = {};
+
+		var p_win = window.open(this.elements.md_post_link.open_url,'dc_popup',
+		'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,'+
+		'menubar=no,resizable=yes,scrollbars=yes,status=no');
+	}
 };
 jsToolBar.prototype.elements.md_post_link.fn.markdown = function() {
-  this.elements.md_post_link.popup.call(this);
+	this.elements.md_post_link.popup.call(this);
 }
 jsToolBar.prototype.elements.link.fncall.markdown = function() {
-  var link = this.elements.link.data;
-  if (link.href == undefined) { return; }
+	var link = this.elements.link.data;
+	if (link.href == undefined) { return; }
 
-  if (link) {
-    var stag = '[';
-    var etag = ']('+link.href;
-    if (link.title) { etag = etag+' "'+link.title+'"'; }
-    etag = etag+')';
-    
-    this.encloseSelection(stag,etag);
-  }
+	if (link) {
+		var stag = '[';
+		var etag = ']('+link.href;
+		if (link.title) { etag = etag+' "'+link.title+'"'; }
+		etag = etag+')';
+
+		this.encloseSelection(stag,etag);
+	}
 };
