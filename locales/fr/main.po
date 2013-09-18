@@ -1,8 +1,19 @@
 msgid ""
 msgstr ""
-
-msgid "Markdown syntax"
-msgstr "Syntaxe Markdown"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-18 18:06+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
 
 msgid "Title?"
 msgstr "Titre ?"
+
+msgid "Markdown syntax"
+msgstr "Syntaxe Markdown"

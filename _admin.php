@@ -22,7 +22,7 @@ class dcMarkdown
 
 	    $res = '<script type="text/javascript" src="index.php?pf=formatting-markdown/_post.js"></script>';
 
-	    $res .= 
+	    $res .=
 		'<script type="text/javascript">'."\n".
 		"//<![CDATA[\n".
 		"jsToolBar.prototype.elements.md_blocks.options.none = '".html::escapeJS(__('-- none --'))."'; ".
