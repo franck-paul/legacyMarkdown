@@ -18,4 +18,3 @@ $this->registerModule(
 	/* Version */			'1.2',
 	/* Permissions */		'usage,contentadmin'
 );
-?>

@@ -14,7 +14,7 @@ if (!defined('DC_CONTEXT_ADMIN')) { return; }
 // dead but useful code, in order to have translations
 __('Markdown syntax').__('Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)');
 
-$GLOBALS['__autoload']['MarkdownExtra_Parser'] = dirname(__FILE__).'/markdown.php';
+$__autoload['MarkdownExtra_Parser'] = dirname(__FILE__).'/inc/markdown.php';
 $core->addFormater('markdown', array('dcMarkdown','convert'));
 
 $core->addBehavior('adminPostHeaders',array('dcMarkdown','adminPostHeaders'));
@@ -24,7 +24,7 @@ class dcMarkdown
 {
 	public static function adminPostHeaders() {
 
-	    $res = '<script type="text/javascript" src="index.php?pf=formatting-markdown/_post.js"></script>';
+	    $res = '<script type="text/javascript" src="index.php?pf=formatting-markdown/js/post.js"></script>';
 
 	    $res .=
 		'<script type="text/javascript">'."\n".
@@ -80,4 +80,3 @@ class dcMarkdown
 		return $o->transform($str);
 	}
 }
-?>
