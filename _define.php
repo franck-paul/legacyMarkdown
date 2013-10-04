@@ -16,5 +16,8 @@ $this->registerModule(
 	/* Description*/		"Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)",
 	/* Author */			"Michel Fortin",
 	/* Version */			'1.2',
-	/* Permissions */		'usage,contentadmin'
+	array(
+		/* Permissions */	'permissions' =>	'usage,contentadmin',
+		/* Type */			'type' =>			'plugin'
+	)
 );
