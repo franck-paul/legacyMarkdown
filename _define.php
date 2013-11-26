@@ -14,8 +14,8 @@ if (!defined('DC_RC_PATH')) { return; }
 $this->registerModule(
 	/* Name */			"Markdown syntax",
 	/* Description*/		"Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)",
-	/* Author */			"Michel Fortin",
-	/* Version */			'1.2',
+	/* Author */			"Michel Fortin, Franck Paul and contributors",
+	/* Version */			'1.3',
 	array(
 		/* Permissions */	'permissions' =>	'usage,contentadmin',
 		/* Type */			'type' =>			'plugin'

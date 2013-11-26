@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-24 13:28+0200\n"
+"POT-Creation-Date: 2013-11-26 13:57+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>\n"
 "Language-Team: \n"
@@ -17,6 +17,9 @@ msgstr "Ajoute la syntaxe markdown (extra) pour vos entrées (voir http://michel
 
 msgid "Markdown syntax"
 msgstr "Syntaxe Markdown"
+
+msgid "Enable Markdown syntax for comments"
+msgstr "Activer la syntaxe Markdown pour les commentaires"
 
 msgid "Title?"
 msgstr "Titre ?"

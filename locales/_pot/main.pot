@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dotclear 2 formatting-markdown module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-24 13:28+0200\n"
+"POT-Creation-Date: 2013-11-26 13:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,11 @@ msgstr ""
 msgid "Markdown syntax"
 msgstr ""
 
-#: ../hg-plugins/formatting-markdown/_admin.php:58
-#: ../hg-plugins/formatting-markdown/_admin.php:62
+#: ../hg-plugins/formatting-markdown/_admin.php:34
+msgid "Enable Markdown syntax for comments"
+msgstr ""
+
+#: ../hg-plugins/formatting-markdown/_admin.php:76
+#: ../hg-plugins/formatting-markdown/_admin.php:80
 msgid "Title?"
 msgstr ""

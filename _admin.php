@@ -20,8 +20,26 @@ $core->addFormater('markdown', array('dcMarkdown','convert'));
 $core->addBehavior('adminPostHeaders',array('dcMarkdown','adminPostHeaders'));
 $core->addBehavior('adminPageHeaders',array('dcMarkdown','adminPostHeaders'));
 
+$core->addBehavior('adminBlogPreferencesForm',array('dcMarkdown','adminBlogPreferencesForm'));
+$core->addBehavior('adminBeforeBlogSettingsUpdate',array('dcMarkdown','adminBeforeBlogSettingsUpdate'));
+
 class dcMarkdown
 {
+	public static function adminBlogPreferencesForm($core,$settings)
+	{
+		echo
+		'<div class="fieldset"><h4>Markdown</h4>'.
+		'<p><label class="classic">'.
+		form::checkbox('markdown_comments','1',$settings->system->markdown_comments).
+		__('Enable Markdown syntax for comments').'</label></p>'.
+		'</div>';
+	}
+
+	public static function adminBeforeBlogSettingsUpdate($settings)
+	{
+		$settings->system->put('markdown_comments',!empty($_POST['markdown_comments']),'boolean');
+	}
+
 	public static function adminPostHeaders() {
 
 	    $res = '<script type="text/javascript" src="index.php?pf=formatting-markdown/js/post.js"></script>';
