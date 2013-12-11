@@ -41,7 +41,7 @@ jsToolBar.prototype.elements.md_space0 = {
 jsToolBar.prototype.elements.md_strong = {
 	type: 'button',
 	title: 'Strong emphasis',
-	icon: 'style/jsToolBar/bt_strong.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_strong.png',
 	fn: {
 		markdown: function() { this.singleTag('**') }
 	}
@@ -51,7 +51,7 @@ jsToolBar.prototype.elements.md_strong = {
 jsToolBar.prototype.elements.md_em = {
 	type: 'button',
 	title: 'Emphasis',
-	icon: 'style/jsToolBar/bt_em.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_em.png',
 	fn: {
 		markdown: function() { this.singleTag('*') }
 	}
@@ -61,7 +61,7 @@ jsToolBar.prototype.elements.md_em = {
 jsToolBar.prototype.elements.md_ins = {
 	type: 'button',
 	title: 'Inserted',
-	icon: 'style/jsToolBar/bt_ins.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_ins.png',
 	fn: {
 		markdown: function() { this.singleTag('<ins>','</ins>') }
 	}
@@ -71,7 +71,7 @@ jsToolBar.prototype.elements.md_ins = {
 jsToolBar.prototype.elements.md_del = {
 	type: 'button',
 	title: 'Deleted',
-	icon: 'style/jsToolBar/bt_del.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_del.png',
 	fn: {
 		markdown: function() { this.singleTag('<del>','</del>') }
 	}
@@ -81,7 +81,7 @@ jsToolBar.prototype.elements.md_del = {
 jsToolBar.prototype.elements.md_quote = {
 	type: 'button',
 	title: 'Inline quote',
-	icon: 'style/jsToolBar/bt_quote.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_quote.png',
 	fn: {
 		markdown: function() { this.singleTag('<q>','</q>') }
 	}
@@ -91,7 +91,7 @@ jsToolBar.prototype.elements.md_quote = {
 jsToolBar.prototype.elements.md_code = {
 	type: 'button',
 	title: 'Code',
-	icon: 'style/jsToolBar/bt_code.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_code.png',
 	fn: {
 		markdown: function() { this.singleTag('`') }
 	}
@@ -109,7 +109,7 @@ jsToolBar.prototype.elements.md_space1 = {
 jsToolBar.prototype.elements.md_br = {
 	type: 'button',
 	title: 'Line break',
-	icon: 'style/jsToolBar/bt_br.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_br.png',
 	fn: {
 		markdown: function() { this.encloseSelection("  \n",'') }
 	}
@@ -127,7 +127,7 @@ jsToolBar.prototype.elements.md_space2 = {
 jsToolBar.prototype.elements.md_blockquote = {
 	type: 'button',
 	title: 'Blockquote',
-	icon: 'style/jsToolBar/bt_bquote.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_bquote.png',
 	fn: {
 		markdown: function() {
 			this.encloseSelection("\n",'',
@@ -143,7 +143,7 @@ jsToolBar.prototype.elements.md_blockquote = {
 jsToolBar.prototype.elements.md_pre = {
 	type: 'button',
 	title: 'Preformated text',
-	icon: 'style/jsToolBar/bt_pre.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_pre.png',
 	fn: {
 		markdown: function() {
 			this.encloseSelection("\n",'',
@@ -159,7 +159,7 @@ jsToolBar.prototype.elements.md_pre = {
 jsToolBar.prototype.elements.md_ul = {
 	type: 'button',
 	title: 'Unordered list',
-	icon: 'style/jsToolBar/bt_ul.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_ul.png',
 	fn: {
 		markdown: function() {
 			this.encloseSelection('','',function(str) {
@@ -174,7 +174,7 @@ jsToolBar.prototype.elements.md_ul = {
 jsToolBar.prototype.elements.md_ol = {
 	type: 'button',
 	title: 'Ordered list',
-	icon: 'style/jsToolBar/bt_ol.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_ol.png',
 	fn: {
 		markdown: function() {
 			this.encloseSelection('','',function(str) {
@@ -197,7 +197,7 @@ jsToolBar.prototype.elements.md_space3 = {
 jsToolBar.prototype.elements.md_link = {
 	type: 'button',
 	title: 'Link',
-	icon: 'style/jsToolBar/bt_link.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_link.png',
 	fn: {},
 	href_prompt: 'Please give URL:',
 	title_prompt: 'Title for this URL:',
@@ -231,7 +231,7 @@ jsToolBar.prototype.elements.md_link.fn.markdown = function() {
 jsToolBar.prototype.elements.md_img = {
 	type: 'button',
 	title: 'External image',
-	icon: 'style/jsToolBar/bt_img.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_img.png',
 	fn: {},
 	src_prompt: 'Please give image URL:',
 	title_prompt: 'Title for this image:',
@@ -266,7 +266,7 @@ jsToolBar.prototype.elements.md_img.fn.markdown = function() {
 jsToolBar.prototype.elements.md_img_select = {
 	type: 'button',
 	title: 'Image chooser',
-	icon: 'style/jsToolBar/bt_img_select.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_img_select.png',
 	fn: {},
 	fncall: {},
 	open_url: 'media.php?popup=1',
@@ -342,7 +342,7 @@ jsToolBar.prototype.elements.flv_insert.fncall.markdown = function() {
 jsToolBar.prototype.elements.md_post_link = {
 	type: 'button',
 	title: 'Link to an entry',
-	icon: 'style/jsToolBar/bt_post.png',
+	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_post.png',
 	fn: {},
 	open_url: 'popup_posts.php',
 	data: {},
