@@ -32,6 +32,7 @@ class dcMarkdown
 		'<p><label class="classic">'.
 		form::checkbox('markdown_comments','1',$settings->system->markdown_comments).
 		__('Enable Markdown syntax for comments').'</label></p>'.
+		'<p class="clear form-note warning">'.__('This option, if enabled, will replace the standard wiki syntax for comments!').'</p>'.
 		'</div>';
 	}
 

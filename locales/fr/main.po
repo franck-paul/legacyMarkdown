@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-26 13:57+0100\n"
+"POT-Creation-Date: 2013-12-11 12:15+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>\n"
 "Language-Team: \n"
@@ -20,6 +20,9 @@ msgstr "Syntaxe Markdown"
 
 msgid "Enable Markdown syntax for comments"
 msgstr "Activer la syntaxe Markdown pour les commentaires"
+
+msgid "This option, if enabled, will replace the standard wiki syntax for comments!"
+msgstr "Cette option, si activée, remplacera la syntaxe wiki standard pour les commentaires !"
 
 msgid "Title?"
 msgstr "Titre ?"
