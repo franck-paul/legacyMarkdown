@@ -269,7 +269,7 @@ jsToolBar.prototype.elements.md_img_select = {
 	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_img_select.png',
 	fn: {},
 	fncall: {},
-	open_url: 'media.php?popup=1',
+	open_url: 'media.php?popup=1&plugin_id=dcLegacyEditor',
 	data: {},
 	popup: function() {
 		window.the_toolbar = this;
