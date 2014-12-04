@@ -344,7 +344,7 @@ jsToolBar.prototype.elements.md_post_link = {
 	title: 'Link to an entry',
 	icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_post.png',
 	fn: {},
-	open_url: 'popup_posts.php',
+	open_url: 'popup_posts.php?plugin_id=dcLegacyEditor',
 	data: {},
 	popup: function() {
 		window.the_toolbar = this;
