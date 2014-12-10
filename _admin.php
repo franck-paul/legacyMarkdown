@@ -17,11 +17,10 @@ __('Markdown syntax').__('Brings you markdown (extra) syntax for your entries (s
 $__autoload['MarkdownExtra_Parser'] = dirname(__FILE__).'/inc/markdown.php';
 $core->addFormater('markdown', array('dcMarkdown','convert'));
 
-$core->addBehavior('adminPostHeaders',array('dcMarkdown','adminPostHeaders'));
-$core->addBehavior('adminPageHeaders',array('dcMarkdown','adminPostHeaders'));
-
 $core->addBehavior('adminBlogPreferencesForm',array('dcMarkdown','adminBlogPreferencesForm'));
 $core->addBehavior('adminBeforeBlogSettingsUpdate',array('dcMarkdown','adminBeforeBlogSettingsUpdate'));
+
+$core->addBehavior('adminPostEditor',array('dcMarkdown','adminPostEditor'));
 
 class dcMarkdown
 {
@@ -41,7 +40,9 @@ class dcMarkdown
 		$settings->system->put('markdown_comments',!empty($_POST['markdown_comments']),'boolean');
 	}
 
-	public static function adminPostHeaders() {
+    public static function adminPostEditor($editor='',$context='')
+	{
+		if ($editor != 'dcLegacyEditor') return;
 
 	    $res = '<script type="text/javascript" src="index.php?pf=formatting-markdown/js/post.js"></script>';
 
