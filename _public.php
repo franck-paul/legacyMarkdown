@@ -1,6 +1,6 @@
 <?php
 # -- BEGIN LICENSE BLOCK ----------------------------------
-# This file is part of googleTools, a plugin for Dotclear 2.
+# This file is part of formatting-markdown, a plugin for Dotclear 2.
 #
 # Copyright (c) Olivier Meunier, Franck Paul and contributors
 #
@@ -10,8 +10,6 @@
 # -- END LICENSE BLOCK ------------------------------------
 
 if (!defined('DC_RC_PATH')) { return; }
-
-require_once dirname(__FILE__).'/inc/markdown.php';
 
 /* Add behavior callback for markdown convert of comments */
 $core->addBehavior('publicBeforeCommentTransform',array('dcMarkdownPublic','publicBeforeCommentTransform'));
@@ -24,8 +22,7 @@ class dcMarkdownPublic
 
 		if ($core->blog->settings->system->markdown_comments)
 		{
-			$o = new MarkdownExtra_Parser;
-			return $o->transform($content);
+			return dcMarkdown::convert($content);
 		}
 		return '';
 	}

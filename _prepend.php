@@ -10,14 +10,12 @@
 # -- END LICENSE BLOCK ------------------------------------
 
 if (!defined('DC_RC_PATH')) { return; }
+// public
 
-$this->registerModule(
-	/* Name */			"Markdown syntax",
-	/* Description*/		"Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)",
-	/* Author */			"Michel Fortin, Franck Paul and contributors",
-	/* Version */			'1.4',
-	array(
-		/* Permissions */	'permissions' =>	'usage,contentadmin',
-		/* Type */			'type' =>			'plugin'
-	)
-);
+$__autoload['MarkdownExtra_Parser'] = dirname(__FILE__).'/inc/markdown.php';
+$__autoload['dcMarkdown'] = dirname(__FILE__).'/inc/class.dc.markdown.php';
+
+if (!defined('DC_CONTEXT_ADMIN')) { return false; }
+// admin
+
+$__autoload['dcMarkdownAdmin'] = dirname(__FILE__).'/inc/class.dc.markdown.php';
