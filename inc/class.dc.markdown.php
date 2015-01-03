@@ -42,7 +42,7 @@ class dcMarkdownAdmin
 		$settings->system->put('markdown_comments',!empty($_POST['markdown_comments']),'boolean');
 	}
 
-    public static function adminPostEditor($editor='',$context='')
+    public static function adminPostEditor($editor='',$context='',array $tags=array())
 	{
 		if ($editor != 'dcLegacyEditor') return;
 
