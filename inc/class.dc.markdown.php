@@ -42,9 +42,9 @@ class dcMarkdownAdmin
 		$settings->system->put('markdown_comments',!empty($_POST['markdown_comments']),'boolean');
 	}
 
-    public static function adminPostEditor($editor='',$context='',array $tags=array())
+    public static function adminPostEditor($editor='',$context='',array $tags=array(),$syntax='markdown')
 	{
-		if ($editor != 'dcLegacyEditor') return;
+		if ($editor != 'dcLegacyEditor' || $syntax != 'markdown') return;
 
 	    $res = '<script type="text/javascript" src="index.php?pf=formatting-markdown/js/post.js"></script>';
 
