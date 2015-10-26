@@ -44,9 +44,11 @@ class dcMarkdownAdmin
 
     public static function adminPostEditor($editor='',$context='',array $tags=array(),$syntax='markdown')
 	{
+		global $core;
+
 		if ($editor != 'dcLegacyEditor' || $syntax != 'markdown') return;
 
-	    $res = '<script type="text/javascript" src="index.php?pf=formatting-markdown/js/post.js"></script>';
+	    $res = dcPage::jsLoad(urldecode(dcPage::getPF('formatting-markdown/js/post.js')),$core->getVersion('formatting-markdown'));
 
 	    $res .=
 		'<script type="text/javascript">'."\n".
