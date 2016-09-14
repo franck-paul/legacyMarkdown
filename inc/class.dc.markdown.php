@@ -19,6 +19,11 @@ class dcMarkdown
 		$o = new MarkdownExtra_Parser;
 		return $o->transform($str);
 	}
+
+	public static function coreInitWikiPost($wiki2xhtml)
+	{
+		$wiki2xhtml->registerFunction('macro:md',array('dcMarkdown','convert'));
+	}
 }
 
 if (!defined('DC_CONTEXT_ADMIN')) { return; }
