@@ -9,15 +9,15 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 # -- END LICENSE BLOCK ------------------------------------
 
-if (!defined('DC_RC_PATH')) { return; }
+if (!defined('DC_RC_PATH')) {return;}
 // public
 
-$__autoload['MarkdownExtra_Parser'] = dirname(__FILE__).'/inc/markdown.php';
-$__autoload['dcMarkdown'] = dirname(__FILE__).'/inc/class.dc.markdown.php';
+$__autoload['MarkdownExtra_Parser'] = dirname(__FILE__) . '/inc/markdown.php';
+$__autoload['dcMarkdown']           = dirname(__FILE__) . '/inc/class.dc.markdown.php';
 
-$core->addBehavior('coreInitWikiPost',array('dcMarkdown','coreInitWikiPost'));
+$core->addBehavior('coreInitWikiPost', array('dcMarkdown', 'coreInitWikiPost'));
 
-if (!defined('DC_CONTEXT_ADMIN')) { return false; }
+if (!defined('DC_CONTEXT_ADMIN')) {return false;}
 // admin
 
-$__autoload['dcMarkdownAdmin'] = dirname(__FILE__).'/inc/class.dc.markdown.php';
+$__autoload['dcMarkdownAdmin'] = dirname(__FILE__) . '/inc/class.dc.markdown.php';

@@ -9,15 +9,15 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 # -- END LICENSE BLOCK ------------------------------------
 
-if (!defined('DC_RC_PATH')) { return; }
+if (!defined('DC_RC_PATH')) {return;}
 
 $this->registerModule(
-	/* Name */			"Markdown syntax",
-	/* Description*/		"Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)",
-	/* Author */			"Michel Fortin, Franck Paul and contributors",
-	/* Version */			'1.6',
-	array(
-		/* Permissions */	'permissions' =>	'usage,contentadmin',
-		/* Type */			'type' =>			'plugin'
-	)
+    "Markdown syntax",                                                                                           // Name
+    "Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)", // Description
+    "Michel Fortin, Franck Paul and contributors",                                                               // Author
+    '1.7',                                                                                                       // Version
+    array(
+        'permissions' => 'usage,contentadmin',
+        'type'        => 'plugin'
+    )
 );
