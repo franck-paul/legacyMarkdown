@@ -1,3 +1,6 @@
+/*global jsToolBar */
+'use strict';
+
 // Elements definition ------------------------------------
 
 // block format (paragraph, headers)
@@ -52,7 +55,7 @@ jsToolBar.prototype.elements.md_strong = {
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_strong.png',
   fn: {
     markdown: function() {
-      this.singleTag('**')
+      this.singleTag('**');
     }
   }
 };
@@ -64,7 +67,7 @@ jsToolBar.prototype.elements.md_em = {
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_em.png',
   fn: {
     markdown: function() {
-      this.singleTag('*')
+      this.singleTag('*');
     }
   }
 };
@@ -76,7 +79,7 @@ jsToolBar.prototype.elements.md_ins = {
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_ins.png',
   fn: {
     markdown: function() {
-      this.singleTag('<ins>', '</ins>')
+      this.singleTag('<ins>', '</ins>');
     }
   }
 };
@@ -88,7 +91,7 @@ jsToolBar.prototype.elements.md_del = {
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_del.png',
   fn: {
     markdown: function() {
-      this.singleTag('<del>', '</del>')
+      this.singleTag('<del>', '</del>');
     }
   }
 };
@@ -100,7 +103,7 @@ jsToolBar.prototype.elements.md_quote = {
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_quote.png',
   fn: {
     markdown: function() {
-      this.singleTag('<q>', '</q>')
+      this.singleTag('<q>', '</q>');
     }
   }
 };
@@ -112,7 +115,7 @@ jsToolBar.prototype.elements.md_code = {
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_code.png',
   fn: {
     markdown: function() {
-      this.singleTag('`')
+      this.singleTag('`');
     }
   }
 };
@@ -132,7 +135,7 @@ jsToolBar.prototype.elements.md_br = {
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_br.png',
   fn: {
     markdown: function() {
-      this.encloseSelection("  \n", '')
+      this.encloseSelection('  \n', '');
     }
   }
 };
@@ -152,10 +155,10 @@ jsToolBar.prototype.elements.md_blockquote = {
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_bquote.png',
   fn: {
     markdown: function() {
-      this.encloseSelection("\n", '',
+      this.encloseSelection('\n', '',
         function(str) {
           str = str.replace(/\r/g, '');
-          return '> ' + str.replace(/\n/g, "\n> ");
+          return '> ' + str.replace(/\n/g, '\n> ');
         });
     }
   }
@@ -168,10 +171,10 @@ jsToolBar.prototype.elements.md_pre = {
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_pre.png',
   fn: {
     markdown: function() {
-      this.encloseSelection("\n", '',
+      this.encloseSelection('\n', '',
         function(str) {
           str = str.replace(/\r/g, '');
-          return '    ' + str.replace(/\n/g, "\n    ");
+          return '    ' + str.replace(/\n/g, '\n    ');
         });
     }
   }
@@ -186,7 +189,7 @@ jsToolBar.prototype.elements.md_ul = {
     markdown: function() {
       this.encloseSelection('', '', function(str) {
         str = str.replace(/\r/g, '');
-        return '* ' + str.replace(/\n/g, "\n* ");
+        return '* ' + str.replace(/\n/g, '\n* ');
       });
     }
   }
@@ -201,7 +204,7 @@ jsToolBar.prototype.elements.md_ol = {
     markdown: function() {
       this.encloseSelection('', '', function(str) {
         str = str.replace(/\r/g, '');
-        return '1. ' + str.replace(/\n/g, "\n1. ");
+        return '1. ' + str.replace(/\n/g, '\n1. ');
       });
     }
   }
@@ -311,7 +314,7 @@ jsToolBar.prototype.elements.md_img_select = {
     window.the_toolbar = this;
     this.elements.md_img_select.data = {};
 
-    var p_win = window.open(this.elements.md_img_select.open_url, 'dc_popup',
+    window.open(this.elements.md_img_select.open_url, 'dc_popup',
       'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,' +
       'menubar=no,resizable=yes,scrollbars=yes,status=no');
   }
@@ -360,7 +363,7 @@ jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function() {
     return;
   }
 
-  this.encloseSelection('', '', function(str) {
+  this.encloseSelection('', '', function() {
     return '\n' + d.player + '\n';
   });
 };
@@ -373,7 +376,7 @@ jsToolBar.prototype.elements.flv_insert.fncall.markdown = function() {
     return;
   }
 
-  this.encloseSelection('', '', function(str) {
+  this.encloseSelection('', '', function() {
     return '\n' + d.player + '\n';
   });
 };
@@ -391,14 +394,14 @@ jsToolBar.prototype.elements.md_post_link = {
     window.the_toolbar = this;
     this.elements.link.data = {};
 
-    var p_win = window.open(this.elements.md_post_link.open_url, 'dc_popup',
+    window.open(this.elements.md_post_link.open_url, 'dc_popup',
       'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,' +
       'menubar=no,resizable=yes,scrollbars=yes,status=no');
   }
 };
 jsToolBar.prototype.elements.md_post_link.fn.markdown = function() {
   this.elements.md_post_link.popup.call(this);
-}
+};
 jsToolBar.prototype.elements.link.fncall.markdown = function() {
   var link = this.elements.link.data;
   if (link.href == undefined) {
