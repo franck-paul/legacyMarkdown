@@ -14,7 +14,7 @@
 if (!defined('DC_RC_PATH')) {return;}
 
 /* Add behavior callback for markdown convert of comments */
-$core->addBehavior('publicBeforeCommentTransform', array('dcMarkdownPublic', 'publicBeforeCommentTransform'));
+$core->addBehavior('publicBeforeCommentTransform', ['dcMarkdownPublic', 'publicBeforeCommentTransform']);
 
 class dcMarkdownPublic
 {

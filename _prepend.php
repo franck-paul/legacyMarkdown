@@ -17,7 +17,7 @@ if (!defined('DC_RC_PATH')) {return;}
 $__autoload['MarkdownExtra_Parser'] = dirname(__FILE__) . '/inc/markdown.php';
 $__autoload['dcMarkdown']           = dirname(__FILE__) . '/inc/class.dc.markdown.php';
 
-$core->addBehavior('coreInitWikiPost', array('dcMarkdown', 'coreInitWikiPost'));
+$core->addBehavior('coreInitWikiPost', ['dcMarkdown', 'coreInitWikiPost']);
 
 if (!defined('DC_CONTEXT_ADMIN')) {return false;}
 // admin

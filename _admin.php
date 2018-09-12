@@ -16,9 +16,9 @@ if (!defined('DC_CONTEXT_ADMIN')) {return;}
 // dead but useful code, in order to have translations
 __('Markdown syntax') . __('Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)');
 
-$core->addFormater('markdown', array('dcMarkdown', 'convert'));
+$core->addFormater('markdown', ['dcMarkdown', 'convert']);
 
-$core->addBehavior('adminBlogPreferencesForm', array('dcMarkdownAdmin', 'adminBlogPreferencesForm'));
-$core->addBehavior('adminBeforeBlogSettingsUpdate', array('dcMarkdownAdmin', 'adminBeforeBlogSettingsUpdate'));
+$core->addBehavior('adminBlogPreferencesForm', ['dcMarkdownAdmin', 'adminBlogPreferencesForm']);
+$core->addBehavior('adminBeforeBlogSettingsUpdate', ['dcMarkdownAdmin', 'adminBeforeBlogSettingsUpdate']);
 
-$core->addBehavior('adminPostEditor', array('dcMarkdownAdmin', 'adminPostEditor'));
+$core->addBehavior('adminPostEditor', ['dcMarkdownAdmin', 'adminPostEditor']);

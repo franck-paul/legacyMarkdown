@@ -17,9 +17,10 @@ $this->registerModule(
     "Markdown syntax",                                                                                           // Name
     "Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)", // Description
     "Michel Fortin, Franck Paul and contributors",                                                               // Author
-    '1.7',                                                                                                       // Version
-    array(
+    '1.8',                                                                                                       // Version
+    [
+        'requires'    => [['core', '2.13']], // Dependencies
         'permissions' => 'usage,contentadmin',
         'type'        => 'plugin'
-    )
+    ]
 );

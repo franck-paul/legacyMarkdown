@@ -24,7 +24,7 @@ class dcMarkdown
 
     public static function coreInitWikiPost($wiki2xhtml)
     {
-        $wiki2xhtml->registerFunction('macro:md', array('dcMarkdown', 'convert'));
+        $wiki2xhtml->registerFunction('macro:md', ['dcMarkdown', 'convert']);
     }
 }
 
@@ -49,7 +49,7 @@ class dcMarkdownAdmin
         $settings->system->put('markdown_comments', !empty($_POST['markdown_comments']), 'boolean');
     }
 
-    public static function adminPostEditor($editor = '', $context = '', array $tags = array(), $syntax = 'markdown')
+    public static function adminPostEditor($editor = '', $context = '', array $tags = [], $syntax = 'markdown')
     {
         global $core;
 
