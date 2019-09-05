@@ -246,10 +246,10 @@ jsToolBar.prototype.elements.md_link = {
 };
 
 jsToolBar.prototype.elements.md_link.fn.markdown = function() {
-  var link = this.elements.md_link.prompt.call(this);
+  const link = this.elements.md_link.prompt.call(this);
   if (link) {
-    var stag = '[';
-    var etag = '](' + link.href;
+    const stag = '[';
+    let etag = '](' + link.href;
     if (link.title) {
       etag = etag + ' "' + link.title + '"';
     }
@@ -287,10 +287,10 @@ jsToolBar.prototype.elements.md_img = {
 };
 
 jsToolBar.prototype.elements.md_img.fn.markdown = function() {
-  var image = this.elements.md_img.prompt.call(this);
+  const image = this.elements.md_img.prompt.call(this);
   if (image) {
-    var stag = '![';
-    var etag = '](' + image.src;
+    const stag = '![';
+    let etag = '](' + image.src;
     if (image.title) {
       etag = etag + ' "' + image.title + '"';
     }
@@ -329,8 +329,8 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function() {
   }
 
   this.encloseSelection('', '', function(str) {
-    var alt = (str) ? str : d.title;
-    var res = '<img src="' + d.src + '" alt="' + alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;') + '"';
+    const alt = (str) ? str : d.title;
+    let res = `<img src="${d.src}" alt="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"`;
 
     if (d.alignment == 'left') {
       res += ' style="float: left; margin: 0 1em 1em 0;"';
@@ -341,14 +341,16 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function() {
     }
 
     if (d.description) {
-      res += ' title="' + d.description.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;') + '"';
+      res += ` title="${d.description.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"`;
     }
 
     res += ' />';
 
     if (d.link) {
-      var ltitle = (alt) ? ' title="' + alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;') + '"' : '';
-      res = '<a href="' + d.url + '"' + ltitle + '>' + res + '</a>';
+      const ltitle = (alt) ?
+        ` title="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"` :
+        '';
+      res = `<a href="${d.url}"${ltitle}>${res}</a>`;
     }
 
     return res;
@@ -358,7 +360,7 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function() {
 // MP3 helpers
 //jsToolBar.prototype.elements.mp3_insert = { fncall: {}, data: {} };
 jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function() {
-  var d = this.elements.mp3_insert.data;
+  const d = this.elements.mp3_insert.data;
   if (d.player == undefined) {
     return;
   }
@@ -371,7 +373,7 @@ jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function() {
 // FLV helpers
 //jsToolBar.prototype.elements.flv_insert = { fncall: {}, data: {} };
 jsToolBar.prototype.elements.flv_insert.fncall.markdown = function() {
-  var d = this.elements.flv_insert.data;
+  const d = this.elements.flv_insert.data;
   if (d.player == undefined) {
     return;
   }
@@ -409,12 +411,8 @@ jsToolBar.prototype.elements.link.fncall.markdown = function() {
   }
 
   if (link) {
-    var stag = '[';
-    var etag = '](' + link.href;
-    if (link.title) {
-      etag = etag + ' "' + link.title + '"';
-    }
-    etag = etag + ')';
+    const stag = '[';
+    const etag = `](${link.href}${link.title ? ` "${link.title}"` : ''})`;
 
     this.encloseSelection(stag, etag);
   }
