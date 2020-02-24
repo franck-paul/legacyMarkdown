@@ -36,7 +36,7 @@ class dcMarkdownAdmin
     public static function adminBlogPreferencesForm($core, $settings)
     {
         echo
-        '<div class="fieldset"><h4>Markdown</h4>' .
+        '<div class="fieldset"><h4 id="formatting_markdown">Markdown</h4>' .
         '<p><label class="classic">' .
         form::checkbox('markdown_comments', '1', $settings->system->markdown_comments) .
         __('Enable Markdown syntax for comments') . '</label></p>' .

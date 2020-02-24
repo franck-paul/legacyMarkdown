@@ -19,9 +19,13 @@ $this->registerModule(
     "Michel Fortin, Franck Paul and contributors",                                                               // Author
     '1.8',                                                                                                       // Version
     [
-        'requires'    => [['core', '2.13']], // Dependencies
+        'requires'    => [['core', '2.13']],
         'permissions' => 'usage,contentadmin',
         'type'        => 'plugin',
+        'settings'    => [
+            'pref' => '#user-options.user_options_edition',
+            'blog' => '#params.formatting_markdown'
+        ],
         'support'     => 'https://github.com/franck-paul/formatting-markdown'
     ]
 );
