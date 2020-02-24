@@ -13,7 +13,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 
 msgid "Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)"
-msgstr "Ajoute la syntaxe markdown (extra) pour vos entrées (voir http://michelf.com/projects/php-markdown/extra/)"
+msgstr "Ajoute la syntaxe markdown (extra) pour vos publications (voir http://michelf.com/projects/php-markdown/extra/)"
 
 msgid "Markdown syntax"
 msgstr "Syntaxe Markdown"
