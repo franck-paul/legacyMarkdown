@@ -21,6 +21,7 @@ $this->registerModule(
     [
         'requires'    => [['core', '2.13']], // Dependencies
         'permissions' => 'usage,contentadmin',
-        'type'        => 'plugin'
+        'type'        => 'plugin',
+        'support'     => 'https://github.com/franck-paul/formatting-markdown'
     ]
 );
