@@ -60,7 +60,7 @@ class dcMarkdownAdmin
         $res = dcPage::jsLoad(urldecode(dcPage::getPF('formatting-markdown/js/post.js')), $core->getVersion('formatting-markdown'));
 
         $res .=
-        '<script type="text/javascript">' . "\n" .
+        '<script>' . "\n" .
         "jsToolBar.prototype.elements.md_blocks.options.none = '" . html::escapeJS(__('-- none --')) . "'; " .
         "jsToolBar.prototype.elements.md_blocks.options.nonebis = '" . html::escapeJS(__('-- block format --')) . "'; " .
         "jsToolBar.prototype.elements.md_blocks.options.p = '" . html::escapeJS(__('Paragraph')) . "'; " .
