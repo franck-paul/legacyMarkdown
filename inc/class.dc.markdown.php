@@ -57,51 +57,55 @@ class dcMarkdownAdmin
             return;
         }
 
-        $res = dcPage::jsLoad(urldecode(dcPage::getPF('formatting-markdown/js/post.js')), $core->getVersion('formatting-markdown'));
+        return
+        dcPage::jsJson('formatting_markdown', [
+            'md_blocks'     => [
+                'options' => [
+                    'none'    => __('-- none --'),
+                    'nonebis' => __('-- block format --'),
+                    'p'       => __('Paragraph'),
+                    'h1'      => __('Level 1 header'),
+                    'h2'      => __('Level 2 header'),
+                    'h3'      => __('Level 3 header'),
+                    'h4'      => __('Level 4 header'),
+                    'h5'      => __('Level 5 header'),
+                    'h6'      => __('Level 6 header')
+                ]
+            ],
 
-        $res .=
-        '<script>' . "\n" .
-        "jsToolBar.prototype.elements.md_blocks.options.none = '" . html::escapeJS(__('-- none --')) . "'; " .
-        "jsToolBar.prototype.elements.md_blocks.options.nonebis = '" . html::escapeJS(__('-- block format --')) . "'; " .
-        "jsToolBar.prototype.elements.md_blocks.options.p = '" . html::escapeJS(__('Paragraph')) . "'; " .
-        "jsToolBar.prototype.elements.md_blocks.options.h1 = '" . html::escapeJS(__('Level 1 header')) . "'; " .
-        "jsToolBar.prototype.elements.md_blocks.options.h2 = '" . html::escapeJS(__('Level 2 header')) . "'; " .
-        "jsToolBar.prototype.elements.md_blocks.options.h3 = '" . html::escapeJS(__('Level 3 header')) . "'; " .
-        "jsToolBar.prototype.elements.md_blocks.options.h4 = '" . html::escapeJS(__('Level 4 header')) . "'; " .
-        "jsToolBar.prototype.elements.md_blocks.options.h5 = '" . html::escapeJS(__('Level 5 header')) . "'; " .
-        "jsToolBar.prototype.elements.md_blocks.options.h6 = '" . html::escapeJS(__('Level 6 header')) . "'; " .
+            'md_strong'     => ['title' => __('Strong emphasis')],
+            'md_em'         => ['title' => __('Emphasis')],
+            'md_ins'        => ['title' => __('Inserted')],
+            'md_del'        => ['title' => __('Deleted')],
+            'md_quote'      => ['title' => __('Inline quote')],
+            'md_code'       => ['title' => __('Code')],
 
-        "jsToolBar.prototype.elements.md_strong.title = '" . html::escapeJS(__('Strong emphasis')) . "'; " .
-        "jsToolBar.prototype.elements.md_em.title = '" . html::escapeJS(__('Emphasis')) . "'; " .
-        "jsToolBar.prototype.elements.md_ins.title = '" . html::escapeJS(__('Inserted')) . "'; " .
-        "jsToolBar.prototype.elements.md_del.title = '" . html::escapeJS(__('Deleted')) . "'; " .
-        "jsToolBar.prototype.elements.md_quote.title = '" . html::escapeJS(__('Inline quote')) . "'; " .
-        "jsToolBar.prototype.elements.md_code.title = '" . html::escapeJS(__('Code')) . "'; " .
+            'md_br'         => ['title' => __('Linebreak ')],
 
-        "jsToolBar.prototype.elements.md_br.title = '" . html::escapeJS(__('Line break')) . "'; " .
+            'md_blockquote' => ['title' => __('Blockquote')],
+            'md_pre'        => ['title' => __('Preformatedtext')],
+            'md_ul'         => ['title' => __('Unorderedlist')],
+            'md_ol'         => ['title' => __('Orderedlist')],
 
-        "jsToolBar.prototype.elements.md_blockquote.title = '" . html::escapeJS(__('Blockquote')) . "'; " .
-        "jsToolBar.prototype.elements.md_pre.title = '" . html::escapeJS(__('Preformated text')) . "'; " .
-        "jsToolBar.prototype.elements.md_ul.title = '" . html::escapeJS(__('Unordered list')) . "'; " .
-        "jsToolBar.prototype.elements.md_ol.title = '" . html::escapeJS(__('Ordered list')) . "'; " .
+            'md_link'       => [
+                'title'        => __('Link'),
+                'href_prompt'  => __('URL ? '),
+                'title_prompt' => __('Title ? ')
+            ],
 
-        "jsToolBar.prototype.elements.md_link.title = '" . html::escapeJS(__('Link')) . "'; " .
-        "jsToolBar.prototype.elements.md_link.href_prompt = '" . html::escapeJS(__('URL?')) . "'; " .
-        "jsToolBar.prototype.elements.md_link.title_prompt = '" . html::escapeJS(__('Title?')) . "'; " .
+            'md_img'        => [
+                'title'        => __('Externalimage'),
+                'src_prompt'   => __('URL ? '),
+                'title_prompt' => __('Title ? ')
+            ],
 
-        "jsToolBar.prototype.elements.md_img.title = '" . html::escapeJS(__('External image')) . "'; " .
-        "jsToolBar.prototype.elements.md_img.src_prompt = '" . html::escapeJS(__('URL?')) . "'; " .
-        "jsToolBar.prototype.elements.md_img.title_prompt = '" . html::escapeJS(__('Title?')) . "'; " .
+            'md_img_select' => [
+                'title'    => __('Mediachooser'),
+                'disabled' => (!$GLOBALS['core']->auth->check('media,media_admin', $GLOBALS['core']->blog->id) ? true : false)
+            ],
 
-        "jsToolBar.prototype.elements.md_img_select.title = '" . html::escapeJS(__('Media chooser')) . "'; " .
-        "jsToolBar.prototype.elements.md_post_link.title = '" . html::escapeJS(__('Link to an entry')) . "'; ";
-
-        if (!$GLOBALS['core']->auth->check('media,media_admin', $GLOBALS['core']->blog->id)) {
-            $res .= "jsToolBar.prototype.elements.md_img_select.disabled = true;\n";
-        }
-        $res .=
-            "</script>\n";
-
-        return $res;
+            'md_post_link'  => ['title' => __('Linktoanentry')]
+        ]) .
+        dcPage::jsLoad(urldecode(dcPage::getPF('formatting-markdown/js/post.js')), $core->getVersion('formatting-markdown'));
     }
 }

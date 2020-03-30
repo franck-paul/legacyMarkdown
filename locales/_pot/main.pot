@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dotclear 2 formatting-markdown module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-11 12:15+0100\n"
+"POT-Creation-Date: 2020-03-30 15:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,23 +16,56 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../hg-plugins/formatting-markdown//_admin.php:15
+#: ../git-plugins/formatting-markdown/_admin.php:17
 msgid "Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)"
 msgstr ""
 
-#: ../hg-plugins/formatting-markdown//_admin.php:15
+#: ../git-plugins/formatting-markdown/_admin.php:17
 msgid "Markdown syntax"
 msgstr ""
 
-#: ../hg-plugins/formatting-markdown//_admin.php:34
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:42
 msgid "Enable Markdown syntax for comments"
 msgstr ""
 
-#: ../hg-plugins/formatting-markdown//_admin.php:35
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:43
 msgid "This option, if enabled, will replace the standard wiki syntax for comments!"
 msgstr ""
 
-#: ../hg-plugins/formatting-markdown//_admin.php:77
-#: ../hg-plugins/formatting-markdown//_admin.php:81
-msgid "Title?"
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:82
+msgid "Linebreak "
+msgstr ""
+
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:85
+msgid "Preformatedtext"
+msgstr ""
+
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:86
+msgid "Unorderedlist"
+msgstr ""
+
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:87
+msgid "Orderedlist"
+msgstr ""
+
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:91
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:97
+msgid "URL ? "
+msgstr ""
+
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:92
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:98
+msgid "Title ? "
+msgstr ""
+
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:96
+msgid "Externalimage"
+msgstr ""
+
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:102
+msgid "Mediachooser"
+msgstr ""
+
+#: ../git-plugins/formatting-markdown/inc/class.dc.markdown.php:106
+msgid "Linktoanentry"
 msgstr ""

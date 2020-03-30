@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-11 12:15+0100\n"
+"POT-Creation-Date: 2020-03-30 15:10+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>\n"
 "Language-Team: \n"
@@ -24,5 +24,29 @@ msgstr "Activer la syntaxe Markdown pour les commentaires"
 msgid "This option, if enabled, will replace the standard wiki syntax for comments!"
 msgstr "Cette option, si activée, remplacera la syntaxe wiki standard pour les commentaires !"
 
-msgid "Title?"
+msgid "Linebreak "
+msgstr "Passage à la ligne"
+
+msgid "Preformatedtext"
+msgstr "Texte préformatté"
+
+msgid "Unorderedlist"
+msgstr "Liste non ordonnée"
+
+msgid "Orderedlist"
+msgstr "Liste ordonnée"
+
+msgid "URL ? "
+msgstr "URL ? "
+
+msgid "Title ? "
 msgstr "Titre ?"
+
+msgid "Externalimage"
+msgstr "Image externe"
+
+msgid "Mediachooser"
+msgstr "Sélecteur de média"
+
+msgid "Linktoanentry"
+msgstr "Liens vers une publication"

@@ -1,4 +1,4 @@
-/*global jsToolBar */
+/*global jsToolBar, getData, mergeDeep */
 'use strict';
 
 // Elements definition ------------------------------------
@@ -417,3 +417,7 @@ jsToolBar.prototype.elements.link.fncall.markdown = function() {
     this.encloseSelection(stag, etag);
   }
 };
+
+/* Set options
+---------------------------------------------------------- */
+mergeDeep(jsToolBar.prototype.elements, getData('formatting_markdown'));
