@@ -50,3 +50,6 @@ msgstr "Sélecteur de média"
 
 msgid "Linktoanentry"
 msgstr "Liens vers une publication"
+
+msgid "Comments can be formatted using the Markdown syntax."
+msgstr "Les commentaires peuvent être formatés en utilisant la syntaxe Markdown."

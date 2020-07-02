@@ -13,8 +13,11 @@
 
 if (!defined('DC_RC_PATH')) {return;}
 
-/* Add behavior callback for markdown convert of comments */
+// Add behavior callback for markdown convert of comments
 $core->addBehavior('publicBeforeCommentTransform', ['dcMarkdownPublic', 'publicBeforeCommentTransform']);
+
+// tpl:CommentHelp alternative (will replace the standard template tag)
+$core->tpl->addValue('CommentHelp', ['dcMarkdownPublic', 'CommentHelp']);
 
 class dcMarkdownPublic
 {
@@ -26,5 +29,19 @@ class dcMarkdownPublic
             return dcMarkdown::convert($content);
         }
         return '';
+    }
+
+    public static function CommentHelp($attr, $content)
+    {
+        return
+            "<?php if (\$core->blog->settings->system->wiki_comments) {\n" .
+            "    if (\$core->blog->settings->system->markdown_comments) {\n" .
+            "      echo __('Comments can be formatted using the Markdown syntax.');\n" .
+            "    } else {\n" .
+            "      echo __('Comments can be formatted using a simple wiki syntax.');\n" .
+            "    }\n" .
+            "} else {\n" .
+            "  echo __('HTML code is displayed as text and web addresses are automatically converted.');\n" .
+            "} ?>";
     }
 }
