@@ -22,6 +22,17 @@ if (version_compare($old_version, $new_version, '>=')) {
 
 try
 {
+    if (version_compare($old_version, '1.10', '<')) {
+        # A bit of housecleaning for no longer needed files
+        $remfiles = [
+            'inc/markdown.php',
+            'inc/License.text'
+        ];
+        foreach ($remfiles as $f) {
+            @unlink(DC_ROOT . '/' . $f);
+        }
+    }
+
     $core->setVersion('formatting-markdown', $new_version);
 
     return true;

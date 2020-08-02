@@ -14,8 +14,11 @@
 if (!defined('DC_RC_PATH')) {return;}
 // public
 
-$__autoload['MarkdownExtra_Parser'] = dirname(__FILE__) . '/inc/markdown.php';
-$__autoload['dcMarkdown']           = dirname(__FILE__) . '/inc/class.dc.markdown.php';
+$__autoload['Michelf\MarkdownInterface'] = dirname(__FILE__) . '/lib/Michelf/MarkdownInterface.php';
+$__autoload['Michelf\Markdown']          = dirname(__FILE__) . '/lib/Michelf/Markdown.php';
+$__autoload['Michelf\MarkdownExtra']     = dirname(__FILE__) . '/lib/Michelf/MarkdownExtra.php';
+
+$__autoload['dcMarkdown'] = dirname(__FILE__) . '/inc/class.dc.markdown.php';
 
 $core->addBehavior('coreInitWikiPost', ['dcMarkdown', 'coreInitWikiPost']);
 

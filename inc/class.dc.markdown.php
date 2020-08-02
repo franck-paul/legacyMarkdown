@@ -16,9 +16,20 @@ if (!defined('DC_RC_PATH')) {return;}
 
 class dcMarkdown
 {
-    public static function convert($str)
+    public static function convert($str, $type = 'full')
     {
-        $o = new MarkdownExtra_Parser;
+        $o = new Michelf\MarkdownExtra;
+        switch ($type) {
+            case 'comment':
+                // Setup some options in comments
+                $o->hashtag_protection = true;
+                break;
+            case 'full':
+            default:
+                break;
+        }
+        // Setup generic options
+        $o->fn_id_prefix = 'ts' . dt::str('%s');
         return $o->transform($str);
     }
 

@@ -26,7 +26,7 @@ class dcMarkdownPublic
         global $core;
 
         if ($core->blog->settings->system->markdown_comments) {
-            return dcMarkdown::convert($content);
+            return dcMarkdown::convert($content, 'comment');
         }
         return '';
     }
