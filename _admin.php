@@ -14,7 +14,7 @@
 if (!defined('DC_CONTEXT_ADMIN')) {return;}
 
 // dead but useful code, in order to have translations
-__('Markdown syntax') . __('Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)');
+__('Markdown syntax') . __('Brings you markdown (extra) syntax for your entries (see https://michelf.ca/projects/php-markdown/)');
 
 $core->addFormater('markdown', ['dcMarkdown', 'convert']);
 

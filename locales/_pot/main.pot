@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../git-plugins/formatting-markdown/_admin.php:17
-msgid "Brings you markdown (extra) syntax for your entries (see http://michelf.com/projects/php-markdown/extra/)"
+msgid "Brings you markdown (extra) syntax for your entries (see https://michelf.ca/projects/php-markdown/)"
 msgstr ""
 
 #: ../git-plugins/formatting-markdown/_admin.php:17

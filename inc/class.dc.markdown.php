@@ -29,7 +29,7 @@ class dcMarkdown
                 break;
         }
         // Setup generic options
-        $o->fn_id_prefix = 'ts' . dt::str('%s');
+        $o->fn_id_prefix = 'ts' . dt::str('%s') . '.';
         return $o->transform($str);
     }
 
