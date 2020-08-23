@@ -36,7 +36,7 @@ class dcMarkdownPublic
         return
             "<?php if (\$core->blog->settings->system->wiki_comments) {\n" .
             "    if (\$core->blog->settings->system->markdown_comments) {\n" .
-            "      echo __('Comments can be formatted using the Markdown syntax.');\n" .
+            "      echo __('Comments can be formatted using the <a href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a> syntax.');\n" .
             "    } else {\n" .
             "      echo __('Comments can be formatted using a simple wiki syntax.');\n" .
             "    }\n" .
