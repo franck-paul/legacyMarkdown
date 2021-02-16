@@ -10,8 +10,9 @@
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-
-if (!defined('DC_RC_PATH')) {return;}
+if (!defined('DC_RC_PATH')) {
+    return;
+}
 // public
 
 class dcMarkdown
@@ -23,6 +24,7 @@ class dcMarkdown
             case 'comment':
                 // Setup some options in comments
                 $o->hashtag_protection = true;
+
                 break;
             case 'full':
             default:
@@ -30,6 +32,7 @@ class dcMarkdown
         }
         // Setup generic options
         $o->fn_id_prefix = 'ts' . dt::str('%s') . '.';
+
         return $o->transform($str);
     }
 
@@ -39,7 +42,9 @@ class dcMarkdown
     }
 }
 
-if (!defined('DC_CONTEXT_ADMIN')) {return;}
+if (!defined('DC_CONTEXT_ADMIN')) {
+    return;
+}
 // admin
 
 class dcMarkdownAdmin
@@ -52,7 +57,7 @@ class dcMarkdownAdmin
         form::checkbox('markdown_comments', '1', $settings->system->markdown_comments) .
         __('Enable Markdown syntax for comments') . '</label></p>' .
         '<p class="clear form-note warning">' . __('This option, if enabled, will replace the standard wiki syntax for comments!') . '</p>' .
-            '</div>';
+        '</div>';
     }
 
     public static function adminBeforeBlogSettingsUpdate($settings)
@@ -70,7 +75,7 @@ class dcMarkdownAdmin
 
         return
         dcPage::jsJson('formatting_markdown', [
-            'md_blocks'     => [
+            'md_blocks' => [
                 'options' => [
                     'none'    => __('-- none --'),
                     'nonebis' => __('-- block format --'),
@@ -84,27 +89,27 @@ class dcMarkdownAdmin
                 ]
             ],
 
-            'md_strong'     => ['title' => __('Strong emphasis')],
-            'md_em'         => ['title' => __('Emphasis')],
-            'md_ins'        => ['title' => __('Inserted')],
-            'md_del'        => ['title' => __('Deleted')],
-            'md_quote'      => ['title' => __('Inline quote')],
-            'md_code'       => ['title' => __('Code')],
+            'md_strong' => ['title' => __('Strong emphasis')],
+            'md_em'     => ['title' => __('Emphasis')],
+            'md_ins'    => ['title' => __('Inserted')],
+            'md_del'    => ['title' => __('Deleted')],
+            'md_quote'  => ['title' => __('Inline quote')],
+            'md_code'   => ['title' => __('Code')],
 
-            'md_br'         => ['title' => __('Linebreak ')],
+            'md_br' => ['title' => __('Linebreak ')],
 
             'md_blockquote' => ['title' => __('Blockquote')],
             'md_pre'        => ['title' => __('Preformatedtext')],
             'md_ul'         => ['title' => __('Unorderedlist')],
             'md_ol'         => ['title' => __('Orderedlist')],
 
-            'md_link'       => [
+            'md_link' => [
                 'title'        => __('Link'),
                 'href_prompt'  => __('URL ? '),
                 'title_prompt' => __('Title ? ')
             ],
 
-            'md_img'        => [
+            'md_img' => [
                 'title'        => __('Externalimage'),
                 'src_prompt'   => __('URL ? '),
                 'title_prompt' => __('Title ? ')
@@ -115,7 +120,7 @@ class dcMarkdownAdmin
                 'disabled' => (!$GLOBALS['core']->auth->check('media,media_admin', $GLOBALS['core']->blog->id) ? true : false)
             ],
 
-            'md_post_link'  => ['title' => __('Linktoanentry')]
+            'md_post_link' => ['title' => __('Linktoanentry')]
         ]) .
         dcPage::jsLoad(urldecode(dcPage::getPF('formatting-markdown/js/post.js')), $core->getVersion('formatting-markdown'));
     }

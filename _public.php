@@ -10,8 +10,9 @@
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-
-if (!defined('DC_RC_PATH')) {return;}
+if (!defined('DC_RC_PATH')) {
+    return;
+}
 
 // Add behavior callback for markdown convert of comments
 $core->addBehavior('publicBeforeCommentTransform', ['dcMarkdownPublic', 'publicBeforeCommentTransform']);
@@ -28,6 +29,7 @@ class dcMarkdownPublic
         if ($core->blog->settings->system->markdown_comments) {
             return dcMarkdown::convert($content, 'comment');
         }
+
         return '';
     }
 
@@ -42,6 +44,6 @@ class dcMarkdownPublic
             "    }\n" .
             "} else {\n" .
             "  echo __('HTML code is displayed as text and web addresses are automatically converted.');\n" .
-            "} ?>";
+            '} ?>';
     }
 }

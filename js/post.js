@@ -16,11 +16,11 @@ jsToolBar.prototype.elements.md_blocks = {
     h3: 'Header 3',
     h4: 'Header 4',
     h5: 'Header 5',
-    h6: 'Header 6'
+    h6: 'Header 6',
   },
   markdown: {
     list: ['nonebis', 'h3', 'h4', 'h5'],
-    fn: function(opt) {
+    fn: function (opt) {
       switch (opt) {
         case 'nonebis':
           this.textarea.focus();
@@ -36,16 +36,16 @@ jsToolBar.prototype.elements.md_blocks = {
           break;
       }
       this.toolNodes.md_blocks.value = 'nonebis';
-    }
-  }
+    },
+  },
 };
 
 // spacer
 jsToolBar.prototype.elements.md_space0 = {
   type: 'space',
   format: {
-    markdown: true
-  }
+    markdown: true,
+  },
 };
 
 // strong
@@ -54,10 +54,10 @@ jsToolBar.prototype.elements.md_strong = {
   title: 'Strong emphasis',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_strong.png',
   fn: {
-    markdown: function() {
+    markdown: function () {
       this.singleTag('**');
-    }
-  }
+    },
+  },
 };
 
 // em
@@ -66,10 +66,10 @@ jsToolBar.prototype.elements.md_em = {
   title: 'Emphasis',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_em.png',
   fn: {
-    markdown: function() {
+    markdown: function () {
       this.singleTag('*');
-    }
-  }
+    },
+  },
 };
 
 // ins
@@ -78,10 +78,10 @@ jsToolBar.prototype.elements.md_ins = {
   title: 'Inserted',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_ins.png',
   fn: {
-    markdown: function() {
+    markdown: function () {
       this.singleTag('<ins>', '</ins>');
-    }
-  }
+    },
+  },
 };
 
 // del
@@ -90,10 +90,10 @@ jsToolBar.prototype.elements.md_del = {
   title: 'Deleted',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_del.png',
   fn: {
-    markdown: function() {
+    markdown: function () {
       this.singleTag('<del>', '</del>');
-    }
-  }
+    },
+  },
 };
 
 // quote
@@ -102,10 +102,10 @@ jsToolBar.prototype.elements.md_quote = {
   title: 'Inline quote',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_quote.png',
   fn: {
-    markdown: function() {
+    markdown: function () {
       this.singleTag('<q>', '</q>');
-    }
-  }
+    },
+  },
 };
 
 // code
@@ -114,18 +114,30 @@ jsToolBar.prototype.elements.md_code = {
   title: 'Code',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_code.png',
   fn: {
-    markdown: function() {
+    markdown: function () {
       this.singleTag('`');
-    }
-  }
+    },
+  },
+};
+
+// quote
+jsToolBar.prototype.elements.md_mark = {
+  type: 'button',
+  title: 'Mark',
+  icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_mark.png',
+  fn: {
+    markdown: function () {
+      this.singleTag('<mark>', '</mark>');
+    },
+  },
 };
 
 // spacer
 jsToolBar.prototype.elements.md_space1 = {
   type: 'space',
   format: {
-    markdown: true
-  }
+    markdown: true,
+  },
 };
 
 // br
@@ -134,18 +146,18 @@ jsToolBar.prototype.elements.md_br = {
   title: 'Line break',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_br.png',
   fn: {
-    markdown: function() {
+    markdown: function () {
       this.encloseSelection('  \n', '');
-    }
-  }
+    },
+  },
 };
 
 // spacer
 jsToolBar.prototype.elements.md_space2 = {
   type: 'space',
   format: {
-    markdown: true
-  }
+    markdown: true,
+  },
 };
 
 // blockquote
@@ -154,14 +166,13 @@ jsToolBar.prototype.elements.md_blockquote = {
   title: 'Blockquote',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_bquote.png',
   fn: {
-    markdown: function() {
-      this.encloseSelection('\n', '',
-        function(str) {
-          str = str.replace(/\r/g, '');
-          return '> ' + str.replace(/\n/g, '\n> ');
-        });
-    }
-  }
+    markdown: function () {
+      this.encloseSelection('\n', '', function (str) {
+        str = str.replace(/\r/g, '');
+        return '> ' + str.replace(/\n/g, '\n> ');
+      });
+    },
+  },
 };
 
 // pre
@@ -170,14 +181,13 @@ jsToolBar.prototype.elements.md_pre = {
   title: 'Preformated text',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_pre.png',
   fn: {
-    markdown: function() {
-      this.encloseSelection('\n', '',
-        function(str) {
-          str = str.replace(/\r/g, '');
-          return '    ' + str.replace(/\n/g, '\n    ');
-        });
-    }
-  }
+    markdown: function () {
+      this.encloseSelection('\n', '', function (str) {
+        str = str.replace(/\r/g, '');
+        return '    ' + str.replace(/\n/g, '\n    ');
+      });
+    },
+  },
 };
 
 // ul
@@ -186,13 +196,13 @@ jsToolBar.prototype.elements.md_ul = {
   title: 'Unordered list',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_ul.png',
   fn: {
-    markdown: function() {
-      this.encloseSelection('', '', function(str) {
+    markdown: function () {
+      this.encloseSelection('', '', function (str) {
         str = str.replace(/\r/g, '');
         return '* ' + str.replace(/\n/g, '\n* ');
       });
-    }
-  }
+    },
+  },
 };
 
 // ol
@@ -201,21 +211,21 @@ jsToolBar.prototype.elements.md_ol = {
   title: 'Ordered list',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_ol.png',
   fn: {
-    markdown: function() {
-      this.encloseSelection('', '', function(str) {
+    markdown: function () {
+      this.encloseSelection('', '', function (str) {
         str = str.replace(/\r/g, '');
         return '1. ' + str.replace(/\n/g, '\n1. ');
       });
-    }
-  }
+    },
+  },
 };
 
 // spacer
 jsToolBar.prototype.elements.md_space3 = {
   type: 'space',
   format: {
-    markdown: true
-  }
+    markdown: true,
+  },
 };
 
 // link
@@ -227,7 +237,7 @@ jsToolBar.prototype.elements.md_link = {
   href_prompt: 'Please give URL:',
   title_prompt: 'Title for this URL:',
   default_title: '',
-  prompt: function(href, title) {
+  prompt: function (href, title) {
     href = href || '';
     title = title || this.elements.md_link.default_title;
 
@@ -240,12 +250,12 @@ jsToolBar.prototype.elements.md_link = {
 
     return {
       href: this.stripBaseURL(href),
-      title: title
+      title: title,
     };
-  }
+  },
 };
 
-jsToolBar.prototype.elements.md_link.fn.markdown = function() {
+jsToolBar.prototype.elements.md_link.fn.markdown = function () {
   const link = this.elements.md_link.prompt.call(this);
   if (link) {
     const stag = '[';
@@ -268,7 +278,7 @@ jsToolBar.prototype.elements.md_img = {
   src_prompt: 'Please give image URL:',
   title_prompt: 'Title for this image:',
   default_title: '',
-  prompt: function(src, title) {
+  prompt: function (src, title) {
     src = src || '';
     title = title || this.elements.md_img.default_title;
 
@@ -281,12 +291,12 @@ jsToolBar.prototype.elements.md_img = {
 
     return {
       src: this.stripBaseURL(src),
-      title: title
+      title: title,
     };
-  }
+  },
 };
 
-jsToolBar.prototype.elements.md_img.fn.markdown = function() {
+jsToolBar.prototype.elements.md_img.fn.markdown = function () {
   const image = this.elements.md_img.prompt.call(this);
   if (image) {
     const stag = '![';
@@ -310,27 +320,33 @@ jsToolBar.prototype.elements.md_img_select = {
   fncall: {},
   open_url: 'media.php?popup=1&plugin_id=dcLegacyEditor',
   data: {},
-  popup: function() {
+  popup: function () {
     window.the_toolbar = this;
     this.elements.md_img_select.data = {};
 
-    window.open(this.elements.md_img_select.open_url, 'dc_popup',
-      'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,' +
-      'menubar=no,resizable=yes,scrollbars=yes,status=no');
-  }
+    window.open(
+      this.elements.md_img_select.open_url,
+      'dc_popup',
+      'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,' + 'menubar=no,resizable=yes,scrollbars=yes,status=no'
+    );
+  },
 };
-jsToolBar.prototype.elements.md_img_select.fn.markdown = function() {
+jsToolBar.prototype.elements.md_img_select.fn.markdown = function () {
   this.elements.md_img_select.popup.call(this);
 };
-jsToolBar.prototype.elements.img_select.fncall.markdown = function() {
+jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
   var d = this.elements.img_select.data;
   if (d.src == undefined) {
     return;
   }
 
-  this.encloseSelection('', '', function(str) {
-    const alt = (str) ? str : d.title;
-    let res = `<img src="${d.src}" alt="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"`;
+  this.encloseSelection('', '', function (str) {
+    const alt = str ? str : d.title;
+    let res = `<img src="${d.src}" alt="${alt
+      .replace('&', '&amp;')
+      .replace('>', '&gt;')
+      .replace('<', '&lt;')
+      .replace('"', '&quot;')}"`;
 
     if (d.alignment == 'left') {
       res += ' style="float: left; margin: 0 1em 1em 0;"';
@@ -347,9 +363,7 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function() {
     res += ' />';
 
     if (d.link) {
-      const ltitle = (alt) ?
-        ` title="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"` :
-        '';
+      const ltitle = alt ? ` title="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"` : '';
       res = `<a href="${d.url}"${ltitle}>${res}</a>`;
     }
 
@@ -359,26 +373,26 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function() {
 
 // MP3 helpers
 //jsToolBar.prototype.elements.mp3_insert = { fncall: {}, data: {} };
-jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function() {
+jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function () {
   const d = this.elements.mp3_insert.data;
   if (d.player == undefined) {
     return;
   }
 
-  this.encloseSelection('', '', function() {
+  this.encloseSelection('', '', function () {
     return '\n' + d.player + '\n';
   });
 };
 
 // FLV helpers
 //jsToolBar.prototype.elements.flv_insert = { fncall: {}, data: {} };
-jsToolBar.prototype.elements.flv_insert.fncall.markdown = function() {
+jsToolBar.prototype.elements.flv_insert.fncall.markdown = function () {
   const d = this.elements.flv_insert.data;
   if (d.player == undefined) {
     return;
   }
 
-  this.encloseSelection('', '', function() {
+  this.encloseSelection('', '', function () {
     return '\n' + d.player + '\n';
   });
 };
@@ -392,19 +406,21 @@ jsToolBar.prototype.elements.md_post_link = {
   fn: {},
   open_url: 'popup_posts.php?plugin_id=dcLegacyEditor',
   data: {},
-  popup: function() {
+  popup: function () {
     window.the_toolbar = this;
     this.elements.link.data = {};
 
-    window.open(this.elements.md_post_link.open_url, 'dc_popup',
-      'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,' +
-      'menubar=no,resizable=yes,scrollbars=yes,status=no');
-  }
+    window.open(
+      this.elements.md_post_link.open_url,
+      'dc_popup',
+      'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,' + 'menubar=no,resizable=yes,scrollbars=yes,status=no'
+    );
+  },
 };
-jsToolBar.prototype.elements.md_post_link.fn.markdown = function() {
+jsToolBar.prototype.elements.md_post_link.fn.markdown = function () {
   this.elements.md_post_link.popup.call(this);
 };
-jsToolBar.prototype.elements.link.fncall.markdown = function() {
+jsToolBar.prototype.elements.link.fncall.markdown = function () {
   var link = this.elements.link.data;
   if (link.href == undefined) {
     return;

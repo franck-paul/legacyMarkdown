@@ -10,8 +10,9 @@
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-
-if (!defined('DC_RC_PATH')) {return;}
+if (!defined('DC_RC_PATH')) {
+    return;
+}
 // public
 
 $__autoload['Michelf\MarkdownInterface'] = dirname(__FILE__) . '/lib/Michelf/MarkdownInterface.php';
@@ -22,7 +23,9 @@ $__autoload['dcMarkdown'] = dirname(__FILE__) . '/inc/class.dc.markdown.php';
 
 $core->addBehavior('coreInitWikiPost', ['dcMarkdown', 'coreInitWikiPost']);
 
-if (!defined('DC_CONTEXT_ADMIN')) {return false;}
+if (!defined('DC_CONTEXT_ADMIN')) {
+    return false;
+}
 // admin
 
 $__autoload['dcMarkdownAdmin'] = dirname(__FILE__) . '/inc/class.dc.markdown.php';
