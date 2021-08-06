@@ -1,4 +1,4 @@
-/*global jsToolBar, getData, mergeDeep */
+/*global jsToolBar, dotclear */
 'use strict';
 
 // Elements definition ------------------------------------
@@ -335,7 +335,7 @@ jsToolBar.prototype.elements.md_img_select.fn.markdown = function () {
   this.elements.md_img_select.popup.call(this);
 };
 jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
-  var d = this.elements.img_select.data;
+  const d = this.elements.img_select.data;
   if (d.src == undefined) {
     return;
   }
@@ -363,7 +363,9 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
     res += ' />';
 
     if (d.link) {
-      const ltitle = alt ? ` title="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"` : '';
+      const ltitle = alt
+        ? ` title="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"`
+        : '';
       res = `<a href="${d.url}"${ltitle}>${res}</a>`;
     }
 
@@ -379,9 +381,7 @@ jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function () {
     return;
   }
 
-  this.encloseSelection('', '', function () {
-    return '\n' + d.player + '\n';
-  });
+  this.encloseSelection('', '', () => '\n' + d.player + '\n');
 };
 
 // FLV helpers
@@ -392,9 +392,7 @@ jsToolBar.prototype.elements.flv_insert.fncall.markdown = function () {
     return;
   }
 
-  this.encloseSelection('', '', function () {
-    return '\n' + d.player + '\n';
-  });
+  this.encloseSelection('', '', () => '\n' + d.player + '\n');
 };
 
 /* Posts selector
@@ -421,7 +419,7 @@ jsToolBar.prototype.elements.md_post_link.fn.markdown = function () {
   this.elements.md_post_link.popup.call(this);
 };
 jsToolBar.prototype.elements.link.fncall.markdown = function () {
-  var link = this.elements.link.data;
+  const link = this.elements.link.data;
   if (link.href == undefined) {
     return;
   }
@@ -436,4 +434,4 @@ jsToolBar.prototype.elements.link.fncall.markdown = function () {
 
 /* Set options
 ---------------------------------------------------------- */
-mergeDeep(jsToolBar.prototype.elements, getData('formatting_markdown'));
+dotclear.mergeDeep(jsToolBar.prototype.elements, dotclear.getData('formatting_markdown'));
