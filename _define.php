@@ -27,7 +27,9 @@ $this->registerModule(
             'pref' => '#user-options.user_options_edition',
             'blog' => '#params.formatting_markdown'
         ],
-        'support' => 'https://github.com/franck-paul/formatting-markdown',
-        'details' => 'https://open-time.net/?q=formatting-markdown'
+
+        'details'    => 'https://open-time.net/?q=formatting-markdown',       // Details URL
+        'support'    => 'https://github.com/franck-paul/formatting-markdown', // Support URL
+        'repository' => 'https://raw.githubusercontent.com/franck-paul/formatting-markdown/main/dcstore.xml'
     ]
 );
