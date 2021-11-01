@@ -30,6 +30,6 @@ $this->registerModule(
 
         'details'    => 'https://open-time.net/?q=formatting-markdown',       // Details URL
         'support'    => 'https://github.com/franck-paul/formatting-markdown', // Support URL
-        'repository' => 'https://raw.githubusercontent.com/franck-paul/formatting-markdown/main/dcstore.xml'
+        'repository' => 'https://raw.githubusercontent.com/franck-paul/formatting-markdown/master/dcstore.xml'
     ]
 );
