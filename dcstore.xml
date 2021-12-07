@@ -1,11 +1,14 @@
 <modules xmlns:da="http://dotaddict.org/da/">
   <module id="formatting-markdown">
     <name>Brings you markdown (extra) syntax for your entries (see https://michelf.ca/projects/php-markdown/)</name>
-    <version>1.11</version>
+    <version>,                                                         // Author
+    </version>
     <author>Brings you markdown (extra) syntax for your entries (see https://michelf.ca/projects/php-markdown/)</author>
     <desc>Brings you markdown (extra) syntax for your entries (see https://michelf.ca/projects/php-markdown/)</desc>
-    <file>https://github.com/franck-paul/formatting-markdown/releases/download/1.11/plugin-formatting-markdown-1.11.zip</file>
-    <da:dcmin>2.19</da:dcmin>
+    <file>https://github.com/franck-paul/formatting-markdown/releases/download/,                                                         // Author
+    /plugin-formatting-markdown-,                                                         // Author
+    .zip</file>
+    <da:dcmin>2.20</da:dcmin>
     <da:details>https://open-time.net/?q=formatting-markdown</da:details>
     <da:support>https://github.com/franck-paul/formatting-markdown</da:support>
   </module>
