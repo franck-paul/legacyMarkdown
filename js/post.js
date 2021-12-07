@@ -20,7 +20,7 @@ jsToolBar.prototype.elements.md_blocks = {
   },
   markdown: {
     list: ['nonebis', 'h3', 'h4', 'h5'],
-    fn: function (opt) {
+    fn(opt) {
       switch (opt) {
         case 'nonebis':
           this.textarea.focus();
@@ -54,7 +54,7 @@ jsToolBar.prototype.elements.md_strong = {
   title: 'Strong emphasis',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_strong.png',
   fn: {
-    markdown: function () {
+    markdown() {
       this.singleTag('**');
     },
   },
@@ -66,7 +66,7 @@ jsToolBar.prototype.elements.md_em = {
   title: 'Emphasis',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_em.png',
   fn: {
-    markdown: function () {
+    markdown() {
       this.singleTag('*');
     },
   },
@@ -78,7 +78,7 @@ jsToolBar.prototype.elements.md_ins = {
   title: 'Inserted',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_ins.png',
   fn: {
-    markdown: function () {
+    markdown() {
       this.singleTag('<ins>', '</ins>');
     },
   },
@@ -90,7 +90,7 @@ jsToolBar.prototype.elements.md_del = {
   title: 'Deleted',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_del.png',
   fn: {
-    markdown: function () {
+    markdown() {
       this.singleTag('<del>', '</del>');
     },
   },
@@ -102,7 +102,7 @@ jsToolBar.prototype.elements.md_quote = {
   title: 'Inline quote',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_quote.png',
   fn: {
-    markdown: function () {
+    markdown() {
       this.singleTag('<q>', '</q>');
     },
   },
@@ -114,7 +114,7 @@ jsToolBar.prototype.elements.md_code = {
   title: 'Code',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_code.png',
   fn: {
-    markdown: function () {
+    markdown() {
       this.singleTag('`');
     },
   },
@@ -126,7 +126,7 @@ jsToolBar.prototype.elements.md_mark = {
   title: 'Mark',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_mark.png',
   fn: {
-    markdown: function () {
+    markdown() {
       this.singleTag('<mark>', '</mark>');
     },
   },
@@ -146,7 +146,7 @@ jsToolBar.prototype.elements.md_br = {
   title: 'Line break',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_br.png',
   fn: {
-    markdown: function () {
+    markdown() {
       this.encloseSelection('  \n', '');
     },
   },
@@ -166,10 +166,10 @@ jsToolBar.prototype.elements.md_blockquote = {
   title: 'Blockquote',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_bquote.png',
   fn: {
-    markdown: function () {
-      this.encloseSelection('\n', '', function (str) {
+    markdown() {
+      this.encloseSelection('\n', '', (str) => {
         str = str.replace(/\r/g, '');
-        return '> ' + str.replace(/\n/g, '\n> ');
+        return `> ${str.replace(/\n/g, '\n> ')}`;
       });
     },
   },
@@ -181,10 +181,10 @@ jsToolBar.prototype.elements.md_pre = {
   title: 'Preformated text',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_pre.png',
   fn: {
-    markdown: function () {
-      this.encloseSelection('\n', '', function (str) {
+    markdown() {
+      this.encloseSelection('\n', '', (str) => {
         str = str.replace(/\r/g, '');
-        return '    ' + str.replace(/\n/g, '\n    ');
+        return `    ${str.replace(/\n/g, '\n    ')}`;
       });
     },
   },
@@ -196,10 +196,10 @@ jsToolBar.prototype.elements.md_ul = {
   title: 'Unordered list',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_ul.png',
   fn: {
-    markdown: function () {
-      this.encloseSelection('', '', function (str) {
+    markdown() {
+      this.encloseSelection('', '', (str) => {
         str = str.replace(/\r/g, '');
-        return '* ' + str.replace(/\n/g, '\n* ');
+        return `* ${str.replace(/\n/g, '\n* ')}`;
       });
     },
   },
@@ -211,10 +211,10 @@ jsToolBar.prototype.elements.md_ol = {
   title: 'Ordered list',
   icon: 'index.php?pf=dcLegacyEditor/css/jsToolBar/bt_ol.png',
   fn: {
-    markdown: function () {
-      this.encloseSelection('', '', function (str) {
+    markdown() {
+      this.encloseSelection('', '', (str) => {
         str = str.replace(/\r/g, '');
-        return '1. ' + str.replace(/\n/g, '\n1. ');
+        return `1. ${str.replace(/\n/g, '\n1. ')}`;
       });
     },
   },
@@ -237,8 +237,7 @@ jsToolBar.prototype.elements.md_link = {
   href_prompt: 'Please give URL:',
   title_prompt: 'Title for this URL:',
   default_title: '',
-  prompt: function (href, title) {
-    href = href || '';
+  prompt(href = '', title = '') {
     title = title || this.elements.md_link.default_title;
 
     href = window.prompt(this.elements.md_link.href_prompt, href);
@@ -250,7 +249,7 @@ jsToolBar.prototype.elements.md_link = {
 
     return {
       href: this.stripBaseURL(href),
-      title: title,
+      title,
     };
   },
 };
@@ -259,11 +258,11 @@ jsToolBar.prototype.elements.md_link.fn.markdown = function () {
   const link = this.elements.md_link.prompt.call(this);
   if (link) {
     const stag = '[';
-    let etag = '](' + link.href;
+    let etag = `](${link.href}`;
     if (link.title) {
-      etag = etag + ' "' + link.title + '"';
+      etag = `${etag} "${link.title}"`;
     }
-    etag = etag + ')';
+    etag = `${etag})`;
 
     this.encloseSelection(stag, etag);
   }
@@ -278,8 +277,7 @@ jsToolBar.prototype.elements.md_img = {
   src_prompt: 'Please give image URL:',
   title_prompt: 'Title for this image:',
   default_title: '',
-  prompt: function (src, title) {
-    src = src || '';
+  prompt(src = '', title = '') {
     title = title || this.elements.md_img.default_title;
 
     src = window.prompt(this.elements.md_img.src_prompt, src);
@@ -291,7 +289,7 @@ jsToolBar.prototype.elements.md_img = {
 
     return {
       src: this.stripBaseURL(src),
-      title: title,
+      title,
     };
   },
 };
@@ -300,11 +298,11 @@ jsToolBar.prototype.elements.md_img.fn.markdown = function () {
   const image = this.elements.md_img.prompt.call(this);
   if (image) {
     const stag = '![';
-    let etag = '](' + image.src;
+    let etag = `](${image.src}`;
     if (image.title) {
-      etag = etag + ' "' + image.title + '"';
+      etag = `${etag} "${image.title}"`;
     }
-    etag = etag + ')';
+    etag = `${etag})`;
 
     this.encloseSelection(stag, etag);
   }
@@ -320,14 +318,14 @@ jsToolBar.prototype.elements.md_img_select = {
   fncall: {},
   open_url: 'media.php?popup=1&plugin_id=dcLegacyEditor',
   data: {},
-  popup: function () {
+  popup() {
     window.the_toolbar = this;
     this.elements.md_img_select.data = {};
 
     window.open(
       this.elements.md_img_select.open_url,
       'dc_popup',
-      'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,' + 'menubar=no,resizable=yes,scrollbars=yes,status=no'
+      'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,menubar=no,resizable=yes,scrollbars=yes,status=no'
     );
   },
 };
@@ -340,7 +338,7 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
     return;
   }
 
-  this.encloseSelection('', '', function (str) {
+  this.encloseSelection('', '', (str) => {
     const alt = str ? str : d.title;
     let res = `<img src="${d.src}" alt="${alt
       .replace('&', '&amp;')
@@ -363,10 +361,8 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
     res += ' />';
 
     if (d.link) {
-      const ltitle = alt
-        ? ` title="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"`
-        : '';
-      res = `<a href="${d.url}"${ltitle}>${res}</a>`;
+      const ltitle = alt ? ` title="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"` : '';
+      return `<a href="${d.url}"${ltitle}>${res}</a>`;
     }
 
     return res;
@@ -381,7 +377,7 @@ jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function () {
     return;
   }
 
-  this.encloseSelection('', '', () => '\n' + d.player + '\n');
+  this.encloseSelection('', '', () => `\n${d.player}\n`);
 };
 
 // FLV helpers
@@ -392,7 +388,7 @@ jsToolBar.prototype.elements.flv_insert.fncall.markdown = function () {
     return;
   }
 
-  this.encloseSelection('', '', () => '\n' + d.player + '\n');
+  this.encloseSelection('', '', () => `\n${d.player}\n`);
 };
 
 /* Posts selector
@@ -404,14 +400,14 @@ jsToolBar.prototype.elements.md_post_link = {
   fn: {},
   open_url: 'popup_posts.php?plugin_id=dcLegacyEditor',
   data: {},
-  popup: function () {
+  popup() {
     window.the_toolbar = this;
     this.elements.link.data = {};
 
     window.open(
       this.elements.md_post_link.open_url,
       'dc_popup',
-      'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,' + 'menubar=no,resizable=yes,scrollbars=yes,status=no'
+      'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,menubar=no,resizable=yes,scrollbars=yes,status=no'
     );
   },
 };

@@ -26,7 +26,7 @@ try {
         # A bit of housecleaning for no longer needed files
         $remfiles = [
             'inc/markdown.php',
-            'inc/License.text'
+            'inc/License.text',
         ];
         foreach ($remfiles as $f) {
             @unlink(DC_ROOT . '/' . $f);

@@ -19,7 +19,7 @@ class dcMarkdown
 {
     public static function convert($str, $type = 'full')
     {
-        $o = new Michelf\MarkdownExtra;
+        $o = new Michelf\MarkdownExtra();
         switch ($type) {
             case 'comment':
                 // Setup some options in comments
@@ -85,8 +85,8 @@ class dcMarkdownAdmin
                     'h3'      => __('Level 3 header'),
                     'h4'      => __('Level 4 header'),
                     'h5'      => __('Level 5 header'),
-                    'h6'      => __('Level 6 header')
-                ]
+                    'h6'      => __('Level 6 header'),
+                ],
             ],
 
             'md_strong' => ['title' => __('Strong emphasis')],
@@ -106,21 +106,21 @@ class dcMarkdownAdmin
             'md_link' => [
                 'title'        => __('Link'),
                 'href_prompt'  => __('URL ? '),
-                'title_prompt' => __('Title ? ')
+                'title_prompt' => __('Title ? '),
             ],
 
             'md_img' => [
                 'title'        => __('Externalimage'),
                 'src_prompt'   => __('URL ? '),
-                'title_prompt' => __('Title ? ')
+                'title_prompt' => __('Title ? '),
             ],
 
             'md_img_select' => [
                 'title'    => __('Mediachooser'),
-                'disabled' => (!$GLOBALS['core']->auth->check('media,media_admin', $GLOBALS['core']->blog->id) ? true : false)
+                'disabled' => (!$GLOBALS['core']->auth->check('media,media_admin', $GLOBALS['core']->blog->id) ? true : false),
             ],
 
-            'md_post_link' => ['title' => __('Linktoanentry')]
+            'md_post_link' => ['title' => __('Linktoanentry')],
         ]) .
         dcPage::jsLoad(urldecode(dcPage::getPF('formatting-markdown/js/post.js')), $core->getVersion('formatting-markdown'));
     }

@@ -18,18 +18,18 @@ $this->registerModule(
     'Markdown syntax',                                                                                     // Name
     'Brings you markdown (extra) syntax for your entries (see https://michelf.ca/projects/php-markdown/)', // Description
     'Michel Fortin, Franck Paul and contributors',                                                         // Author
-    '1.11',                                                                                                // Version
+    '1.12',                                                                                                // Version
     [
-        'requires'    => [['core', '2.19']],
+        'requires'    => [['core', '2.20']],
         'permissions' => 'usage,contentadmin',
         'type'        => 'plugin',
         'settings'    => [
             'pref' => '#user-options.user_options_edition',
-            'blog' => '#params.formatting_markdown'
+            'blog' => '#params.formatting_markdown',
         ],
 
         'details'    => 'https://open-time.net/?q=formatting-markdown',       // Details URL
         'support'    => 'https://github.com/franck-paul/formatting-markdown', // Support URL
-        'repository' => 'https://raw.githubusercontent.com/franck-paul/formatting-markdown/master/dcstore.xml'
+        'repository' => 'https://raw.githubusercontent.com/franck-paul/formatting-markdown/master/dcstore.xml',
     ]
 );
