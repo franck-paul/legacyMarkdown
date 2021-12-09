@@ -95,6 +95,12 @@ class dcMarkdownAdmin
             'md_del'    => ['title' => __('Deleted')],
             'md_quote'  => ['title' => __('Inline quote')],
             'md_code'   => ['title' => __('Code')],
+            'md_mark'   => ['title' => __('Mark')],
+
+            'md_foreign' => [
+                'title'       => __('Foreign text'),
+                'lang_prompt' => __('Language:'),
+            ],
 
             'md_br' => ['title' => __('Linebreak ')],
 
@@ -102,6 +108,13 @@ class dcMarkdownAdmin
             'md_pre'        => ['title' => __('Preformatedtext')],
             'md_ul'         => ['title' => __('Unorderedlist')],
             'md_ol'         => ['title' => __('Orderedlist')],
+
+            'md_details' => [
+                'title'        => __('Details block'),
+                'title_prompt' => __('Summary:'),
+            ],
+
+            'md_aside' => ['title' => __('Aside block')],
 
             'md_link' => [
                 'title'        => __('Link'),
@@ -122,6 +135,7 @@ class dcMarkdownAdmin
 
             'md_post_link' => ['title' => __('Linktoanentry')],
         ]) .
+        dcPage::cssLoad(urldecode(dcPage::getPF('formatting-markdown/css/jsToolBar.css')), 'screen', $core->getVersion('formatting-markdown')) .
         dcPage::jsLoad(urldecode(dcPage::getPF('formatting-markdown/js/post.js')), $core->getVersion('formatting-markdown'));
     }
 }

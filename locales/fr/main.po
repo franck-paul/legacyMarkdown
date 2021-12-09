@@ -24,6 +24,9 @@ msgstr "Activer la syntaxe Markdown pour les commentaires"
 msgid "This option, if enabled, will replace the standard wiki syntax for comments!"
 msgstr "Cette option, si activée, remplacera la syntaxe wiki standard pour les commentaires !"
 
+msgid "Foreign text"
+msgstr "Locution étrangère"
+
 msgid "Linebreak "
 msgstr "Passage à la ligne"
 
@@ -35,6 +38,15 @@ msgstr "Liste non ordonnée"
 
 msgid "Orderedlist"
 msgstr "Liste ordonnée"
+
+msgid "Details block"
+msgstr "Bloc détails"
+
+msgid "Summary:"
+msgstr "Titre :"
+
+msgid "Aside block"
+msgstr "Bloc de côté"
 
 msgid "URL ? "
 msgstr "URL ? "
