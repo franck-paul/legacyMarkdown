@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-21 19:42+0200\n"
+"POT-Creation-Date: 2021-12-10 10:05+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>\n"
 "Language-Team: \n"
@@ -23,6 +23,15 @@ msgstr "Activer la syntaxe Markdown pour les commentaires"
 
 msgid "This option, if enabled, will replace the standard wiki syntax for comments!"
 msgstr "Cette option, si activée, remplacera la syntaxe wiki standard pour les commentaires !"
+
+msgid "Source URL:"
+msgstr "URL source :"
+
+msgid "Language:"
+msgstr "Langue :"
+
+msgid "Mark"
+msgstr "Surlignage"
 
 msgid "Foreign text"
 msgstr "Locution étrangère"
@@ -48,11 +57,11 @@ msgstr "Titre :"
 msgid "Aside block"
 msgstr "Bloc de côté"
 
-msgid "URL ? "
-msgstr "URL ? "
+msgid "URL:"
+msgstr "URL :"
 
-msgid "Title ? "
-msgstr "Titre ?"
+msgid "Title:"
+msgstr "Titre :"
 
 msgid "Externalimage"
 msgstr "Image externe"
@@ -62,6 +71,3 @@ msgstr "Sélecteur de média"
 
 msgid "Linktoanentry"
 msgstr "Liens vers une publication"
-
-msgid "Comments can be formatted using the <a href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a> syntax."
-msgstr "Les commentaires peuvent être formatés en utilisant la syntaxe <a href=\"https://michelf.ca/projets/php-markdown/extra/\">Markdown Extra</a>."

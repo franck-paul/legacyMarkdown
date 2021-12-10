@@ -93,9 +93,15 @@ class dcMarkdownAdmin
             'md_em'     => ['title' => __('Emphasis')],
             'md_ins'    => ['title' => __('Inserted')],
             'md_del'    => ['title' => __('Deleted')],
-            'md_quote'  => ['title' => __('Inline quote')],
-            'md_code'   => ['title' => __('Code')],
-            'md_mark'   => ['title' => __('Mark')],
+
+            'md_quote' => [
+                'title'       => __('Inline quote'),
+                'cite_prompt' => __('Source URL:'),
+                'lang_prompt' => __('Language:'),
+            ],
+
+            'md_code' => ['title' => __('Code')],
+            'md_mark' => ['title' => __('Mark')],
 
             'md_foreign' => [
                 'title'       => __('Foreign text'),
@@ -118,14 +124,15 @@ class dcMarkdownAdmin
 
             'md_link' => [
                 'title'        => __('Link'),
-                'href_prompt'  => __('URL ? '),
-                'title_prompt' => __('Title ? '),
+                'href_prompt'  => __('URL:'),
+                'title_prompt' => __('Title:'),
+                'lang_prompt'  => __('Language:'),
             ],
 
             'md_img' => [
                 'title'        => __('Externalimage'),
-                'src_prompt'   => __('URL ? '),
-                'title_prompt' => __('Title ? '),
+                'src_prompt'   => __('URL:'),
+                'title_prompt' => __('Title:'),
             ],
 
             'md_img_select' => [

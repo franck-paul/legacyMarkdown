@@ -9,7 +9,7 @@ jsToolBar.prototype.elements.md_blocks = {
   title: 'block format',
   options: {
     none: '-- none --', // only for wysiwyg mode
-    nonebis: '- block format -', // only for xhtml mode
+    nonebis: '- block format -', // only for xhtml/markdown mode
     p: 'Paragraph',
     h1: 'Header 1',
     h2: 'Header 2',
@@ -101,11 +101,37 @@ jsToolBar.prototype.elements.md_quote = {
   type: 'button',
   title: 'Inline quote',
   icon: 'index.php?pf=formatting-markdown/img/bt_quote.svg',
-  fn: {
-    markdown() {
-      this.singleTag('<q>', '</q>');
-    },
+  fn: {},
+  cite_prompt: 'Source URL:',
+  lang_prompt: 'Language:',
+  prompt(cite = '', lang = '') {
+    cite = window.prompt(this.elements.md_quote.cite_prompt, cite);
+    if (cite === null) {
+      return null;
+    }
+    lang = window.prompt(this.elements.md_quote.lang_prompt, lang);
+    if (lang === null) {
+      return null;
+    }
+    return {
+      cite,
+      lang,
+    };
   },
+};
+jsToolBar.prototype.elements.md_quote.fn.markdown = function () {
+  const quote = this.elements.md_quote.prompt.call(this);
+  if (quote !== null) {
+    let stag = '<q';
+    const etag = '</q>';
+    stag = quote.cite ? `${stag} cite="${quote.cite}"` : stag;
+    stag = quote.lang ? `${stag} lang="${quote.lang}"` : stag;
+    stag = `${stag}>`;
+
+    this.encloseSelection(stag, etag);
+  } else {
+    this.textarea.focus();
+  }
 };
 
 // code
@@ -148,11 +174,15 @@ jsToolBar.prototype.elements.md_foreign = {
 
 jsToolBar.prototype.elements.md_foreign.fn.markdown = function () {
   const lang = this.elements.md_foreign.prompt.call(this);
-  let stag = '<i';
-  const etag = `</i>`;
-  stag = lang ? `${stag} lang="${lang}">` : `${stag}>`;
+  if (lang !== null) {
+    let stag = '<i';
+    const etag = `</i>`;
+    stag = lang ? `${stag} lang="${lang}">` : `${stag}>`;
 
-  this.encloseSelection(stag, etag);
+    this.encloseSelection(stag, etag);
+  } else {
+    this.textarea.focus();
+  }
 };
 
 // spacer
@@ -259,13 +289,17 @@ jsToolBar.prototype.elements.md_details = {
 
 jsToolBar.prototype.elements.md_details.fn.markdown = function () {
   const title = this.elements.md_details.prompt.call(this);
-  let stag = '<details>\n';
-  const etag = `\n</details>`;
-  if (title) {
-    stag = `${stag}<summary>${title}</summary>\n`;
-  }
+  if (title !== null) {
+    let stag = '<details>\n';
+    const etag = `\n</details>`;
+    if (title) {
+      stag = `${stag}<summary>${title}</summary>\n`;
+    }
 
-  this.encloseSelection(stag, etag);
+    this.encloseSelection(stag, etag);
+  } else {
+    this.textarea.focus();
+  }
 };
 
 // aside
@@ -298,35 +332,51 @@ jsToolBar.prototype.elements.md_link = {
   fn: {},
   href_prompt: 'Please give URL:',
   title_prompt: 'Title for this URL:',
+  lang_prompt: 'Language:',
   default_title: '',
-  prompt(href = '', title = '') {
+  default_lang: '',
+  prompt(href = '', title = '', lang = '') {
     title = title || this.elements.md_link.default_title;
+    lang = lang || this.elements.md_link.default_lang;
 
     href = window.prompt(this.elements.md_link.href_prompt, href);
     if (!href) {
-      return false;
+      return null;
     }
 
     title = window.prompt(this.elements.md_link.title_prompt, title);
+    if (title === null) {
+      return null;
+    }
+    lang = window.prompt(this.elements.md_link.lang_prompt, lang);
+    if (lang === null) {
+      return null;
+    }
 
     return {
       href: this.stripBaseURL(href),
       title,
+      lang,
     };
   },
 };
 
 jsToolBar.prototype.elements.md_link.fn.markdown = function () {
   const link = this.elements.md_link.prompt.call(this);
-  if (link) {
+  if (link !== null && link !== '') {
     const stag = '[';
     let etag = `](${link.href}`;
     if (link.title) {
       etag = `${etag} "${link.title}"`;
     }
     etag = `${etag})`;
+    if (link.lang) {
+      etag = `${etag}{hreflang=${link.lang}}`;
+    }
 
     this.encloseSelection(stag, etag);
+  } else {
+    this.textarea.focus();
   }
 };
 
@@ -344,10 +394,13 @@ jsToolBar.prototype.elements.md_img = {
 
     src = window.prompt(this.elements.md_img.src_prompt, src);
     if (!src) {
-      return false;
+      return null;
     }
 
     title = window.prompt(this.elements.md_img.title_prompt, title);
+    if (title === null) {
+      return null;
+    }
 
     return {
       src: this.stripBaseURL(src),
@@ -358,7 +411,7 @@ jsToolBar.prototype.elements.md_img = {
 
 jsToolBar.prototype.elements.md_img.fn.markdown = function () {
   const image = this.elements.md_img.prompt.call(this);
-  if (image) {
+  if (image !== null && image !== '') {
     const stag = '![';
     let etag = `](${image.src}`;
     if (image.title) {
@@ -367,6 +420,8 @@ jsToolBar.prototype.elements.md_img.fn.markdown = function () {
     etag = `${etag})`;
 
     this.encloseSelection(stag, etag);
+  } else {
+    this.textarea.focus();
   }
 };
 
@@ -396,41 +451,45 @@ jsToolBar.prototype.elements.md_img_select.fn.markdown = function () {
 };
 jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
   const d = this.elements.img_select.data;
-  if (d.src == undefined) {
-    return;
+  if (d && d.src !== undefined) {
+    this.encloseSelection('', '', (str) => {
+      const alt = str ? str : d.title;
+      let res = `<img src="${d.src}" alt="${alt
+        .replace('&', '&amp;')
+        .replace('>', '&gt;')
+        .replace('<', '&lt;')
+        .replace('"', '&quot;')}"`;
+
+      if (d.alignment == 'left') {
+        res += ' style="float: left; margin: 0 1em 1em 0;"';
+      } else if (d.alignment == 'right') {
+        res += ' style="float: right; margin: 0 0 1em 1em;"';
+      } else if (d.alignment == 'center') {
+        res += ' style="margin: 0 auto; display: block;"';
+      }
+
+      if (d.description) {
+        res += ` title="${d.description
+          .replace('&', '&amp;')
+          .replace('>', '&gt;')
+          .replace('<', '&lt;')
+          .replace('"', '&quot;')}"`;
+      }
+
+      res += ' />';
+
+      if (d.link) {
+        const ltitle = alt
+          ? ` title="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"`
+          : '';
+        return `<a href="${d.url}"${ltitle}>${res}</a>`;
+      }
+
+      return res;
+    });
+  } else {
+    this.textarea.focus();
   }
-
-  this.encloseSelection('', '', (str) => {
-    const alt = str ? str : d.title;
-    let res = `<img src="${d.src}" alt="${alt
-      .replace('&', '&amp;')
-      .replace('>', '&gt;')
-      .replace('<', '&lt;')
-      .replace('"', '&quot;')}"`;
-
-    if (d.alignment == 'left') {
-      res += ' style="float: left; margin: 0 1em 1em 0;"';
-    } else if (d.alignment == 'right') {
-      res += ' style="float: right; margin: 0 0 1em 1em;"';
-    } else if (d.alignment == 'center') {
-      res += ' style="margin: 0 auto; display: block;"';
-    }
-
-    if (d.description) {
-      res += ` title="${d.description.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"`;
-    }
-
-    res += ' />';
-
-    if (d.link) {
-      const ltitle = alt
-        ? ` title="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"`
-        : '';
-      return `<a href="${d.url}"${ltitle}>${res}</a>`;
-    }
-
-    return res;
-  });
 };
 
 // MP3 helpers
@@ -480,15 +539,13 @@ jsToolBar.prototype.elements.md_post_link.fn.markdown = function () {
 };
 jsToolBar.prototype.elements.link.fncall.markdown = function () {
   const link = this.elements.link.data;
-  if (link.href == undefined) {
-    return;
-  }
-
-  if (link) {
+  if (link && link.href !== undefined) {
     const stag = '[';
     const etag = `](${link.href}${link.title ? ` "${link.title}"` : ''})`;
 
     this.encloseSelection(stag, etag);
+  } else {
+    this.textarea.focus();
   }
 };
 
