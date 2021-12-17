@@ -453,32 +453,40 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
   const d = this.elements.img_select.data;
   if (d && d.src !== undefined) {
     this.encloseSelection('', '', (str) => {
-      const alt = str ? str : d.title;
-      let res = `<img src="${d.src}" alt="${alt
-        .replace('&', '&amp;')
-        .replace('>', '&gt;')
-        .replace('<', '&lt;')
-        .replace('"', '&quot;')}"`;
+      const alignments = {
+        left: 'float: left; margin: 0 1em 1em 0;',
+        right: 'float: right; margin: 0 0 1em 1em;',
+        center: 'margin: 0 auto; display: block;',
+      };
+      const alt = (str ? str : d.title).replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;');
+      const legend =
+        d.description !== ''
+          ? d.description.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')
+          : false;
+      let img = `<img src="${d.src}" alt="${alt}"`;
+      let figure = '<figure';
+      const caption = legend ? `<figcaption>${legend}</figcaption>\n` : '';
 
-      if (d.alignment == 'left') {
-        res += ' style="float: left; margin: 0 1em 1em 0;"';
-      } else if (d.alignment == 'right') {
-        res += ' style="float: right; margin: 0 0 1em 1em;"';
-      } else if (d.alignment == 'center') {
-        res += ' style="margin: 0 auto; display: block;"';
+      if (legend) {
+        img = `${img} title="${legend}"`;
       }
 
-      if (d.description) {
-        res += ` title="${d.description
-          .replace('&', '&amp;')
-          .replace('>', '&gt;')
-          .replace('<', '&lt;')
-          .replace('"', '&quot;')}"`;
+      // Cope with required alignment
+      if (d.alignment in alignments) {
+        if (legend) {
+          figure = `${figure} style="${alignments[d.alignment]}"`;
+        } else {
+          img = `${img} style="${alignments[d.alignment]}"`;
+        }
       }
 
-      res += ' />';
+      img = `${img} />`;
+      figure = `${figure}>`;
+
+      const res = legend ? `${figure}\n${img}\n${caption}</figure>` : img;
 
       if (d.link) {
+        // Enclose media with link
         const ltitle = alt
           ? ` title="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"`
           : '';
