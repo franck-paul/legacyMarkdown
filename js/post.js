@@ -483,17 +483,15 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
       img = `${img} />`;
       figure = `${figure}>`;
 
-      const res = legend ? `${figure}\n${img}\n${caption}</figure>` : img;
-
       if (d.link) {
-        // Enclose media with link
+        // Enclose image with link
         const ltitle = alt
           ? ` title="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"`
           : '';
-        return `<a href="${d.url}"${ltitle}>${res}</a>`;
+        img = `<a href="${d.url}"${ltitle}>${img}</a>`;
       }
 
-      return res;
+      return legend ? `${figure}\n${img}\n${caption}</figure>` : img;
     });
   } else {
     this.textarea.focus();
