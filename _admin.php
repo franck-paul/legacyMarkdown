@@ -23,3 +23,11 @@ $core->addBehavior('adminBlogPreferencesForm', ['dcMarkdownAdmin', 'adminBlogPre
 $core->addBehavior('adminBeforeBlogSettingsUpdate', ['dcMarkdownAdmin', 'adminBeforeBlogSettingsUpdate']);
 
 $core->addBehavior('adminPostEditor', ['dcMarkdownAdmin', 'adminPostEditor']);
+
+// Add behaviour callback for post/page lists
+$core->addBehavior('adminColumnsLists', ['dcMarkdownAdmin', 'adminColumnsLists']);
+$core->addBehavior('adminPostListHeader', ['dcMarkdownAdmin', 'adminPostListHeader']);
+$core->addBehavior('adminPostListValue', ['dcMarkdownAdmin', 'adminPostListValue']);
+$core->addBehavior('adminPagesListHeader', ['dcMarkdownAdmin', 'adminPagesListHeader']);
+$core->addBehavior('adminPagesListValue', ['dcMarkdownAdmin', 'adminPagesListValue']);
+$core->addBehavior('adminFiltersLists', ['dcMarkdownAdmin', 'adminFiltersLists']);

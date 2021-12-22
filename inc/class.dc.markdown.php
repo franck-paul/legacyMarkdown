@@ -145,4 +145,54 @@ class dcMarkdownAdmin
         dcPage::cssLoad(urldecode(dcPage::getPF('formatting-markdown/css/jsToolBar.css')), 'screen', $core->getVersion('formatting-markdown')) .
         dcPage::jsLoad(urldecode(dcPage::getPF('formatting-markdown/js/post.js')), $core->getVersion('formatting-markdown'));
     }
+
+    public static function adminColumnsLists($core, $cols)
+    {
+        $cols['posts'][1]['format'] = [true, __('Format')];
+        $cols['pages'][1]['format'] = [true, __('Format')];
+    }
+
+    private static function adminEntryListHeader($core, $rs, $cols)
+    {
+        $cols['format'] = '<th scope="col">' . __('Format') . '</th>';
+    }
+
+    public static function adminPostListHeader($core, $rs, $cols)
+    {
+        self::adminEntryListHeader($core, $rs, $cols);
+    }
+
+    public static function adminPagesListHeader($core, $rs, $cols)
+    {
+        self::adminEntryListHeader($core, $rs, $cols);
+    }
+
+    public static function adminEntryListValue($core, $rs, $cols)
+    {
+        $cols['format'] = '<td class="nowrap">' . self::getFormat($rs->post_format) . '</td>';
+    }
+
+    public static function adminPostListValue($core, $rs, $cols)
+    {
+        self::adminEntryListValue($core, $rs, $cols);
+    }
+
+    public static function adminPagesListValue($core, $rs, $cols)
+    {
+        self::adminEntryListValue($core, $rs, $cols);
+    }
+
+    private static function getFormat(string $format = ''): string
+    {
+        $images = [
+            'markdown' => dcPage::getPF('formatting-markdown/img/markdown.svg'),
+            'xhtml'    => dcPage::getPF('formatting-markdown/img/xhtml.svg'),
+            'wiki'     => dcPage::getPF('formatting-markdown/img/wiki.svg'),
+        ];
+        if (array_key_exists($format, $images)) {
+            return '<img style="width: 1.25em; height: 1.25em;" src="' . $images[$format] . '" title="' . $format . '" />';
+        }
+
+        return $format;
+    }
 }
