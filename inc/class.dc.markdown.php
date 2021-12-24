@@ -141,6 +141,7 @@ class dcMarkdownAdmin
             ],
 
             'md_post_link' => ['title' => __('Linktoanentry')],
+            'md_footnote'  => ['title' => __('Footnote')],
         ]) .
         dcPage::cssLoad(urldecode(dcPage::getPF('formatting-markdown/css/jsToolBar.css')), 'screen', $core->getVersion('formatting-markdown')) .
         dcPage::jsLoad(urldecode(dcPage::getPF('formatting-markdown/js/post.js')), $core->getVersion('formatting-markdown'));

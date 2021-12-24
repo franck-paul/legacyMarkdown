@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-10 10:05+0100\n"
+"POT-Creation-Date: 2021-12-24 12:09+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>\n"
 "Language-Team: \n"
@@ -71,3 +71,9 @@ msgstr "Sélecteur de média"
 
 msgid "Linktoanentry"
 msgstr "Liens vers une publication"
+
+msgid "Footnote"
+msgstr "Note de bas de page"
+
+msgid "Format"
+msgstr "Format"

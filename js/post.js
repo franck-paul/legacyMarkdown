@@ -555,6 +555,38 @@ jsToolBar.prototype.elements.link.fncall.markdown = function () {
   }
 };
 
+/* Footnote helper
+-------------------------------------------------------- */
+jsToolBar.prototype.elements.md_footnote = {
+  type: 'button',
+  title: 'Footnote',
+  icon: 'index.php?pf=formatting-markdown/img/bt_footnote.svg',
+  fn: {
+    markdown() {
+      let counter = 0;
+      // Get current selection
+      const start = this.textarea.selectionStart;
+      const end = this.textarea.selectionEnd;
+      const sel = this.textarea.value.substring(start, end);
+      // Get next footnote counter, TODO: get real counter
+      const matches = [...this.textarea.value.matchAll(/\[\^([0-9]*)\]/g)];
+      if (matches.length > 0) {
+        counter = Math.max(...matches.map((c) => parseInt(c[1])));
+      }
+      counter += 1;
+      const subst = `[^${counter}]`;
+      // Replace current selection by footnote link
+      this.textarea.value = this.textarea.value.substring(0, start) + subst + this.textarea.value.substring(end);
+      // Put current selection on bottom on document with footnote ref
+      this.textarea.value = `${this.textarea.value}\n${subst}: ${sel}`;
+      // Put caret just after the footnote link
+      this.textarea.setSelectionRange(start + subst.length, start + subst.length);
+      // End at last, give focus back to textarea
+      this.textarea.focus();
+    },
+  },
+};
+
 /* Set options
 ---------------------------------------------------------- */
 dotclear.mergeDeep(jsToolBar.prototype.elements, dotclear.getData('formatting_markdown'));
