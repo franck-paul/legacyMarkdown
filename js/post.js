@@ -235,10 +235,9 @@ jsToolBar.prototype.elements.md_pre = {
   icon: 'index.php?pf=formatting-markdown/img/bt_pre.svg',
   fn: {
     markdown() {
-      this.encloseSelection('\n', '', (str) => {
-        str = str.replace(/\r/g, '');
-        return `    ${str.replace(/\n/g, '\n    ')}`;
-      });
+      const stag = '<pre>\n';
+      const etag = '\n</pre>';
+      this.encloseSelection(stag, etag);
     },
   },
 };
@@ -568,7 +567,7 @@ jsToolBar.prototype.elements.md_footnote = {
       const start = this.textarea.selectionStart;
       const end = this.textarea.selectionEnd;
       const sel = this.textarea.value.substring(start, end);
-      // Get next footnote counter, TODO: get real counter
+      // Get next footnote counter
       const matches = [...this.textarea.value.matchAll(/\[\^([0-9]*)\]/g)];
       if (matches.length > 0) {
         counter = Math.max(...matches.map((c) => parseInt(c[1])));
