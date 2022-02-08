@@ -2,3 +2,20 @@
 .jstElements button {
   background-size: 16px;
 }
+
+/* Preview */
+.md_preview {
+  background: var(--wrapper-background);
+  color: var(--body-color);
+  padding: 2em;
+}
+
+.md_preview .md_markup {
+  background: var(--content-background);
+  max-width: 60em;
+  margin: 0 auto;
+}
+
+.mfp-inline-holder .mfp-content {
+  width: auto; /* Avoid default 100% */
+}

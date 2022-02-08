@@ -31,3 +31,6 @@ $core->addBehavior('adminPostListValue', ['dcMarkdownAdmin', 'adminPostListValue
 $core->addBehavior('adminPagesListHeader', ['dcMarkdownAdmin', 'adminPagesListHeader']);
 $core->addBehavior('adminPagesListValue', ['dcMarkdownAdmin', 'adminPagesListValue']);
 $core->addBehavior('adminFiltersLists', ['dcMarkdownAdmin', 'adminFiltersLists']);
+
+// Register REST methods
+$core->rest->addFunction('markdownConvert', ['dcMarkdownRest', 'convert']);

@@ -1,4 +1,4 @@
-/*global jsToolBar, dotclear */
+/*global jsToolBar, dotclear, $ */
 'use strict';
 
 // Elements definition ------------------------------------
@@ -582,6 +582,64 @@ jsToolBar.prototype.elements.md_footnote = {
       this.textarea.setSelectionRange(start + subst.length, start + subst.length);
       // End at last, give focus back to textarea
       this.textarea.focus();
+    },
+  },
+};
+
+// spacer
+jsToolBar.prototype.elements.md_space4 = {
+  type: 'space',
+  format: {
+    markdown: true,
+  },
+};
+
+// Preview
+jsToolBar.prototype.elements.md_preview = {
+  type: 'button',
+  title: 'Preview',
+  icon: 'index.php?pf=formatting-markdown/img/bt_preview.svg',
+  //  icon: 'index.php?pf=formatting-markdown/img/bt_pre.svg',
+  fn: {
+    markdown() {
+      let src = '';
+      let msg = '';
+      const buffer = this.textarea.value;
+      const params = {
+        xd_check: dotclear.nonce,
+        f: 'markdownConvert',
+        md: buffer,
+      };
+      const promise = $.ajax({
+        url: 'services.php',
+        method: 'POST',
+        data: params,
+        dataType: 'xml',
+      });
+      promise.done((data) => {
+        if ($('rsp[status=failed]', data).length > 0) {
+          // For debugging purpose only:
+          // console.log($('rsp',data).attr('message'));
+          window.console.log('Dotclear REST server error');
+        } else {
+          // ret -> status (true/false)
+          // msg -> REST method return value
+          const ret = Number($('rsp>markdown', data).attr('ret'));
+          msg = $('rsp>markdown', data).attr('msg');
+          if (!ret && msg !== '') {
+            window.alert(msg);
+            msg = '';
+          } else if (ret && msg !== '') {
+            const src = `<div class="md_preview"><div class="md_markup">${msg}</div></div>`;
+            $.magnificPopup.open({
+              items: {
+                src,
+                type: 'inline',
+              },
+            });
+          }
+        }
+      });
     },
   },
 };

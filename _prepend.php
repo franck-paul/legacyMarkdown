@@ -19,7 +19,8 @@ $__autoload['Michelf\MarkdownInterface'] = __DIR__ . '/lib/Michelf/MarkdownInter
 $__autoload['Michelf\Markdown']          = __DIR__ . '/lib/Michelf/Markdown.php';
 $__autoload['Michelf\MarkdownExtra']     = __DIR__ . '/lib/Michelf/MarkdownExtra.php';
 
-$__autoload['dcMarkdown'] = __DIR__ . '/inc/class.dc.markdown.php';
+$__autoload['dcMarkdown']     = __DIR__ . '/inc/class.dc.markdown.php';
+$__autoload['dcMarkdownRest'] = __DIR__ . '/_services.php';
 
 $core->addBehavior('coreInitWikiPost', ['dcMarkdown', 'coreInitWikiPost']);
 

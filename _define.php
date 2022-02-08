@@ -20,7 +20,7 @@ $this->registerModule(
     'Michel Fortin, Franck Paul and contributors', // Author
     '1.15.1',                                      // Version
     [
-        'requires'    => [['core', '2.20']],
+        'requires'    => [['core', '2.21']],
         'permissions' => 'usage,contentadmin',
         'type'        => 'plugin',
         'settings'    => [
