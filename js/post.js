@@ -599,10 +599,8 @@ jsToolBar.prototype.elements.md_preview = {
   type: 'button',
   title: 'Preview',
   icon: 'index.php?pf=formatting-markdown/img/bt_preview.svg',
-  //  icon: 'index.php?pf=formatting-markdown/img/bt_pre.svg',
   fn: {
     markdown() {
-      let src = '';
       let msg = '';
       const buffer = this.textarea.value;
       const params = {

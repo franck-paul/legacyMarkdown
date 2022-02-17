@@ -28,16 +28,11 @@ class dcMarkdownRest
             $ret  = strlen($html) > 0;
 
             if ($ret) {
-                // Cope with relative img src
-                if (preg_match('/^http(s)?:\/\//', $core->blog->settings->system->public_url)) {
-                    $media_root = $core->blog->settings->system->public_url;
-                } else {
-                    $media_root = $core->blog->host . path::clean($core->blog->settings->system->public_url) . '/';
-                }
-                $html = preg_replace_callback('/src="([^\"]*)"/', function ($matches) use ($media_root) {
+                $media_root = $core->blog->host;
+                $html       = preg_replace_callback('/src="([^\"]*)"/', function ($matches) use ($media_root) {
                     if (!preg_match('/^http(s)?:\/\//', $matches[1])) {
                         // Relative URL, convert to absolute
-                        return 'href="' . $media_root . $matches[1] . '"';
+                        return 'src="' . $media_root . $matches[1] . '"';
                     }
                     // Absolute URL, do nothing
                     return $matches[0];
