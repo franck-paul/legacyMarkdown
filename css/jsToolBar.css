@@ -14,7 +14,3 @@
 .mfp-inline-holder .mfp-content {
   width: auto; /* Avoid default 100% */
 }
-/* Waiting for 2.22 */
-.jstElements button {
-  background-size: 20px;
-}

@@ -603,27 +603,19 @@ jsToolBar.prototype.elements.md_preview = {
     markdown() {
       let msg = '';
       const buffer = this.textarea.value;
-      const params = {
-        xd_check: dotclear.nonce,
-        f: 'markdownConvert',
-        md: buffer,
-      };
-      const promise = $.ajax({
-        url: 'services.php',
-        method: 'POST',
-        data: params,
-        dataType: 'xml',
-      });
-      promise.done((data) => {
-        if ($('rsp[status=failed]', data).length > 0) {
-          // For debugging purpose only:
-          // console.log($('rsp',data).attr('message'));
-          window.console.log('Dotclear REST server error');
-        } else {
-          // ret -> status (true/false)
-          // msg -> REST method return value
-          const ret = Number($('rsp>markdown', data).attr('ret'));
-          msg = $('rsp>markdown', data).attr('msg');
+
+      dotclear.services(
+        'markdownConvert',
+        (data) => {
+          const parser = new DOMParser();
+          const rsp = parser.parseFromString(data, 'text/xml');
+          const status = rsp.querySelector('rsp[status=failed');
+          if (status !== null) {
+            console.log('Dotclear REST server error');
+            return;
+          }
+          const ret = Number(rsp.querySelector('rsp>markdown').getAttribute('ret'));
+          msg = rsp.querySelector('rsp>markdown').getAttribute('msg');
           if (!ret && msg !== '') {
             window.alert(msg);
             msg = '';
@@ -636,8 +628,13 @@ jsToolBar.prototype.elements.md_preview = {
               },
             });
           }
-        }
-      });
+        },
+        (error) => {
+          console.log(error);
+        },
+        false, // Use POST as buffer might be too large for URL GET pamareter
+        { md: buffer },
+      );
     },
   },
 };
