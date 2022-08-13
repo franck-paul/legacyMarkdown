@@ -17,20 +17,20 @@ if (!defined('DC_CONTEXT_ADMIN')) {
 // dead but useful code, in order to have translations
 __('Markdown syntax') . __('Brings you markdown (extra) syntax for your entries (see https://michelf.ca/projects/php-markdown/)');
 
-$core->addFormater('markdown', ['dcMarkdown', 'convert']);
+dcCore::app()->addFormater('markdown', ['dcMarkdown', 'convert']);
 
-$core->addBehavior('adminBlogPreferencesForm', ['dcMarkdownAdmin', 'adminBlogPreferencesForm']);
-$core->addBehavior('adminBeforeBlogSettingsUpdate', ['dcMarkdownAdmin', 'adminBeforeBlogSettingsUpdate']);
+dcCore::app()->addBehavior('adminBlogPreferencesForm', ['dcMarkdownAdmin', 'adminBlogPreferencesForm']);
+dcCore::app()->addBehavior('adminBeforeBlogSettingsUpdate', ['dcMarkdownAdmin', 'adminBeforeBlogSettingsUpdate']);
 
-$core->addBehavior('adminPostEditor', ['dcMarkdownAdmin', 'adminPostEditor']);
+dcCore::app()->addBehavior('adminPostEditor', ['dcMarkdownAdmin', 'adminPostEditor']);
 
 // Add behaviour callback for post/page lists
-$core->addBehavior('adminColumnsLists', ['dcMarkdownAdmin', 'adminColumnsLists']);
-$core->addBehavior('adminPostListHeader', ['dcMarkdownAdmin', 'adminPostListHeader']);
-$core->addBehavior('adminPostListValue', ['dcMarkdownAdmin', 'adminPostListValue']);
-$core->addBehavior('adminPagesListHeader', ['dcMarkdownAdmin', 'adminPagesListHeader']);
-$core->addBehavior('adminPagesListValue', ['dcMarkdownAdmin', 'adminPagesListValue']);
-$core->addBehavior('adminFiltersLists', ['dcMarkdownAdmin', 'adminFiltersLists']);
+dcCore::app()->addBehavior('adminColumnsLists', ['dcMarkdownAdmin', 'adminColumnsLists']);
+dcCore::app()->addBehavior('adminPostListHeader', ['dcMarkdownAdmin', 'adminPostListHeader']);
+dcCore::app()->addBehavior('adminPostListValue', ['dcMarkdownAdmin', 'adminPostListValue']);
+dcCore::app()->addBehavior('adminPagesListHeader', ['dcMarkdownAdmin', 'adminPagesListHeader']);
+dcCore::app()->addBehavior('adminPagesListValue', ['dcMarkdownAdmin', 'adminPagesListValue']);
+dcCore::app()->addBehavior('adminFiltersLists', ['dcMarkdownAdmin', 'adminFiltersLists']);
 
 // Register REST methods
-$core->rest->addFunction('markdownConvert', ['dcMarkdownRest', 'convert']);
+dcCore::app()->rest->addFunction('markdownConvert', ['dcMarkdownRest', 'convert']);

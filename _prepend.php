@@ -22,7 +22,7 @@ $__autoload['Michelf\MarkdownExtra']     = __DIR__ . '/lib/Michelf/MarkdownExtra
 $__autoload['dcMarkdown']     = __DIR__ . '/inc/class.dc.markdown.php';
 $__autoload['dcMarkdownRest'] = __DIR__ . '/_services.php';
 
-$core->addBehavior('coreInitWikiPost', ['dcMarkdown', 'coreInitWikiPost']);
+dcCore::app()->addBehavior('coreInitWikiPost', ['dcMarkdown', 'coreInitWikiPost']);
 
 if (!defined('DC_CONTEXT_ADMIN')) {
     return false;

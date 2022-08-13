@@ -14,8 +14,8 @@ if (!defined('DC_CONTEXT_ADMIN')) {
     return;
 }
 
-$new_version = $core->plugins->moduleInfo('formatting-markdown', 'version');
-$old_version = $core->getVersion('formatting-markdown');
+$new_version = dcCore::app()->plugins->moduleInfo('formatting-markdown', 'version');
+$old_version = dcCore::app()->getVersion('formatting-markdown');
 
 if (version_compare($old_version, $new_version, '>=')) {
     return;
@@ -33,11 +33,11 @@ try {
         }
     }
 
-    $core->setVersion('formatting-markdown', $new_version);
+    dcCore::app()->setVersion('formatting-markdown', $new_version);
 
     return true;
 } catch (Exception $e) {
-    $core->error->add($e->getMessage());
+    dcCore::app()->error->add($e->getMessage());
 }
 
 return false;

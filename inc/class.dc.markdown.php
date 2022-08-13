@@ -49,7 +49,7 @@ if (!defined('DC_CONTEXT_ADMIN')) {
 
 class dcMarkdownAdmin
 {
-    public static function adminBlogPreferencesForm($core, $settings)
+    public static function adminBlogPreferencesForm($core = null, $settings)
     {
         echo
         '<div class="fieldset"><h4 id="formatting_markdown">Markdown</h4>' .
@@ -67,8 +67,6 @@ class dcMarkdownAdmin
 
     public static function adminPostEditor($editor = '', $context = '', array $tags = [], $syntax = 'markdown')
     {
-        global $core;
-
         if ($editor != 'dcLegacyEditor' || $syntax != 'markdown') {
             return;
         }
@@ -137,51 +135,51 @@ class dcMarkdownAdmin
 
             'md_img_select' => [
                 'title'    => __('Mediachooser'),
-                'disabled' => (!$GLOBALS['core']->auth->check('media,media_admin', $GLOBALS['core']->blog->id) ? true : false),
+                'disabled' => (!dcCore::app()->auth->check('media,media_admin', dcCore::app()->blog->id) ? true : false),
             ],
 
             'md_post_link' => ['title' => __('Linktoanentry')],
             'md_footnote'  => ['title' => __('Footnote')],
             'md_preview'   => ['title' => __('Preview')],
         ]) .
-        dcPage::cssModuleLoad('formatting-markdown/css/jsToolBar.css', 'screen', $core->getVersion('formatting-markdown')) .
-        dcPage::jsModuleLoad('formatting-markdown/js/post.js', $core->getVersion('formatting-markdown'));
+        dcPage::cssModuleLoad('formatting-markdown/css/jsToolBar.css', 'screen', dcCore::app()->getVersion('formatting-markdown')) .
+        dcPage::jsModuleLoad('formatting-markdown/js/post.js', dcCore::app()->getVersion('formatting-markdown'));
     }
 
-    public static function adminColumnsLists($core, $cols)
+    public static function adminColumnsLists($core = null, $cols)
     {
         $cols['posts'][1]['format'] = [true, __('Format')];
         $cols['pages'][1]['format'] = [true, __('Format')];
     }
 
-    private static function adminEntryListHeader($core, $rs, $cols)
+    private static function adminEntryListHeader($core = null, $rs, $cols)
     {
         $cols['format'] = '<th scope="col">' . __('Format') . '</th>';
     }
 
-    public static function adminPostListHeader($core, $rs, $cols)
+    public static function adminPostListHeader($core = null, $rs, $cols)
     {
-        self::adminEntryListHeader($core, $rs, $cols);
+        self::adminEntryListHeader(dcCore::app(), $rs, $cols);
     }
 
-    public static function adminPagesListHeader($core, $rs, $cols)
+    public static function adminPagesListHeader($core = null, $rs, $cols)
     {
-        self::adminEntryListHeader($core, $rs, $cols);
+        self::adminEntryListHeader(dcCore::app(), $rs, $cols);
     }
 
-    public static function adminEntryListValue($core, $rs, $cols)
+    public static function adminEntryListValue($core = null, $rs, $cols)
     {
         $cols['format'] = '<td class="nowrap">' . self::getFormat($rs->post_format) . '</td>';
     }
 
-    public static function adminPostListValue($core, $rs, $cols)
+    public static function adminPostListValue($core = null, $rs, $cols)
     {
-        self::adminEntryListValue($core, $rs, $cols);
+        self::adminEntryListValue(dcCore::app(), $rs, $cols);
     }
 
-    public static function adminPagesListValue($core, $rs, $cols)
+    public static function adminPagesListValue($core = null, $rs, $cols)
     {
-        self::adminEntryListValue($core, $rs, $cols);
+        self::adminEntryListValue(dcCore::app(), $rs, $cols);
     }
 
     private static function getFormat(string $format = ''): string

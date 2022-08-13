@@ -15,18 +15,16 @@ if (!defined('DC_RC_PATH')) {
 }
 
 // Add behavior callback for markdown convert of comments
-$core->addBehavior('publicBeforeCommentTransform', ['dcMarkdownPublic', 'publicBeforeCommentTransform']);
+dcCore::app()->addBehavior('publicBeforeCommentTransform', ['dcMarkdownPublic', 'publicBeforeCommentTransform']);
 
 // tpl:CommentHelp alternative (will replace the standard template tag)
-$core->tpl->addValue('CommentHelp', ['dcMarkdownPublic', 'CommentHelp']);
+dcCore::app()->tpl->addValue('CommentHelp', ['dcMarkdownPublic', 'CommentHelp']);
 
 class dcMarkdownPublic
 {
     public static function publicBeforeCommentTransform($content)
     {
-        global $core;
-
-        if ($core->blog->settings->system->markdown_comments) {
+        if (dcCore::app()->blog->settings->system->markdown_comments) {
             return dcMarkdown::convert($content, 'comment');
         }
 
@@ -41,8 +39,8 @@ class dcMarkdownPublic
         __('HTML code is displayed as text and web addresses are automatically converted.');
 
         return
-            "<?php if (\$core->blog->settings->system->wiki_comments) {\n" .
-            "    if (\$core->blog->settings->system->markdown_comments) {\n" .
+            "<?php if (dcCore::app()->blog->settings->system->wiki_comments) {\n" .
+            "    if (dcCore::app()->blog->settings->system->markdown_comments) {\n" .
             "      echo __('Comments can be formatted using the <a href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a> syntax.');\n" .
             "    } else {\n" .
             "      echo __('Comments can be formatted using a simple wiki syntax.');\n" .

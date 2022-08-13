@@ -601,39 +601,32 @@ jsToolBar.prototype.elements.md_preview = {
   icon: 'index.php?pf=formatting-markdown/img/bt_preview.svg',
   fn: {
     markdown() {
-      let msg = '';
-      const buffer = this.textarea.value;
-
       dotclear.services(
         'markdownConvert',
         (data) => {
-          const parser = new DOMParser();
-          const rsp = parser.parseFromString(data, 'text/xml');
-          const status = rsp.querySelector('rsp[status=failed');
-          if (status !== null) {
-            console.log('Dotclear REST server error');
+          const response = JSON.parse(data);
+          if (response?.success) {
+            if (response?.payload.ret) {
+              $.magnificPopup.open({
+                items: {
+                  src: `<div class="md_preview"><div class="md_markup">${response.payload.html}</div></div>`,
+                  type: 'inline',
+                },
+              });
+            }
+          } else {
+            console.log(dotclear.debug && response?.message ? response.message : 'Dotclear REST server error');
             return;
-          }
-          const ret = Number(rsp.querySelector('rsp>markdown').getAttribute('ret'));
-          msg = rsp.querySelector('rsp>markdown').getAttribute('msg');
-          if (!ret && msg !== '') {
-            window.alert(msg);
-            msg = '';
-          } else if (ret && msg !== '') {
-            const src = `<div class="md_preview"><div class="md_markup">${msg}</div></div>`;
-            $.magnificPopup.open({
-              items: {
-                src,
-                type: 'inline',
-              },
-            });
           }
         },
         (error) => {
           console.log(error);
         },
         false, // Use POST as buffer might be too large for URL GET pamareter
-        { md: buffer },
+        {
+          json: 1,
+          md: this.textarea.value,
+        },
       );
     },
   },

@@ -16,19 +16,17 @@ if (!defined('DC_CONTEXT_ADMIN')) {
 
 class dcMarkdownRest
 {
-    public static function convert($core, $get, $post)
+    public static function convert($get, $post)
     {
-        $md  = $post['md'] ?? '';
-        $rsp = new xmlTag('markdown');
+        $payload = [
+            'ret' => false,
+        ];
 
-        $ret  = false;
-        $html = '';
+        $md = $post['md'] ?? '';
         if ($md !== '') {
             $html = dcMarkdown::convert($md);
-            $ret  = strlen($html) > 0;
-
-            if ($ret) {
-                $media_root = $core->blog->host;
+            if (strlen($html) > 0) {
+                $media_root = dcCore::app()->blog->host;
                 $html       = preg_replace_callback('/src="([^\"]*)"/', function ($matches) use ($media_root) {
                     if (!preg_match('/^http(s)?:\/\//', $matches[1])) {
                         // Relative URL, convert to absolute
@@ -37,12 +35,14 @@ class dcMarkdownRest
                     // Absolute URL, do nothing
                     return $matches[0];
                 }, $html);
+
+                $payload = [
+                    'ret'  => true,
+                    'html' => $html,
+                ];
             }
         }
 
-        $rsp->ret = $ret;
-        $rsp->msg = $html;
-
-        return $rsp;
+        return $payload;
     }
 }
