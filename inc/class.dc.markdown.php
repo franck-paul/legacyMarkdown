@@ -49,7 +49,7 @@ if (!defined('DC_CONTEXT_ADMIN')) {
 
 class dcMarkdownAdmin
 {
-    public static function adminBlogPreferencesForm($core = null, $settings)
+    public static function adminBlogPreferencesForm($core, $settings)
     {
         echo
         '<div class="fieldset"><h4 id="formatting_markdown">Markdown</h4>' .
@@ -146,38 +146,38 @@ class dcMarkdownAdmin
         dcPage::jsModuleLoad('formatting-markdown/js/post.js', dcCore::app()->getVersion('formatting-markdown'));
     }
 
-    public static function adminColumnsLists($core = null, $cols)
+    public static function adminColumnsLists($core, $cols)
     {
         $cols['posts'][1]['format'] = [true, __('Format')];
         $cols['pages'][1]['format'] = [true, __('Format')];
     }
 
-    private static function adminEntryListHeader($core = null, $rs, $cols)
+    private static function adminEntryListHeader($core, $rs, $cols)
     {
         $cols['format'] = '<th scope="col">' . __('Format') . '</th>';
     }
 
-    public static function adminPostListHeader($core = null, $rs, $cols)
+    public static function adminPostListHeader($core, $rs, $cols)
     {
         self::adminEntryListHeader(dcCore::app(), $rs, $cols);
     }
 
-    public static function adminPagesListHeader($core = null, $rs, $cols)
+    public static function adminPagesListHeader($core, $rs, $cols)
     {
         self::adminEntryListHeader(dcCore::app(), $rs, $cols);
     }
 
-    public static function adminEntryListValue($core = null, $rs, $cols)
+    public static function adminEntryListValue($core, $rs, $cols)
     {
         $cols['format'] = '<td class="nowrap">' . self::getFormat($rs->post_format) . '</td>';
     }
 
-    public static function adminPostListValue($core = null, $rs, $cols)
+    public static function adminPostListValue($core, $rs, $cols)
     {
         self::adminEntryListValue(dcCore::app(), $rs, $cols);
     }
 
-    public static function adminPagesListValue($core = null, $rs, $cols)
+    public static function adminPagesListValue($core, $rs, $cols)
     {
         self::adminEntryListValue(dcCore::app(), $rs, $cols);
     }
