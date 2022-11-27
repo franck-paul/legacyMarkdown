@@ -9,7 +9,7 @@ jsToolBar.prototype.elements.md_blocks = {
   title: 'block format',
   options: {
     none: '-- none --', // only for wysiwyg mode
-    nonebis: '- block format -', // only for xhtml/markdown mode
+    nonebis: '- block format -', // only for html/markdown mode
     p: 'Paragraph',
     h1: 'Header 1',
     h2: 'Header 2',
@@ -604,19 +604,23 @@ jsToolBar.prototype.elements.md_preview = {
       dotclear.services(
         'markdownConvert',
         (data) => {
-          const response = JSON.parse(data);
-          if (response?.success) {
-            if (response?.payload.ret) {
-              $.magnificPopup.open({
-                items: {
-                  src: `<div class="md_preview"><div class="md_markup">${response.payload.html}</div></div>`,
-                  type: 'inline',
-                },
-              });
+          try {
+            const response = JSON.parse(data);
+            if (response?.success) {
+              if (response?.payload.ret) {
+                $.magnificPopup.open({
+                  items: {
+                    src: `<div class="md_preview"><div class="md_markup">${response.payload.html}</div></div>`,
+                    type: 'inline',
+                  },
+                });
+              }
+            } else {
+              console.log(dotclear.debug && response?.message ? response.message : 'Dotclear REST server error');
+              return;
             }
-          } else {
-            console.log(dotclear.debug && response?.message ? response.message : 'Dotclear REST server error');
-            return;
+          } catch (e) {
+            console.log(e);
           }
         },
         (error) => {

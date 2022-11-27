@@ -15,18 +15,20 @@ if (!defined('DC_RC_PATH')) {
 }
 // public
 
-$__autoload['Michelf\MarkdownInterface'] = __DIR__ . '/lib/Michelf/MarkdownInterface.php';
-$__autoload['Michelf\Markdown']          = __DIR__ . '/lib/Michelf/Markdown.php';
-$__autoload['Michelf\MarkdownExtra']     = __DIR__ . '/lib/Michelf/MarkdownExtra.php';
+Clearbricks::lib()->autoload([
+    'Michelf\MarkdownInterface' => __DIR__ . '/lib/Michelf/MarkdownInterface.php',
+    'Michelf\Markdown'          => __DIR__ . '/lib/Michelf/Markdown.php',
+    'Michelf\MarkdownExtra'     => __DIR__ . '/lib/Michelf/MarkdownExtra.php',
 
-$__autoload['dcMarkdown']     = __DIR__ . '/inc/class.dc.markdown.php';
-$__autoload['dcMarkdownRest'] = __DIR__ . '/_services.php';
+    'dcMarkdown'     => __DIR__ . '/inc/class.dc.markdown.php',
+    'dcMarkdownRest' => __DIR__ . '/_services.php',
+]);
 
-dcCore::app()->addBehavior('coreInitWikiPost', ['dcMarkdown', 'coreInitWikiPost']);
+dcCore::app()->addBehavior('coreInitWikiPost', [dcMarkdown::class, 'coreInitWikiPost']);
 
 if (!defined('DC_CONTEXT_ADMIN')) {
     return false;
 }
 // admin
 
-$__autoload['dcMarkdownAdmin'] = __DIR__ . '/inc/class.dc.markdown.php';
+Clearbricks::lib()->autoload(['dcMarkdownAdmin' => __DIR__ . '/inc/class.dc.markdown.php']);

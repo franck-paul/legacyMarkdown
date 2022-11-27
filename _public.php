@@ -14,12 +14,6 @@ if (!defined('DC_RC_PATH')) {
     return;
 }
 
-// Add behavior callback for markdown convert of comments
-dcCore::app()->addBehavior('publicBeforeCommentTransform', ['dcMarkdownPublic', 'publicBeforeCommentTransform']);
-
-// tpl:CommentHelp alternative (will replace the standard template tag)
-dcCore::app()->tpl->addValue('CommentHelp', ['dcMarkdownPublic', 'CommentHelp']);
-
 class dcMarkdownPublic
 {
     public static function publicBeforeCommentTransform($content)
@@ -31,7 +25,7 @@ class dcMarkdownPublic
         return '';
     }
 
-    public static function CommentHelp($attr, $content)
+    public static function CommentHelp()
     {
         // Useful only for PO generation
         __('Comments can be formatted using the <a href="https://michelf.ca/projects/php-markdown/extra/">Markdown Extra</a> syntax.');
@@ -50,3 +44,9 @@ class dcMarkdownPublic
             '} ?>';
     }
 }
+
+// Add behavior callback for markdown convert of comments
+dcCore::app()->addBehavior('publicBeforeCommentTransform', [dcMarkdownPublic::class, 'publicBeforeCommentTransform']);
+
+// tpl:CommentHelp alternative (will replace the standard template tag)
+dcCore::app()->tpl->addValue('CommentHelp', [dcMarkdownPublic::class, 'CommentHelp']);

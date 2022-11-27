@@ -10,9 +10,7 @@
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-if (!defined('DC_RC_PATH')) {
-    return;
-}
+
 // public
 
 class dcMarkdown
@@ -38,7 +36,7 @@ class dcMarkdown
 
     public static function coreInitWikiPost($wiki2xhtml)
     {
-        $wiki2xhtml->registerFunction('macro:md', ['dcMarkdown', 'convert']);
+        $wiki2xhtml->registerFunction('macro:md', [self::class, 'convert']);
     }
 }
 
@@ -49,14 +47,14 @@ if (!defined('DC_CONTEXT_ADMIN')) {
 
 class dcMarkdownAdmin
 {
-    public static function adminBlogPreferencesForm($core, $settings)
+    public static function adminBlogPreferencesForm($settings)
     {
         echo
         '<div class="fieldset"><h4 id="formatting_markdown">Markdown</h4>' .
         '<p><label class="classic">' .
         form::checkbox('markdown_comments', '1', $settings->system->markdown_comments) .
         __('Enable Markdown syntax for comments') . '</label></p>' .
-        '<p class="clear form-note warning">' . __('This option, if enabled, will replace the standard wiki syntax for comments!') . '</p>' .
+        '<p class="clear form-note warn">' . __('This option, if enabled, will replace the standard wiki syntax for comments!') . '</p>' .
         '</div>';
     }
 
@@ -135,7 +133,10 @@ class dcMarkdownAdmin
 
             'md_img_select' => [
                 'title'    => __('Mediachooser'),
-                'disabled' => (!dcCore::app()->auth->check('media,media_admin', dcCore::app()->blog->id) ? true : false),
+                'disabled' => (!dcCore::app()->auth->check(dcCore::app()->auth->makePermissions([
+                    dcAuth::PERMISSION_MEDIA,
+                    dcAuth::PERMISSION_MEDIA_ADMIN,
+                ]), dcCore::app()->blog->id) ? true : false),
             ],
 
             'md_post_link' => ['title' => __('Linktoanentry')],
@@ -146,7 +147,7 @@ class dcMarkdownAdmin
         dcPage::jsModuleLoad('formatting-markdown/js/post.js', dcCore::app()->getVersion('formatting-markdown'));
     }
 
-    public static function adminColumnsLists($core, $cols)
+    public static function adminColumnsLists($cols)
     {
         $cols['posts'][1]['format'] = [true, __('Format')];
         $cols['pages'][1]['format'] = [true, __('Format')];
@@ -157,12 +158,12 @@ class dcMarkdownAdmin
         $cols['format'] = '<th scope="col">' . __('Format') . '</th>';
     }
 
-    public static function adminPostListHeader($core, $rs, $cols)
+    public static function adminPostListHeader($rs, $cols)
     {
         self::adminEntryListHeader(dcCore::app(), $rs, $cols);
     }
 
-    public static function adminPagesListHeader($core, $rs, $cols)
+    public static function adminPagesListHeader($rs, $cols)
     {
         self::adminEntryListHeader(dcCore::app(), $rs, $cols);
     }
@@ -172,12 +173,12 @@ class dcMarkdownAdmin
         $cols['format'] = '<td class="nowrap">' . self::getFormat($rs->post_format) . '</td>';
     }
 
-    public static function adminPostListValue($core, $rs, $cols)
+    public static function adminPostListValue($rs, $cols)
     {
         self::adminEntryListValue(dcCore::app(), $rs, $cols);
     }
 
-    public static function adminPagesListValue($core, $rs, $cols)
+    public static function adminPagesListValue($rs, $cols)
     {
         self::adminEntryListValue(dcCore::app(), $rs, $cols);
     }
@@ -190,7 +191,7 @@ class dcMarkdownAdmin
             'wiki'     => dcPage::getPF('formatting-markdown/img/wiki.svg'),
         ];
         if (array_key_exists($format, $images)) {
-            return '<img style="width: 1.25em; height: 1.25em;" src="' . $images[$format] . '" title="' . $format . '" />';
+            return '<img style="width: 1.25em; height: 1.25em;" src="' . $images[$format] . '" title="' . dcCore::app()->getFormaterName($format) . '" />';
         }
 
         return $format;

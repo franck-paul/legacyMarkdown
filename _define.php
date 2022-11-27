@@ -15,20 +15,23 @@ if (!defined('DC_RC_PATH')) {
 }
 
 $this->registerModule(
-    'Markdown syntax',                             // Name
-    'Brings you markdown syntax for your entries', // Description
-    'Michel Fortin, Franck Paul and contributors', // Author
-    '1.20.1',
+    'Markdown syntax',
+    'Brings you markdown syntax for your entries',
+    'Michel Fortin, Franck Paul and contributors',
+    '2.0',
     [
-        'requires'    => [['core', '2.23']],
-        'permissions' => 'usage,contentadmin',
-        'type'        => 'plugin',
-        'settings'    => [
+        'requires'    => [['core', '2.24']],
+        'permissions' => dcCore::app()->auth->makePermissions([
+            dcAuth::PERMISSION_USAGE,
+            dcAuth::PERMISSION_CONTENT_ADMIN,
+        ]),
+        'type'     => 'plugin',
+        'settings' => [
             'pref' => '#user-options.user_options_edition',
             'blog' => '#params.formatting_markdown',
         ],
-        'details'    => 'https://open-time.net/?q=formatting-markdown',       // Details URL
-        'support'    => 'https://github.com/franck-paul/formatting-markdown', // Support URL
+        'details'    => 'https://open-time.net/?q=formatting-markdown',
+        'support'    => 'https://github.com/franck-paul/formatting-markdown',
         'repository' => 'https://raw.githubusercontent.com/franck-paul/formatting-markdown/master/dcstore.xml',
     ]
 );
