@@ -17,12 +17,12 @@ if (!defined('DC_CONTEXT_ADMIN')) {
 $new_version = dcCore::app()->plugins->moduleInfo('formatting-markdown', 'version');
 $old_version = dcCore::app()->getVersion('formatting-markdown');
 
-if (version_compare($old_version, $new_version, '>=')) {
+if (version_compare((string) $old_version, $new_version, '>=')) {
     return;
 }
 
 try {
-    if (version_compare($old_version, '1.10', '<')) {
+    if (version_compare((string) $old_version, '1.10', '<')) {
         # A bit of housecleaning for no longer needed files
         $remfiles = [
             'inc/markdown.php',
