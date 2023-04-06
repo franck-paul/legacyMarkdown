@@ -53,6 +53,8 @@ jsToolBar.prototype.elements.md_strong = {
   type: 'button',
   title: 'Strong emphasis',
   icon: 'index.php?pf=formatting-markdown/img/bt_strong.svg',
+  shortkey: 'KeyB',
+  shortkey_name: 'B',
   fn: {
     markdown() {
       this.singleTag('**');
@@ -65,6 +67,8 @@ jsToolBar.prototype.elements.md_em = {
   type: 'button',
   title: 'Emphasis',
   icon: 'index.php?pf=formatting-markdown/img/bt_em.svg',
+  shortkey: 'KeyI',
+  shortkey_name: 'I',
   fn: {
     markdown() {
       this.singleTag('*');
@@ -77,6 +81,8 @@ jsToolBar.prototype.elements.md_ins = {
   type: 'button',
   title: 'Inserted',
   icon: 'index.php?pf=formatting-markdown/img/bt_ins.svg',
+  shortkey: 'KeyU',
+  shortkey_name: 'U',
   fn: {
     markdown() {
       this.singleTag('<ins>', '</ins>');
@@ -89,6 +95,8 @@ jsToolBar.prototype.elements.md_del = {
   type: 'button',
   title: 'Deleted',
   icon: 'index.php?pf=formatting-markdown/img/bt_del.svg',
+  shortkey: 'KeyD',
+  shortkey_name: 'D',
   fn: {
     markdown() {
       this.singleTag('<del>', '</del>');
@@ -328,6 +336,8 @@ jsToolBar.prototype.elements.md_link = {
   type: 'button',
   title: 'Link',
   icon: 'index.php?pf=formatting-markdown/img/bt_link.svg',
+  shortkey: 'KeyL',
+  shortkey_name: 'L',
   fn: {},
   href_prompt: 'Please give URL:',
   title_prompt: 'Title for this URL:',
@@ -430,6 +440,8 @@ jsToolBar.prototype.elements.md_img_select = {
   type: 'button',
   title: 'Image chooser',
   icon: 'index.php?pf=formatting-markdown/img/bt_img_select.svg',
+  shortkey: 'KeyM',
+  shortkey_name: 'M',
   fn: {},
   fncall: {},
   open_url: 'media.php?popup=1&plugin_id=dcLegacyEditor',
@@ -525,6 +537,8 @@ jsToolBar.prototype.elements.md_post_link = {
   type: 'button',
   title: 'Link to an entry',
   icon: 'index.php?pf=formatting-markdown/img/bt_post.svg',
+  shortkey: 'KeyE',
+  shortkey_name: 'E',
   fn: {},
   open_url: 'popup_posts.php?plugin_id=dcLegacyEditor',
   data: {},
@@ -560,6 +574,8 @@ jsToolBar.prototype.elements.md_footnote = {
   type: 'button',
   title: 'Footnote',
   icon: 'index.php?pf=formatting-markdown/img/bt_footnote.svg',
+  shortkey: 'KeyN',
+  shortkey_name: 'N',
   fn: {
     markdown() {
       let counter = 0;
@@ -599,6 +615,8 @@ jsToolBar.prototype.elements.md_preview = {
   type: 'button',
   title: 'Preview',
   icon: 'index.php?pf=formatting-markdown/img/bt_preview.svg',
+  shortkey: 'KeyP',
+  shortkey_name: 'P',
   fn: {
     markdown() {
       dotclear.services(

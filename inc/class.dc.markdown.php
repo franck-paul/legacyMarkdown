@@ -34,9 +34,9 @@ class dcMarkdown
         return $o->transform($str);
     }
 
-    public static function coreInitWikiPost($wiki2xhtml)
+    public static function coreInitWikiPost($wiki)
     {
-        $wiki2xhtml->registerFunction('macro:md', [self::class, 'convert']);
+        $wiki->registerFunction('macro:md', [self::class, 'convert']);
     }
 }
 

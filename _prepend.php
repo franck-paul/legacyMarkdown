@@ -10,15 +10,15 @@
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-if (!defined('DC_RC_PATH')) {
-    return;
-}
+
+use Dotclear\Helper\Clearbricks;
+
 // public
 
 Clearbricks::lib()->autoload([
-    'Michelf\MarkdownInterface' => __DIR__ . '/lib/Michelf/MarkdownInterface.php',
-    'Michelf\Markdown'          => __DIR__ . '/lib/Michelf/Markdown.php',
-    'Michelf\MarkdownExtra'     => __DIR__ . '/lib/Michelf/MarkdownExtra.php',
+    \Michelf\MarkdownInterface::class => __DIR__ . '/lib/Michelf/MarkdownInterface.php',
+    \Michelf\Markdown::class          => __DIR__ . '/lib/Michelf/Markdown.php',
+    \Michelf\MarkdownExtra::class     => __DIR__ . '/lib/Michelf/MarkdownExtra.php',
 
     'dcMarkdown'     => __DIR__ . '/inc/class.dc.markdown.php',
     'dcMarkdownRest' => __DIR__ . '/_services.php',
