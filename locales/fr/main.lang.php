@@ -13,7 +13,7 @@ use Dotclear\Helper\L10n;
 
 L10n::$locales['Brings you markdown (extra) syntax for your entries (see https://michelf.ca/projects/php-markdown/)'] = 'Ajoute la syntaxe markdown (extra) pour vos publications (voir https://michelf.ca/projects/php-markdown/)';
 L10n::$locales['Markdown syntax'] = 'Syntaxe Markdown';
-L10n::$locales['Markdown'] = 'Syntaxe Markdown';
+L10n::$locales['Markdown'] = 'Markdown';
 L10n::$locales['Enable Markdown syntax for comments'] = 'Activer la syntaxe Markdown pour les commentaires';
 L10n::$locales['This option, if enabled, will replace the standard wiki syntax for comments!'] = 'Cette option, si activée, remplacera la syntaxe wiki standard pour les commentaires !';
 L10n::$locales['Source URL:'] = 'URL source :';
