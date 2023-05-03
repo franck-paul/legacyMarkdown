@@ -16,6 +16,7 @@ namespace Dotclear\Plugin\legacyMarkdown;
 
 use dcCore;
 use dcNsProcess;
+use Dotclear\App;
 
 class Prepend extends dcNsProcess
 {
@@ -32,8 +33,7 @@ class Prepend extends dcNsProcess
             return false;
         }
 
-        $lib = implode(DIRECTORY_SEPARATOR, [My::path(), 'lib', 'Michelf']);
-        dcCore::app()->autoload->addNamespace('Michelf', $lib);
+        App::autoload()->addNamespace('Michelf', implode(DIRECTORY_SEPARATOR, [My::path(), 'lib', 'Michelf']));
 
         dcCore::app()->addBehavior('coreInitWikiPost', [Helper::class, 'coreInitWikiPost']);
 
