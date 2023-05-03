@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief formatting-markdown, a plugin for Dotclear 2
+ * @brief legacyMarkdown, a plugin for Dotclear 2
  *
  * @package Dotclear
  * @subpackage Plugins
@@ -10,52 +10,39 @@
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
+declare(strict_types=1);
 
-// public
+namespace Dotclear\Plugin\legacyMarkdown;
 
-class dcMarkdown
-{
-    public static function convert($str, $type = 'full')
-    {
-        $o = new Michelf\MarkdownExtra();
-        switch ($type) {
-            case 'comment':
-                // Setup some options in comments
-                $o->hashtag_protection = true;
+use dcAuth;
+use dcCore;
+use dcPage;
+use Dotclear\Helper\Html\Form\Checkbox;
+use Dotclear\Helper\Html\Form\Fieldset;
+use Dotclear\Helper\Html\Form\Label;
+use Dotclear\Helper\Html\Form\Legend;
+use Dotclear\Helper\Html\Form\Para;
+use Dotclear\Helper\Html\Form\Text;
 
-                break;
-            case 'full':
-            default:
-                break;
-        }
-        // Setup generic options
-        $o->fn_id_prefix = 'ts' . dt::str('%s') . '.';
-
-        return $o->transform($str);
-    }
-
-    public static function coreInitWikiPost($wiki)
-    {
-        $wiki->registerFunction('macro:md', [self::class, 'convert']);
-    }
-}
-
-if (!defined('DC_CONTEXT_ADMIN')) {
-    return;
-}
-// admin
-
-class dcMarkdownAdmin
+class BackendBehaviors
 {
     public static function adminBlogPreferencesForm($settings)
     {
+        // Add fieldset for plugin options
         echo
-        '<div class="fieldset"><h4 id="formatting_markdown">Markdown</h4>' .
-        '<p><label class="classic">' .
-        form::checkbox('markdown_comments', '1', $settings->system->markdown_comments) .
-        __('Enable Markdown syntax for comments') . '</label></p>' .
-        '<p class="clear form-note warn">' . __('This option, if enabled, will replace the standard wiki syntax for comments!') . '</p>' .
-        '</div>';
+        (new Fieldset('legacy_markdown'))
+        ->legend((new Legend(__('Markdown'))))
+        ->fields([
+            (new Para())->items([
+                (new Checkbox('markdown_comments', $settings->system->markdown_comments))
+                    ->value(1)
+                    ->label((new Label(__('Enable Markdown syntax for comments'), Label::INSIDE_TEXT_AFTER))),
+            ]),
+            (new Para())->class('clear form-note warn')->items([
+                (new Text(null, __('This option, if enabled, will replace the standard wiki syntax for comments!'))),
+            ]),
+        ])
+        ->render();
     }
 
     public static function adminBeforeBlogSettingsUpdate($settings)
@@ -143,8 +130,8 @@ class dcMarkdownAdmin
             'md_footnote'  => ['title' => __('Footnote')],
             'md_preview'   => ['title' => __('Preview')],
         ]) .
-        dcPage::cssModuleLoad('formatting-markdown/css/jsToolBar.css', 'screen', dcCore::app()->getVersion('formatting-markdown')) .
-        dcPage::jsModuleLoad('formatting-markdown/js/post.js', dcCore::app()->getVersion('formatting-markdown'));
+        dcPage::cssModuleLoad('legacyMarkdown/css/jsToolBar.css', 'screen', dcCore::app()->getVersion('legacyMarkdown')) .
+        dcPage::jsModuleLoad('legacyMarkdown/js/post.js', dcCore::app()->getVersion('legacyMarkdown'));
     }
 
     public static function adminColumnsLists($cols)
@@ -186,9 +173,9 @@ class dcMarkdownAdmin
     private static function getFormat(string $format = ''): string
     {
         $images = [
-            'markdown' => dcPage::getPF('formatting-markdown/img/markdown.svg'),
-            'xhtml'    => dcPage::getPF('formatting-markdown/img/xhtml.svg'),
-            'wiki'     => dcPage::getPF('formatting-markdown/img/wiki.svg'),
+            'markdown' => dcPage::getPF('legacyMarkdown/img/markdown.svg'),
+            'xhtml'    => dcPage::getPF('legacyMarkdown/img/xhtml.svg'),
+            'wiki'     => dcPage::getPF('legacyMarkdown/img/wiki.svg'),
         ];
         if (array_key_exists($format, $images)) {
             return '<img style="width: 1.25em; height: 1.25em;" src="' . $images[$format] . '" title="' . dcCore::app()->getFormaterName($format) . '" />';

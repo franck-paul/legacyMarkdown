@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief formatting-markdown, a plugin for Dotclear 2
+ * @brief legacyMarkdown, a plugin for Dotclear 2
  *
  * @package Dotclear
  * @subpackage Plugins
@@ -10,17 +10,12 @@
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-class dcMarkdownPublic
+declare(strict_types=1);
+
+namespace Dotclear\Plugin\legacyMarkdown;
+
+class FrontendTemplate
 {
-    public static function publicBeforeCommentTransform($content)
-    {
-        if (dcCore::app()->blog->settings->system->markdown_comments) {
-            return dcMarkdown::convert($content, 'comment');
-        }
-
-        return '';
-    }
-
     public static function CommentHelp()
     {
         // Useful only for PO generation
@@ -40,9 +35,3 @@ class dcMarkdownPublic
             '} ?>';
     }
 }
-
-// Add behavior callback for markdown convert of comments
-dcCore::app()->addBehavior('publicBeforeCommentTransform', [dcMarkdownPublic::class, 'publicBeforeCommentTransform']);
-
-// tpl:CommentHelp alternative (will replace the standard template tag)
-dcCore::app()->tpl->addValue('CommentHelp', [dcMarkdownPublic::class, 'CommentHelp']);

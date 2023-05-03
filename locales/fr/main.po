@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-18 09:37+0200\n"
+"POT-Creation-Date: 2023-05-03 15:18+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>\n"
 "Language-Team: \n"
@@ -18,8 +18,9 @@ msgstr "Ajoute la syntaxe markdown (extra) pour vos publications (voir https://m
 msgid "Markdown syntax"
 msgstr "Syntaxe Markdown"
 
-msgid "Comments can be formatted using the <a href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a> syntax."
-msgstr "Les commentaires peuvent être formatés en utilisant la syntaxe <a href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a>."
+#, fuzzy
+msgid "Markdown"
+msgstr "Syntaxe Markdown"
 
 msgid "Enable Markdown syntax for comments"
 msgstr "Activer la syntaxe Markdown pour les commentaires"
@@ -80,3 +81,6 @@ msgstr "Note de bas de page"
 
 msgid "Format"
 msgstr "Format"
+
+msgid "Comments can be formatted using the <a href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a> syntax."
+msgstr "Les commentaires peuvent être formatés en utilisant la syntaxe <a href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a>."

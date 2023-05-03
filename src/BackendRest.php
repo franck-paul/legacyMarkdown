@@ -1,20 +1,22 @@
 <?php
 /**
- * @brief formatting-markdown, a plugin for Dotclear 2
+ * @brief legacyMarkdown, a plugin for Dotclear 2
  *
  * @package Dotclear
  * @subpackage Plugins
  *
- * @author Franck Paul
+ * @author Franck Paul and contributors
  *
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-if (!defined('DC_CONTEXT_ADMIN')) {
-    return;
-}
+declare(strict_types=1);
 
-class dcMarkdownRest
+namespace Dotclear\Plugin\legacyMarkdown;
+
+use dcCore;
+
+class BackendRest
 {
     public static function convert($get, $post)
     {
@@ -24,7 +26,7 @@ class dcMarkdownRest
 
         $md = $post['md'] ?? '';
         if ($md !== '') {
-            $html = dcMarkdown::convert($md);
+            $html = Helper::convert($md);
             if (strlen($html) > 0) {
                 $media_root = dcCore::app()->blog->host;
                 $html       = preg_replace_callback('/src="([^\"]*)"/', function ($matches) use ($media_root) {

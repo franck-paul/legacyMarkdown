@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief formatting-markdown, a plugin for Dotclear 2
+ * @brief legacyMarkdown, a plugin for Dotclear 2
  *
  * @package Dotclear
  * @subpackage Plugins
@@ -14,7 +14,7 @@ $this->registerModule(
     'Markdown syntax',
     'Brings you markdown syntax for your entries',
     'Michel Fortin, Franck Paul and contributors',
-    '2.0.1',
+    '3.0',
     [
         'requires'    => [['core', '2.26']],
         'permissions' => dcCore::app()->auth->makePermissions([
@@ -24,10 +24,10 @@ $this->registerModule(
         'type'     => 'plugin',
         'settings' => [
             'pref' => '#user-options.user_options_edition',
-            'blog' => '#params.formatting_markdown',
+            'blog' => '#params.legacy_markdown',
         ],
-        'details'    => 'https://open-time.net/?q=formatting-markdown',
-        'support'    => 'https://github.com/franck-paul/formatting-markdown',
-        'repository' => 'https://raw.githubusercontent.com/franck-paul/formatting-markdown/master/dcstore.xml',
+        'details'    => 'https://open-time.net/?q=legacyMarkdown',
+        'support'    => 'https://github.com/franck-paul/legacyMarkdown',
+        'repository' => 'https://raw.githubusercontent.com/franck-paul/legacyMarkdown/master/dcstore.xml',
     ]
 );
