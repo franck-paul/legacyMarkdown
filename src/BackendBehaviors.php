@@ -130,8 +130,8 @@ class BackendBehaviors
             'md_footnote'  => ['title' => __('Footnote')],
             'md_preview'   => ['title' => __('Preview')],
         ]) .
-        dcPage::cssModuleLoad('legacyMarkdown/css/jsToolBar.css', 'screen', dcCore::app()->getVersion('legacyMarkdown')) .
-        dcPage::jsModuleLoad('legacyMarkdown/js/post.js', dcCore::app()->getVersion('legacyMarkdown'));
+        dcPage::cssModuleLoad(My::id() . '/css/jsToolBar.css', 'screen', dcCore::app()->getVersion(My::id())) .
+        dcPage::jsModuleLoad(My::id() . '/js/post.js', dcCore::app()->getVersion(My::id()));
     }
 
     public static function adminColumnsLists($cols)
@@ -173,9 +173,9 @@ class BackendBehaviors
     private static function getFormat(string $format = ''): string
     {
         $images = [
-            'markdown' => dcPage::getPF('legacyMarkdown/img/markdown.svg'),
-            'xhtml'    => dcPage::getPF('legacyMarkdown/img/xhtml.svg'),
-            'wiki'     => dcPage::getPF('legacyMarkdown/img/wiki.svg'),
+            'markdown' => dcPage::getPF(My::id() . '/img/markdown.svg'),
+            'xhtml'    => dcPage::getPF(My::id() . '/img/xhtml.svg'),
+            'wiki'     => dcPage::getPF(My::id() . '/img/wiki.svg'),
         ];
         if (array_key_exists($format, $images)) {
             return '<img style="width: 1.25em; height: 1.25em;" src="' . $images[$format] . '" title="' . dcCore::app()->getFormaterName($format) . '" />';
