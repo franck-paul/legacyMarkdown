@@ -9,3 +9,10 @@ Dotclear 2 plugin
 =================
 
 Based on: Michel Fortin [Library](https://github.com/michelf/php-markdown/)
+
+=================
+
+Notes:
+
+- This plugin has been renamed from `formatting-markdown` to `legacyMarkdown` since version 3.0.
+- During installation of version 3.0+ the old plugin will be disabled if existing and enabled.
