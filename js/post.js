@@ -52,7 +52,6 @@ jsToolBar.prototype.elements.md_space0 = {
 jsToolBar.prototype.elements.md_strong = {
   type: 'button',
   title: 'Strong emphasis',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_strong.svg',
   shortkey: 'KeyB',
   shortkey_name: 'B',
   fn: {
@@ -66,7 +65,6 @@ jsToolBar.prototype.elements.md_strong = {
 jsToolBar.prototype.elements.md_em = {
   type: 'button',
   title: 'Emphasis',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_em.svg',
   shortkey: 'KeyI',
   shortkey_name: 'I',
   fn: {
@@ -80,7 +78,6 @@ jsToolBar.prototype.elements.md_em = {
 jsToolBar.prototype.elements.md_ins = {
   type: 'button',
   title: 'Inserted',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_ins.svg',
   shortkey: 'KeyU',
   shortkey_name: 'U',
   fn: {
@@ -94,7 +91,6 @@ jsToolBar.prototype.elements.md_ins = {
 jsToolBar.prototype.elements.md_del = {
   type: 'button',
   title: 'Deleted',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_del.svg',
   shortkey: 'KeyD',
   shortkey_name: 'D',
   fn: {
@@ -108,7 +104,6 @@ jsToolBar.prototype.elements.md_del = {
 jsToolBar.prototype.elements.md_quote = {
   type: 'button',
   title: 'Inline quote',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_quote.svg',
   fn: {},
   cite_prompt: 'Source URL:',
   lang_prompt: 'Language:',
@@ -146,7 +141,6 @@ jsToolBar.prototype.elements.md_quote.fn.markdown = function () {
 jsToolBar.prototype.elements.md_code = {
   type: 'button',
   title: 'Code',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_code.svg',
   fn: {
     markdown() {
       this.singleTag('`');
@@ -158,7 +152,6 @@ jsToolBar.prototype.elements.md_code = {
 jsToolBar.prototype.elements.md_mark = {
   type: 'button',
   title: 'Mark',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_mark.svg',
   fn: {
     markdown() {
       this.singleTag('<mark>', '</mark>');
@@ -170,7 +163,6 @@ jsToolBar.prototype.elements.md_mark = {
 jsToolBar.prototype.elements.md_foreign = {
   type: 'button',
   title: 'Foreign text',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_foreign.svg',
   fn: {},
   lang_prompt: 'Language:',
   default_lang: 'en',
@@ -205,7 +197,6 @@ jsToolBar.prototype.elements.md_space1 = {
 jsToolBar.prototype.elements.md_br = {
   type: 'button',
   title: 'Line break',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_br.svg',
   fn: {
     markdown() {
       this.encloseSelection('  \n', '');
@@ -225,7 +216,6 @@ jsToolBar.prototype.elements.md_space2 = {
 jsToolBar.prototype.elements.md_blockquote = {
   type: 'button',
   title: 'Blockquote',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_bquote.svg',
   fn: {
     markdown() {
       this.encloseSelection('\n', '', (str) => {
@@ -240,7 +230,6 @@ jsToolBar.prototype.elements.md_blockquote = {
 jsToolBar.prototype.elements.md_pre = {
   type: 'button',
   title: 'Preformated text',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_pre.svg',
   fn: {
     markdown() {
       const stag = '<pre>\n';
@@ -254,7 +243,6 @@ jsToolBar.prototype.elements.md_pre = {
 jsToolBar.prototype.elements.md_ul = {
   type: 'button',
   title: 'Unordered list',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_ul.svg',
   fn: {
     markdown() {
       this.encloseSelection('', '', (str) => {
@@ -269,7 +257,6 @@ jsToolBar.prototype.elements.md_ul = {
 jsToolBar.prototype.elements.md_ol = {
   type: 'button',
   title: 'Ordered list',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_ol.svg',
   fn: {
     markdown() {
       this.encloseSelection('', '', (str) => {
@@ -284,7 +271,6 @@ jsToolBar.prototype.elements.md_ol = {
 jsToolBar.prototype.elements.md_details = {
   type: 'button',
   title: 'Details block',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_details.svg',
   fn: {},
   title_prompt: 'Summary:',
   default_title: '',
@@ -313,7 +299,6 @@ jsToolBar.prototype.elements.md_details.fn.markdown = function () {
 jsToolBar.prototype.elements.md_aside = {
   type: 'button',
   title: 'Aside',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_aside.svg',
   fn: {
     markdown() {
       const stag = '<aside>\n';
@@ -335,7 +320,6 @@ jsToolBar.prototype.elements.md_space3 = {
 jsToolBar.prototype.elements.md_link = {
   type: 'button',
   title: 'Link',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_link.svg',
   shortkey: 'KeyL',
   shortkey_name: 'L',
   fn: {},
@@ -393,7 +377,6 @@ jsToolBar.prototype.elements.md_link.fn.markdown = function () {
 jsToolBar.prototype.elements.md_img = {
   type: 'button',
   title: 'External image',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_img.svg',
   fn: {},
   src_prompt: 'Please give image URL:',
   title_prompt: 'Title for this image:',
@@ -439,12 +422,10 @@ jsToolBar.prototype.elements.md_img.fn.markdown = function () {
 jsToolBar.prototype.elements.md_img_select = {
   type: 'button',
   title: 'Image chooser',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_img_select.svg',
   shortkey: 'KeyM',
   shortkey_name: 'M',
   fn: {},
   fncall: {},
-  open_url: 'media.php?popup=1&plugin_id=dcLegacyEditor',
   data: {},
   popup() {
     window.the_toolbar = this;
@@ -536,11 +517,9 @@ jsToolBar.prototype.elements.flv_insert.fncall.markdown = function () {
 jsToolBar.prototype.elements.md_post_link = {
   type: 'button',
   title: 'Link to an entry',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_post.svg',
   shortkey: 'KeyE',
   shortkey_name: 'E',
   fn: {},
-  open_url: 'popup_posts.php?plugin_id=dcLegacyEditor',
   data: {},
   popup() {
     window.the_toolbar = this;
@@ -573,7 +552,6 @@ jsToolBar.prototype.elements.link.fncall.markdown = function () {
 jsToolBar.prototype.elements.md_footnote = {
   type: 'button',
   title: 'Footnote',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_footnote.svg',
   shortkey: 'KeyN',
   shortkey_name: 'N',
   fn: {
@@ -614,7 +592,6 @@ jsToolBar.prototype.elements.md_space4 = {
 jsToolBar.prototype.elements.md_preview = {
   type: 'button',
   title: 'Preview',
-  icon: 'index.php?pf=legacyMarkdown/img/bt_preview.svg',
   shortkey: 'KeyP',
   shortkey_name: 'P',
   fn: {
@@ -655,5 +632,5 @@ jsToolBar.prototype.elements.md_preview = {
 };
 
 /* Set options
----------------------------------------------------------- */
+  ---------------------------------------------------------- */
 dotclear.mergeDeep(jsToolBar.prototype.elements, dotclear.getData('formatting_markdown'));
