@@ -56,8 +56,25 @@ class BackendBehaviors
             return;
         }
 
+        if (version_compare(preg_replace('/\-dev.*$/', '', DC_VERSION), '2.27', '<')) {
+            $data['style'] = [  // List of styles used
+                'class'  => false,
+                'left'   => 'float: left; margin: 0 1em 1em 0;',
+                'center' => 'margin: 0 auto; display: block;',
+                'right'  => 'float: right; margin: 0 0 1em 1em;',
+            ];
+        } else {
+            $data['style'] = [  // List of classes used
+                'class'  => true,
+                'left'   => 'media-left',
+                'center' => 'media-center',
+                'right'  => 'media-right',
+            ];
+        }
+
         return
-        dcPage::jsJson('formatting_markdown', [
+        dcPage::jsJson('md_options', $data) .
+        dcPage::jsJson('md_editor', [
             'md_blocks' => [
                 'options' => [
                     'none'    => __('-- none --'),

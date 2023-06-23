@@ -1,6 +1,8 @@
 /*global jsToolBar, dotclear, $ */
 'use strict';
 
+dotclear.md_options = dotclear.getData('md_options');
+
 // Elements definition ------------------------------------
 
 // block format (paragraph, headers)
@@ -446,9 +448,9 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
   if (d && d.src !== undefined) {
     this.encloseSelection('', '', (str) => {
       const alignments = {
-        left: 'float: left; margin: 0 1em 1em 0;',
-        right: 'float: right; margin: 0 0 1em 1em;',
-        center: 'margin: 0 auto; display: table;',
+        left: dotclear.md_options.style.left,
+        right: dotclear.md_options.style.right,
+        center: dotclear.md_options.style.center,
       };
       const alt = (str ? str : d.title).replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;');
       const legend =
@@ -466,9 +468,9 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
       // Cope with required alignment
       if (d.alignment in alignments) {
         if (legend) {
-          figure = `${figure} style="${alignments[d.alignment]}"`;
+          figure = `${figure} ${dotclear.md_options.style.class ? 'class' : 'style'}="${alignments[d.alignment]}"`;
         } else {
-          img = `${img} style="${alignments[d.alignment]}"`;
+          img = `${img} ${dotclear.md_options.style.class ? 'class' : 'style'}="${alignments[d.alignment]}"`;
         }
       }
 
@@ -633,4 +635,4 @@ jsToolBar.prototype.elements.md_preview = {
 
 /* Set options
   ---------------------------------------------------------- */
-dotclear.mergeDeep(jsToolBar.prototype.elements, dotclear.getData('formatting_markdown'));
+dotclear.mergeDeep(jsToolBar.prototype.elements, dotclear.getData('md_editor'));
