@@ -15,29 +15,26 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\legacyMarkdown;
 
 use dcCore;
-use dcNsProcess;
+use Dotclear\Core\Process;
 
-class Frontend extends dcNsProcess
+class Frontend extends Process
 {
-    protected static $init = false; /** @deprecated since 2.27 */
     public static function init(): bool
     {
-        static::$init = My::checkContext(My::FRONTEND);
-
-        return static::$init;
+        return self::status(My::checkContext(My::FRONTEND));
     }
 
     public static function process(): bool
     {
-        if (!static::$init) {
+        if (!self::status()) {
             return false;
         }
 
         // Add behavior callback for markdown convert of comments
-        dcCore::app()->addBehavior('publicBeforeCommentTransform', [FrontendBehaviors::class, 'publicBeforeCommentTransform']);
+        dcCore::app()->addBehavior('publicBeforeCommentTransform', FrontendBehaviors::publicBeforeCommentTransform(...));
 
         // tpl:CommentHelp alternative (will replace the standard template tag)
-        dcCore::app()->tpl->addValue('CommentHelp', [FrontendTemplate::class, 'CommentHelp']);
+        dcCore::app()->tpl->addValue('CommentHelp', FrontendTemplate::CommentHelp(...));
 
         return true;
     }

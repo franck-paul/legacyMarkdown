@@ -15,46 +15,43 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\legacyMarkdown;
 
 use dcCore;
-use dcNsProcess;
+use Dotclear\Core\Process;
 
-class Backend extends dcNsProcess
+class Backend extends Process
 {
-    protected static $init = false; /** @deprecated since 2.27 */
     public static function init(): bool
     {
-        static::$init = My::checkContext(My::BACKEND);
-
         // dead but useful code, in order to have translations
         __('Markdown syntax') . __('Brings you markdown (extra) syntax for your entries (see https://michelf.ca/projects/php-markdown/)');
 
-        return static::$init;
+        return self::status(My::checkContext(My::BACKEND));
     }
 
     public static function process(): bool
     {
-        if (!static::$init) {
+        if (!self::status()) {
             return false;
         }
 
-        dcCore::app()->addFormater('markdown', [Helper::class, 'convert']);
+        dcCore::app()->addFormater('markdown', Helper::convert(...));
         dcCore::app()->addFormaterName('markdown', __('Markdown'));
 
         dcCore::app()->addBehaviors([
-            'adminBlogPreferencesFormV2'    => [BackendBehaviors::class, 'adminBlogPreferencesForm'],
-            'adminBeforeBlogSettingsUpdate' => [BackendBehaviors::class, 'adminBeforeBlogSettingsUpdate'],
+            'adminBlogPreferencesFormV2'    => BackendBehaviors::adminBlogPreferencesForm(...),
+            'adminBeforeBlogSettingsUpdate' => BackendBehaviors::adminBeforeBlogSettingsUpdate(...),
 
-            'adminPostEditor' => [BackendBehaviors::class, 'adminPostEditor'],
+            'adminPostEditor' => BackendBehaviors::adminPostEditor(...),
 
             // Add behaviour callback for post/page lists
-            'adminColumnsListsV2'    => [BackendBehaviors::class, 'adminColumnsLists'],
-            'adminPostListHeaderV2'  => [BackendBehaviors::class, 'adminPostListHeader'],
-            'adminPostListValueV2'   => [BackendBehaviors::class, 'adminPostListValue'],
-            'adminPagesListHeaderV2' => [BackendBehaviors::class, 'adminPagesListHeader'],
-            'adminPagesListValueV2'  => [BackendBehaviors::class, 'adminPagesListValue'],
+            'adminColumnsListsV2'    => BackendBehaviors::adminColumnsLists(...),
+            'adminPostListHeaderV2'  => BackendBehaviors::adminPostListHeader(...),
+            'adminPostListValueV2'   => BackendBehaviors::adminPostListValue(...),
+            'adminPagesListHeaderV2' => BackendBehaviors::adminPagesListHeader(...),
+            'adminPagesListValueV2'  => BackendBehaviors::adminPagesListValue(...),
         ]);
 
         // Register REST methods
-        dcCore::app()->rest->addFunction('markdownConvert', [BackendRest::class, 'convert']);
+        dcCore::app()->rest->addFunction('markdownConvert', BackendRest::convert(...));
 
         return true;
     }

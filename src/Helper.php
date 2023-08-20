@@ -40,6 +40,6 @@ class Helper
 
     public static function coreInitWikiPost($wiki)
     {
-        $wiki->registerFunction('macro:md', [self::class, 'convert']);
+        $wiki->registerFunction('macro:md', self::convert(...));
     }
 }
