@@ -180,7 +180,7 @@ class BackendBehaviors
             'md_post_link' => [
                 'title'    => __('Linktoanentry'),
                 'icon'     => urldecode(Page::getPF(My::id() . '/img/bt_post.svg')),
-                'open_url' => dcCore::app()->admin->url->get('admin.popup_posts', ['plugin_id' => 'dcLegacyEditor'], '&'),
+                'open_url' => dcCore::app()->admin->url->get('admin.posts.popup', ['plugin_id' => 'dcLegacyEditor'], '&'),
             ],
             'md_footnote' => [
                 'title' => __('Footnote'),
