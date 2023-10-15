@@ -16,7 +16,7 @@ namespace Dotclear\Plugin\legacyMarkdown;
 
 class FrontendTemplate
 {
-    public static function CommentHelp()
+    public static function CommentHelp(): string
     {
         // Useful only for PO generation
         __('Comments can be formatted using the <a href="https://michelf.ca/projects/php-markdown/extra/">Markdown Extra</a> syntax.');

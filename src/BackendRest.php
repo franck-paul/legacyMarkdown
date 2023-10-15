@@ -18,7 +18,13 @@ use dcCore;
 
 class BackendRest
 {
-    public static function convert($get, $post)
+    /**
+     * @param      array<string, string>  $get    The get
+     * @param      array<string, string>  $post   The post
+     *
+     * @return     array<string, mixed>
+     */
+    public static function convert(array $get, array $post): array
     {
         $payload = [
             'ret' => false,
@@ -34,6 +40,7 @@ class BackendRest
                         // Relative URL, convert to absolute
                         return 'src="' . $media_root . $matches[1] . '"';
                     }
+
                     // Absolute URL, do nothing
                     return $matches[0];
                 }, $html);

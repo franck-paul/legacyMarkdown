@@ -15,11 +15,12 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\legacyMarkdown;
 
 use Dotclear\Helper\Date;
+use Dotclear\Helper\Html\WikiToHtml;
 use Michelf\MarkdownExtra;
 
 class Helper
 {
-    public static function convert($str, $type = 'full')
+    public static function convert(string $str, string $type = 'full'): string
     {
         $o = new MarkdownExtra();
         switch ($type) {
@@ -38,8 +39,10 @@ class Helper
         return $o->transform($str);
     }
 
-    public static function coreInitWikiPost($wiki)
+    public static function coreInitWikiPost(WikiToHtml $wiki): string
     {
         $wiki->registerFunction('macro:md', self::convert(...));
+
+        return '';
     }
 }

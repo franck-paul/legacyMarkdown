@@ -18,7 +18,7 @@ use dcCore;
 
 class FrontendBehaviors
 {
-    public static function publicBeforeCommentTransform($content)
+    public static function publicBeforeCommentTransform(string $content): string
     {
         if (dcCore::app()->blog->settings->system->markdown_comments) {
             return Helper::convert($content, 'comment');

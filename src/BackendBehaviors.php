@@ -14,9 +14,12 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\legacyMarkdown;
 
+use ArrayObject;
 use dcAuth;
 use dcCore;
+use dcSettings;
 use Dotclear\Core\Backend\Page;
+use Dotclear\Database\MetaRecord;
 use Dotclear\Helper\Html\Form\Checkbox;
 use Dotclear\Helper\Html\Form\Fieldset;
 use Dotclear\Helper\Html\Form\Label;
@@ -26,7 +29,7 @@ use Dotclear\Helper\Html\Form\Text;
 
 class BackendBehaviors
 {
-    public static function adminBlogPreferencesForm($settings)
+    public static function adminBlogPreferencesForm(dcSettings $settings): string
     {
         // Add fieldset for plugin options
         echo
@@ -43,17 +46,29 @@ class BackendBehaviors
             ]),
         ])
         ->render();
+
+        return '';
     }
 
-    public static function adminBeforeBlogSettingsUpdate($settings)
+    public static function adminBeforeBlogSettingsUpdate(dcSettings $settings): string
     {
         $settings->system->put('markdown_comments', !empty($_POST['markdown_comments']), 'boolean');
+
+        return '';
     }
 
-    public static function adminPostEditor($editor = '', $context = '', array $tags = [], $syntax = 'markdown')
+    /**
+     * @param      string                   $editor   The editor
+     * @param      string                   $context  The context
+     * @param      array<string, string>    $tags     The tags
+     * @param      string                   $syntax   The syntax
+     *
+     * @return     string
+     */
+    public static function adminPostEditor(string $editor = '', string $context = '', array $tags = [], string $syntax = 'markdown'): string
     {
         if ($editor != 'dcLegacyEditor' || $syntax != 'markdown') {
-            return;
+            return '';
         }
 
         $data['style'] = [  // List of classes used
@@ -170,7 +185,7 @@ class BackendBehaviors
             'md_img_select' => [
                 'title'    => __('Mediachooser'),
                 'icon'     => urldecode(Page::getPF(My::id() . '/img/bt_img_select.svg')),
-                'open_url' => dcCore::app()->admin->url->get('admin.media', ['popup' => 1, 'plugin_id' => 'dcLegacyEditor'], '&'),
+                'open_url' => dcCore::app()->adminurl->get('admin.media', ['popup' => 1, 'plugin_id' => 'dcLegacyEditor'], '&'),
                 'disabled' => (!dcCore::app()->auth->check(dcCore::app()->auth->makePermissions([
                     dcAuth::PERMISSION_MEDIA,
                     dcAuth::PERMISSION_MEDIA_ADMIN,
@@ -180,7 +195,7 @@ class BackendBehaviors
             'md_post_link' => [
                 'title'    => __('Linktoanentry'),
                 'icon'     => urldecode(Page::getPF(My::id() . '/img/bt_post.svg')),
-                'open_url' => dcCore::app()->admin->url->get('admin.posts.popup', ['plugin_id' => 'dcLegacyEditor'], '&'),
+                'open_url' => dcCore::app()->adminurl->get('admin.posts.popup', ['plugin_id' => 'dcLegacyEditor'], '&'),
             ],
             'md_footnote' => [
                 'title' => __('Footnote'),
@@ -195,40 +210,86 @@ class BackendBehaviors
         My::jsLoad('post.js');
     }
 
-    public static function adminColumnsLists($cols)
+    /**
+     * @param      ArrayObject<string, mixed>  $cols   The cols
+     *
+     * @return     string
+     */
+    public static function adminColumnsLists(ArrayObject $cols): string
     {
         $cols['posts'][1]['format'] = [true, __('Format')];
         $cols['pages'][1]['format'] = [true, __('Format')];
+
+        return '';
     }
 
-    private static function adminEntryListHeader($core, $rs, $cols)
+    /**
+     * @param      ArrayObject<string, string>    $cols   The cols
+     *
+     * @return     string
+     */
+    private static function adminEntryListHeader(ArrayObject $cols): string
     {
         $cols['format'] = '<th scope="col">' . __('Format') . '</th>';
+
+        return '';
     }
 
-    public static function adminPostListHeader($rs, $cols)
+    /**
+     * @param      MetaRecord                     $rs     The recordset
+     * @param      ArrayObject<string, string>    $cols   The cols
+     *
+     * @return     string
+     */
+    public static function adminPostListHeader(MetaRecord $rs, ArrayObject $cols): string
     {
-        self::adminEntryListHeader(dcCore::app(), $rs, $cols);
+        return self::adminEntryListHeader($cols);
     }
 
-    public static function adminPagesListHeader($rs, $cols)
+    /**
+     * @param      MetaRecord                     $rs     The recordset
+     * @param      ArrayObject<string, string>    $cols   The cols
+     *
+     * @return     string
+     */
+    public static function adminPagesListHeader(MetaRecord $rs, ArrayObject $cols): string
     {
-        self::adminEntryListHeader(dcCore::app(), $rs, $cols);
+        return self::adminEntryListHeader($cols);
     }
 
-    public static function adminEntryListValue($core, $rs, $cols)
+    /**
+     * @param      MetaRecord                     $rs     The recordset
+     * @param      ArrayObject<string, string>    $cols   The cols
+     *
+     * @return     string
+     */
+    private static function adminEntryListValue(MetaRecord $rs, ArrayObject $cols): string
     {
         $cols['format'] = '<td class="nowrap">' . self::getFormat($rs->post_format) . '</td>';
+
+        return '';
     }
 
-    public static function adminPostListValue($rs, $cols)
+    /**
+     * @param      MetaRecord                     $rs     The recordset
+     * @param      ArrayObject<string, string>    $cols   The cols
+     *
+     * @return     string
+     */
+    public static function adminPostListValue(MetaRecord $rs, ArrayObject $cols): string
     {
-        self::adminEntryListValue(dcCore::app(), $rs, $cols);
+        return self::adminEntryListValue($rs, $cols);
     }
 
-    public static function adminPagesListValue($rs, $cols)
+    /**
+     * @param      MetaRecord                     $rs     The recordset
+     * @param      ArrayObject<string, string>    $cols   The cols
+     *
+     * @return     string
+     */
+    public static function adminPagesListValue(MetaRecord $rs, ArrayObject $cols): string
     {
-        self::adminEntryListValue(dcCore::app(), $rs, $cols);
+        return self::adminEntryListValue($rs, $cols);
     }
 
     private static function getFormat(string $format = ''): string
