@@ -18,6 +18,7 @@ use ArrayObject;
 use dcAuth;
 use dcCore;
 use dcSettings;
+use Dotclear\App;
 use Dotclear\Core\Backend\Page;
 use Dotclear\Database\MetaRecord;
 use Dotclear\Helper\Html\Form\Checkbox;
@@ -189,7 +190,7 @@ class BackendBehaviors
                 'disabled' => (!dcCore::app()->auth->check(dcCore::app()->auth->makePermissions([
                     dcAuth::PERMISSION_MEDIA,
                     dcAuth::PERMISSION_MEDIA_ADMIN,
-                ]), dcCore::app()->blog->id) ? true : false),
+                ]), App::blog()->id()) ? true : false),
             ],
 
             'md_post_link' => [

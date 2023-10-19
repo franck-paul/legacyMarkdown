@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\legacyMarkdown;
 
-use dcCore;
+use Dotclear\App;
 
 class BackendRest
 {
@@ -34,7 +34,7 @@ class BackendRest
         if ($md !== '') {
             $html = Helper::convert($md);
             if (strlen($html) > 0) {
-                $media_root = dcCore::app()->blog->host;
+                $media_root = App::blog()->host();
                 $html       = preg_replace_callback('/src="([^\"]*)"/', function ($matches) use ($media_root) {
                     if (!preg_match('/^http(s)?:\/\//', $matches[1])) {
                         // Relative URL, convert to absolute

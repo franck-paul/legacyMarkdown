@@ -24,8 +24,8 @@ class FrontendTemplate
         __('HTML code is displayed as text and web addresses are automatically converted.');
 
         return
-            "<?php if (dcCore::app()->blog->settings->system->wiki_comments) {\n" .
-            "    if (dcCore::app()->blog->settings->system->markdown_comments) {\n" .
+            "<?php if (App::blog()->settings()->system->wiki_comments) {\n" .
+            "    if (App::blog()->settings()->system->markdown_comments) {\n" .
             "      echo __('Comments can be formatted using the <a href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a> syntax.');\n" .
             "    } else {\n" .
             "      echo __('Comments can be formatted using a simple wiki syntax.');\n" .
