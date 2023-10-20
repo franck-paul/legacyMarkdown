@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\legacyMarkdown;
 
-use dcCore;
+use Dotclear\App;
 use Dotclear\Core\Process;
 
 class Backend extends Process
@@ -33,10 +33,10 @@ class Backend extends Process
             return false;
         }
 
-        dcCore::app()->addFormater('markdown', Helper::convert(...));
-        dcCore::app()->addFormaterName('markdown', __('Markdown'));
+        App::formater()->addEditorFormater('dcLegacyEditor', 'markdown', Helper::convert(...));
+        App::formater()->addFormaterName('markdown', __('Markdown'));
 
-        dcCore::app()->addBehaviors([
+        App::behavior()->addBehaviors([
             'adminBlogPreferencesFormV2'    => BackendBehaviors::adminBlogPreferencesForm(...),
             'adminBeforeBlogSettingsUpdate' => BackendBehaviors::adminBeforeBlogSettingsUpdate(...),
 
@@ -51,7 +51,7 @@ class Backend extends Process
         ]);
 
         // Register REST methods
-        dcCore::app()->rest->addFunction('markdownConvert', BackendRest::convert(...));
+        App::rest()->addFunction('markdownConvert', BackendRest::convert(...));
 
         return true;
     }

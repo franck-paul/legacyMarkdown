@@ -15,9 +15,6 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\legacyMarkdown;
 
 use ArrayObject;
-use dcAuth;
-use dcCore;
-use dcSettings;
 use Dotclear\App;
 use Dotclear\Core\Backend\Page;
 use Dotclear\Database\MetaRecord;
@@ -27,10 +24,11 @@ use Dotclear\Helper\Html\Form\Label;
 use Dotclear\Helper\Html\Form\Legend;
 use Dotclear\Helper\Html\Form\Para;
 use Dotclear\Helper\Html\Form\Text;
+use Dotclear\Interface\Core\BlogSettingsInterface;
 
 class BackendBehaviors
 {
-    public static function adminBlogPreferencesForm(dcSettings $settings): string
+    public static function adminBlogPreferencesForm(BlogSettingsInterface $settings): string
     {
         // Add fieldset for plugin options
         echo
@@ -51,7 +49,7 @@ class BackendBehaviors
         return '';
     }
 
-    public static function adminBeforeBlogSettingsUpdate(dcSettings $settings): string
+    public static function adminBeforeBlogSettingsUpdate(BlogSettingsInterface $settings): string
     {
         $settings->system->put('markdown_comments', !empty($_POST['markdown_comments']), 'boolean');
 
@@ -186,17 +184,17 @@ class BackendBehaviors
             'md_img_select' => [
                 'title'    => __('Mediachooser'),
                 'icon'     => urldecode(Page::getPF(My::id() . '/img/bt_img_select.svg')),
-                'open_url' => dcCore::app()->adminurl->get('admin.media', ['popup' => 1, 'plugin_id' => 'dcLegacyEditor'], '&'),
-                'disabled' => (!dcCore::app()->auth->check(dcCore::app()->auth->makePermissions([
-                    dcAuth::PERMISSION_MEDIA,
-                    dcAuth::PERMISSION_MEDIA_ADMIN,
+                'open_url' => App::backend()->url()->get('admin.media', ['popup' => 1, 'plugin_id' => 'dcLegacyEditor'], '&'),
+                'disabled' => (!App::auth()->check(App::auth()->makePermissions([
+                    App::auth()::PERMISSION_MEDIA,
+                    App::auth()::PERMISSION_MEDIA_ADMIN,
                 ]), App::blog()->id()) ? true : false),
             ],
 
             'md_post_link' => [
                 'title'    => __('Linktoanentry'),
                 'icon'     => urldecode(Page::getPF(My::id() . '/img/bt_post.svg')),
-                'open_url' => dcCore::app()->adminurl->get('admin.posts.popup', ['plugin_id' => 'dcLegacyEditor'], '&'),
+                'open_url' => App::backend()->url()->get('admin.posts.popup', ['plugin_id' => 'dcLegacyEditor'], '&'),
             ],
             'md_footnote' => [
                 'title' => __('Footnote'),
@@ -301,7 +299,7 @@ class BackendBehaviors
             'wiki'     => Page::getPF(My::id() . '/img/wiki.svg'),
         ];
         if (array_key_exists($format, $images)) {
-            return '<img style="width: 1.25em; height: 1.25em;" src="' . $images[$format] . '" title="' . dcCore::app()->getFormaterName($format) . '" />';
+            return '<img style="width: 1.25em; height: 1.25em;" src="' . $images[$format] . '" title="' . App::formater()->getFormaterName($format) . '" />';
         }
 
         return $format;

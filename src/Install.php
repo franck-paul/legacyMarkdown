@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\legacyMarkdown;
 
-use dcCore;
+use Dotclear\App;
 use Dotclear\Core\Process;
 use Exception;
 
@@ -34,11 +34,11 @@ class Install extends Process
         try {
             // Disable old plugin if exists
             $old_id = 'formatting-markdown';
-            if (dcCore::app()->plugins->moduleExists($old_id)) {
-                dcCore::app()->plugins->deactivateModule($old_id);
+            if (App::plugins()->moduleExists($old_id)) {
+                App::plugins()->deactivateModule($old_id);
             }
         } catch (Exception $e) {
-            dcCore::app()->error->add($e->getMessage());
+            App::error()->add($e->getMessage());
         }
 
         return true;
