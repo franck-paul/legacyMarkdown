@@ -37,8 +37,8 @@ class Install extends Process
             if (App::plugins()->moduleExists($old_id)) {
                 App::plugins()->deactivateModule($old_id);
             }
-        } catch (Exception $e) {
-            App::error()->add($e->getMessage());
+        } catch (Exception $exception) {
+            App::error()->add($exception->getMessage());
         }
 
         return true;

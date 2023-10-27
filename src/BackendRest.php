@@ -35,12 +35,11 @@ class BackendRest
             $html = Helper::convert($md);
             if (strlen($html) > 0) {
                 $media_root = App::blog()->host();
-                $html       = preg_replace_callback('/src="([^\"]*)"/', function ($matches) use ($media_root) {
+                $html       = preg_replace_callback('/src="([^\"]*)"/', static function ($matches) use ($media_root) {
                     if (!preg_match('/^http(s)?:\/\//', $matches[1])) {
                         // Relative URL, convert to absolute
                         return 'src="' . $media_root . $matches[1] . '"';
                     }
-
                     // Absolute URL, do nothing
                     return $matches[0];
                 }, $html);

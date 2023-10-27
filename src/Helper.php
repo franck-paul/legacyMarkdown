@@ -33,6 +33,7 @@ class Helper
             default:
                 break;
         }
+
         // Setup generic options
         $o->fn_id_prefix = 'ts' . Date::str('%s') . '.';
 

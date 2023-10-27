@@ -188,7 +188,7 @@ class BackendBehaviors
                 'disabled' => (!App::auth()->check(App::auth()->makePermissions([
                     App::auth()::PERMISSION_MEDIA,
                     App::auth()::PERMISSION_MEDIA_ADMIN,
-                ]), App::blog()->id()) ? true : false),
+                ]), App::blog()->id())),
             ],
 
             'md_post_link' => [
