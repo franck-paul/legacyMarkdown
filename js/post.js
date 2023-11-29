@@ -461,10 +461,6 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
       let figure = '<figure';
       const caption = legend ? `<figcaption>${legend}</figcaption>\n` : '';
 
-      if (legend) {
-        img = `${img} title="${legend}"`;
-      }
-
       // Cope with required alignment
       if (d.alignment in alignments) {
         if (legend) {
