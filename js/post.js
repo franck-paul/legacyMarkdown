@@ -470,7 +470,7 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
         }
       }
 
-      img = `${img} />`;
+      img = `${img}>`;
       figure = `${figure}>`;
 
       if (d.link) {
