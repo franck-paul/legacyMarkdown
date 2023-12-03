@@ -1,10 +1,10 @@
 # SOME DESCRIPTIVE TITLE.
 # This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
 # Franck Paul <carnet.franck.paul@gmail.com>, 2023
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -14,14 +14,18 @@ msgstr ""
 "PO-Revision-Date: 2023-05-03 13:22+0000\n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>, 2023\n"
 "Language-Team: French (https://app.transifex.com/open-time/teams/109573/fr/)\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-msgid "Brings you markdown (extra) syntax for your entries (see https://michelf.ca/projects/php-markdown/)"
-msgstr "Ajoute la syntaxe markdown (extra) pour vos publications (voir https://michelf.ca/projects/php-markdown/)"
+msgid ""
+"Brings you markdown (extra) syntax for your entries (see "
+"https://michelf.ca/projects/php-markdown/)"
+msgstr ""
+"Ajoute la syntaxe markdown (extra) pour vos publications (voir "
+"https://michelf.ca/projects/php-markdown/)"
 
 msgid "Markdown syntax"
 msgstr "Syntaxe Markdown"
@@ -32,11 +36,14 @@ msgstr "Markdown"
 msgid "Enable Markdown syntax for comments"
 msgstr "Activer la syntaxe Markdown pour les commentaires"
 
-msgid "This option, if enabled, will replace the standard wiki syntax for comments!"
-msgstr "Cette option, si activée, remplacera la syntaxe wiki standard pour les commentaires !"
+msgid ""
+"This option, if enabled, will replace the standard wiki syntax for comments!"
+msgstr ""
+"Cette option, si activée, remplacera la syntaxe wiki standard pour les "
+"commentaires !"
 
 msgid "Open the media"
-msgstr ""
+msgstr "Ouvrir le média"
 
 msgid "Source URL:"
 msgstr "URL source :"
@@ -80,9 +87,8 @@ msgstr "Titre :"
 msgid "Externalimage"
 msgstr "Image externe"
 
-#, fuzzy
 msgid "Alternate text:"
-msgstr "Texte préformatté"
+msgstr "Texte alternatif :"
 
 msgid "Mediachooser"
 msgstr "Sélecteur de média"
@@ -96,5 +102,10 @@ msgstr "Note de bas de page"
 msgid "Format"
 msgstr "Format"
 
-msgid "Comments can be formatted using the <a href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a> syntax."
-msgstr "Les commentaires peuvent être formatés en utilisant la syntaxe <a href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a>."
+msgid ""
+"Comments can be formatted using the <a "
+"href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a> "
+"syntax."
+msgstr ""
+"Les commentaires peuvent être formatés en utilisant la syntaxe <a "
+"href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a>."
