@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dotclear 2 legacyMarkdown module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-10 19:35+0200\n"
+"POT-Creation-Date: 2023-12-03 11:28+0100\n"
 "PO-Revision-Date: 2023-05-03 13:22+0000\n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>, 2023\n"
 "Language-Team: French (https://app.transifex.com/open-time/teams/109573/fr/)\n"
@@ -34,6 +34,9 @@ msgstr "Activer la syntaxe Markdown pour les commentaires"
 
 msgid "This option, if enabled, will replace the standard wiki syntax for comments!"
 msgstr "Cette option, si activée, remplacera la syntaxe wiki standard pour les commentaires !"
+
+msgid "Open the media"
+msgstr ""
 
 msgid "Source URL:"
 msgstr "URL source :"
@@ -76,6 +79,10 @@ msgstr "Titre :"
 
 msgid "Externalimage"
 msgstr "Image externe"
+
+#, fuzzy
+msgid "Alternate text:"
+msgstr "Texte préformatté"
 
 msgid "Mediachooser"
 msgstr "Sélecteur de média"

@@ -70,11 +70,14 @@ class BackendBehaviors
             return '';
         }
 
-        $data['style'] = [  // List of classes used
-            'class'  => true,
-            'left'   => 'media-left',
-            'center' => 'media-center',
-            'right'  => 'media-right',
+        $data = [
+            'style' => [  // List of classes used
+                'class'  => true,
+                'left'   => 'media-left',
+                'center' => 'media-center',
+                'right'  => 'media-right',
+            ],
+            'img_link_title' => __('Open the media'),
         ];
 
         return
@@ -178,7 +181,7 @@ class BackendBehaviors
                 'title'        => __('Externalimage'),
                 'icon'         => urldecode(Page::getPF(My::id() . '/img/bt_img.svg')),
                 'src_prompt'   => __('URL:'),
-                'title_prompt' => __('Title:'),
+                'title_prompt' => __('Alternate text:'),
             ],
 
             'md_img_select' => [

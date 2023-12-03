@@ -453,10 +453,12 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
         center: dotclear.md_options.style.center,
       };
       const alt = (str ? str : d.title).replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;');
-      const legend =
-        d.description !== ''
+      let legend =
+        d.description !== '' && alt.length // No legend if no alt
           ? d.description.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')
           : false;
+      // Do not duplicate information
+      if (alt === legend) legend = false;
       let img = `<img src="${d.src}" alt="${alt}"`;
       let figure = '<figure';
       const caption = legend ? `<figcaption>${legend}</figcaption>\n` : '';
@@ -473,10 +475,14 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
       img = `${img}>`;
       figure = `${figure}>`;
 
-      if (d.link) {
-        // Enclose image with link
+      if (d.link && alt.length) {
+        // Enclose image with link (only if non empty alt)
         const ltitle = alt
-          ? ` title="${alt.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')}"`
+          ? ` title="${dotclear.md_options.img_link_title
+              .replace('&', '&amp;')
+              .replace('>', '&gt;')
+              .replace('<', '&lt;')
+              .replace('"', '&quot;')}"`
           : '';
         img = `<a href="${d.url}"${ltitle}>${img}</a>`;
       }
