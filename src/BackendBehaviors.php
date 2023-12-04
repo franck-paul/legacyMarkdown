@@ -181,7 +181,7 @@ class BackendBehaviors
                 'title'        => __('Externalimage'),
                 'icon'         => urldecode(Page::getPF(My::id() . '/img/bt_img.svg')),
                 'src_prompt'   => __('URL:'),
-                'title_prompt' => __('Alternate text:'),
+                'title_prompt' => __('Title (optional):'),
             ],
 
             'md_img_select' => [
