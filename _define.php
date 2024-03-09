@@ -16,7 +16,7 @@ $this->registerModule(
     'Michel Fortin, Franck Paul and contributors',
     '5.2.2',
     [
-        'requires'    => [['core', '2.28']],
+        'requires'    => [['core', '2.30']],
         'permissions' => 'My',
         'type'        => 'plugin',
         'settings'    => [

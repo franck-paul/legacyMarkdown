@@ -302,7 +302,9 @@ class BackendBehaviors
             'wiki'     => Page::getPF(My::id() . '/img/wiki.svg'),
         ];
         if (array_key_exists($format, $images)) {
-            return '<img style="width: 1.25em; height: 1.25em;" src="' . $images[$format] . '" alt="' . App::formater()->getFormaterName($format) . '">';
+            $syntax = App::formater()->getFormaterName($format);
+
+            return '<img class="mark mark-generic" src="' . $images[$format] . '" alt="' . $syntax . '" title="' . $syntax . '">';
         }
 
         return $format;
