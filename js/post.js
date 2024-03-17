@@ -134,9 +134,9 @@ jsToolBar.prototype.elements.md_quote.fn.markdown = function () {
     stag = `${stag}>`;
 
     this.encloseSelection(stag, etag);
-  } else {
-    this.textarea.focus();
+    return;
   }
+  this.textarea.focus();
 };
 
 // code
@@ -182,9 +182,9 @@ jsToolBar.prototype.elements.md_foreign.fn.markdown = function () {
     stag = lang ? `${stag} lang="${lang}">` : `${stag}>`;
 
     this.encloseSelection(stag, etag);
-  } else {
-    this.textarea.focus();
+    return;
   }
+  this.textarea.focus();
 };
 
 // spacer
@@ -292,9 +292,9 @@ jsToolBar.prototype.elements.md_details.fn.markdown = function () {
     }
 
     this.encloseSelection(stag, etag);
-  } else {
-    this.textarea.focus();
+    return;
   }
+  this.textarea.focus();
 };
 
 // aside
@@ -370,9 +370,9 @@ jsToolBar.prototype.elements.md_link.fn.markdown = function () {
     }
 
     this.encloseSelection(stag, etag);
-  } else {
-    this.textarea.focus();
+    return;
   }
+  this.textarea.focus();
 };
 
 // img
@@ -414,9 +414,9 @@ jsToolBar.prototype.elements.md_img.fn.markdown = function () {
     etag = `${etag})`;
 
     this.encloseSelection(stag, etag);
-  } else {
-    this.textarea.focus();
+    return;
   }
+  this.textarea.focus();
 };
 
 /* Image selector
@@ -546,9 +546,9 @@ jsToolBar.prototype.elements.link.fncall.markdown = function () {
     const etag = `](${link.href}${link.title ? ` "${link.title}"` : ''})`;
 
     this.encloseSelection(stag, etag);
-  } else {
-    this.textarea.focus();
+    return;
   }
+  this.textarea.focus();
 };
 
 /* Footnote helper
