@@ -16,17 +16,18 @@ namespace Dotclear\Plugin\legacyMarkdown;
 
 use Dotclear\Helper\Date;
 use Dotclear\Helper\Html\WikiToHtml;
+use Exception;
 use Michelf\MarkdownExtra;
 
 class Helper
 {
     public static function convert(string $str, string $type = 'full'): string
     {
-        $o = new MarkdownExtra();
+        $engine = new MarkdownExtra();
         switch ($type) {
             case 'comment':
                 // Setup some options in comments
-                $o->hashtag_protection = true;
+                $engine->hashtag_protection = true;
 
                 break;
             case 'full':
@@ -35,9 +36,18 @@ class Helper
         }
 
         // Setup generic options
-        $o->fn_id_prefix = 'ts' . Date::str('%s') . '.';
+        $engine->fn_id_prefix = 'ts' . Date::str('%s') . '.';
 
-        return $o->transform($str);
+        try {
+            // Try to use microseconds to avoid collisions between the entry excerpt and
+            // the entry content footnotes ID, as the entry excerpt and the entry content
+            // are converted independently.
+            $timeofday            = gettimeofday();
+            $engine->fn_id_prefix = 'ts' . $timeofday['sec'] . $timeofday['usec'] . '.';
+        } catch (Exception) {
+        }
+
+        return $engine->transform($str);
     }
 
     public static function coreInitWikiPost(WikiToHtml $wiki): string
