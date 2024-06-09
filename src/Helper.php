@@ -14,9 +14,7 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\legacyMarkdown;
 
-use Dotclear\Helper\Date;
 use Dotclear\Helper\Html\WikiToHtml;
-use Exception;
 use Michelf\MarkdownExtra;
 
 class Helper
@@ -35,17 +33,11 @@ class Helper
                 break;
         }
 
-        // Setup generic options
-        $engine->fn_id_prefix = 'ts' . Date::str('%s') . '.';
-
-        try {
-            // Try to use microseconds to avoid collisions between the entry excerpt and
-            // the entry content footnotes ID, as the entry excerpt and the entry content
-            // are converted independently.
-            $timeofday            = gettimeofday();
-            $engine->fn_id_prefix = 'ts' . $timeofday['sec'] . $timeofday['usec'] . '.';
-        } catch (Exception) {
-        }
+        // Use microseconds to avoid collisions between the entry excerpt and
+        // the entry content footnotes ID, as the entry excerpt and the entry content
+        // are converted independently.
+        $timeofday            = gettimeofday();
+        $engine->fn_id_prefix = 'ts' . $timeofday['sec'] . $timeofday['usec'] . '.';
 
         return $engine->transform($str);
     }
