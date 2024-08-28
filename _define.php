@@ -14,7 +14,7 @@ $this->registerModule(
     'Markdown syntax',
     'Brings you markdown syntax for your entries',
     'Michel Fortin, Franck Paul and contributors',
-    '5.4.1',
+    '5.5',
     [
         'requires'    => [['core', '2.30']],
         'permissions' => 'My',
