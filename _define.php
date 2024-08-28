@@ -25,6 +25,6 @@ $this->registerModule(
         ],
         'details'    => 'https://open-time.net/?q=legacyMarkdown',
         'support'    => 'https://github.com/franck-paul/legacyMarkdown',
-        'repository' => 'https://raw.githubusercontent.com/franck-paul/legacyMarkdown/master/dcstore.xml',
+        'repository' => 'https://raw.githubusercontent.com/franck-paul/legacyMarkdown/main/dcstore.xml',
     ]
 );
