@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @brief legacyMarkdown, a plugin for Dotclear 2
  *
@@ -61,12 +62,10 @@ class BackendBehaviors
      * @param      string                   $context  The context
      * @param      array<string, string>    $tags     The tags
      * @param      string                   $syntax   The syntax
-     *
-     * @return     string
      */
     public static function adminPostEditor(string $editor = '', string $context = '', array $tags = [], string $syntax = 'markdown'): string
     {
-        if ($editor != 'dcLegacyEditor' || $syntax != 'markdown') {
+        if ($editor !== 'dcLegacyEditor' || $syntax !== 'markdown') {
             return '';
         }
 
@@ -214,8 +213,6 @@ class BackendBehaviors
 
     /**
      * @param      ArrayObject<string, mixed>  $cols   The cols
-     *
-     * @return     string
      */
     public static function adminColumnsLists(ArrayObject $cols): string
     {
@@ -227,8 +224,6 @@ class BackendBehaviors
 
     /**
      * @param      ArrayObject<string, string>    $cols   The cols
-     *
-     * @return     string
      */
     private static function adminEntryListHeader(ArrayObject $cols): string
     {
@@ -240,8 +235,6 @@ class BackendBehaviors
     /**
      * @param      MetaRecord                     $rs     The recordset
      * @param      ArrayObject<string, string>    $cols   The cols
-     *
-     * @return     string
      */
     public static function adminPostListHeader(MetaRecord $rs, ArrayObject $cols): string
     {
@@ -251,8 +244,6 @@ class BackendBehaviors
     /**
      * @param      MetaRecord                     $rs     The recordset
      * @param      ArrayObject<string, string>    $cols   The cols
-     *
-     * @return     string
      */
     public static function adminPagesListHeader(MetaRecord $rs, ArrayObject $cols): string
     {
@@ -262,8 +253,6 @@ class BackendBehaviors
     /**
      * @param      MetaRecord                     $rs     The recordset
      * @param      ArrayObject<string, string>    $cols   The cols
-     *
-     * @return     string
      */
     private static function adminEntryListValue(MetaRecord $rs, ArrayObject $cols): string
     {
@@ -275,8 +264,6 @@ class BackendBehaviors
     /**
      * @param      MetaRecord                     $rs     The recordset
      * @param      ArrayObject<string, string>    $cols   The cols
-     *
-     * @return     string
      */
     public static function adminPostListValue(MetaRecord $rs, ArrayObject $cols): string
     {
@@ -286,8 +273,6 @@ class BackendBehaviors
     /**
      * @param      MetaRecord                     $rs     The recordset
      * @param      ArrayObject<string, string>    $cols   The cols
-     *
-     * @return     string
      */
     public static function adminPagesListValue(MetaRecord $rs, ArrayObject $cols): string
     {

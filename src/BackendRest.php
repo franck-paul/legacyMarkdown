@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @brief legacyMarkdown, a plugin for Dotclear 2
  *
@@ -35,11 +36,12 @@ class BackendRest
             $html = Helper::convert($md);
             if (strlen($html) > 0) {
                 $media_root = App::blog()->host();
-                $html       = preg_replace_callback('/src="([^\"]*)"/', static function ($matches) use ($media_root) {
+                $html       = preg_replace_callback('/src="([^\"]*)"/', static function (array $matches) use ($media_root): string {
                     if (!preg_match('/^http(s)?:\/\//', $matches[1])) {
                         // Relative URL, convert to absolute
                         return 'src="' . $media_root . $matches[1] . '"';
                     }
+
                     // Absolute URL, do nothing
                     return $matches[0];
                 }, $html);
