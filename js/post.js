@@ -1,4 +1,4 @@
-/*global jsToolBar, dotclear, $ */
+/*global jsToolBar, dotclear */
 'use strict';
 
 dotclear.md_options = dotclear.getData('md_options');
@@ -178,7 +178,7 @@ jsToolBar.prototype.elements.md_foreign.fn.markdown = function () {
   const lang = this.elements.md_foreign.prompt.call(this);
   if (lang !== null) {
     let stag = '<i';
-    const etag = `</i>`;
+    const etag = '</i>';
     stag = lang ? `${stag} lang="${lang}">` : `${stag}>`;
 
     this.encloseSelection(stag, etag);
@@ -286,7 +286,7 @@ jsToolBar.prototype.elements.md_details.fn.markdown = function () {
   const title = this.elements.md_details.prompt.call(this);
   if (title !== null) {
     let stag = '<details>\n';
-    const etag = `\n</details>`;
+    const etag = '\n</details>';
     if (title) {
       stag = `${stag}<summary>${title}</summary>\n`;
     }
@@ -498,7 +498,7 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
 //jsToolBar.prototype.elements.mp3_insert = { fncall: {}, data: {} };
 jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function () {
   const d = this.elements.mp3_insert.data;
-  if (d.player == undefined) {
+  if (d.player === undefined) {
     return;
   }
 
@@ -509,7 +509,7 @@ jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function () {
 //jsToolBar.prototype.elements.flv_insert = { fncall: {}, data: {} };
 jsToolBar.prototype.elements.flv_insert.fncall.markdown = function () {
   const d = this.elements.flv_insert.data;
-  if (d.player == undefined) {
+  if (d.player === undefined) {
     return;
   }
 
@@ -568,7 +568,7 @@ jsToolBar.prototype.elements.md_footnote = {
       // Get next footnote counter
       const matches = [...this.textarea.value.matchAll(/\[\^([0-9]*)\]/g)];
       if (matches.length > 0) {
-        counter = Math.max(...matches.map((c) => parseInt(c[1])));
+        counter = Math.max(...matches.map((c) => Number.parseInt(c[1])));
       }
       counter += 1;
       const subst = `[^${counter}]`;

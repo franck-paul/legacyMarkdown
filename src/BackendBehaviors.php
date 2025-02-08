@@ -21,10 +21,14 @@ use Dotclear\Core\Backend\Page;
 use Dotclear\Database\MetaRecord;
 use Dotclear\Helper\Html\Form\Checkbox;
 use Dotclear\Helper\Html\Form\Fieldset;
+use Dotclear\Helper\Html\Form\Img;
 use Dotclear\Helper\Html\Form\Label;
 use Dotclear\Helper\Html\Form\Legend;
+use Dotclear\Helper\Html\Form\None;
 use Dotclear\Helper\Html\Form\Para;
+use Dotclear\Helper\Html\Form\Td;
 use Dotclear\Helper\Html\Form\Text;
+use Dotclear\Helper\Html\Form\Th;
 use Dotclear\Interface\Core\BlogSettingsInterface;
 
 class BackendBehaviors
@@ -227,7 +231,10 @@ class BackendBehaviors
      */
     private static function adminEntryListHeader(ArrayObject $cols): string
     {
-        $cols['format'] = '<th scope="col">' . __('Format') . '</th>';
+        $cols['format'] = (new Th())
+            ->scope('col')
+            ->text(__('Format'))
+        ->render();
 
         return '';
     }
@@ -256,7 +263,12 @@ class BackendBehaviors
      */
     private static function adminEntryListValue(MetaRecord $rs, ArrayObject $cols): string
     {
-        $cols['format'] = '<td class="nowrap">' . self::getFormat($rs->post_format) . '</td>';
+        $cols['format'] = (new Td())
+            ->class('nowrap')
+            ->items([
+                self::getFormat($rs->post_format),
+            ])
+        ->render();
 
         return '';
     }
@@ -279,7 +291,7 @@ class BackendBehaviors
         return self::adminEntryListValue($rs, $cols);
     }
 
-    private static function getFormat(string $format = ''): string
+    private static function getFormat(string $format = ''): Img|None
     {
         $images = [
             'markdown' => Page::getPF(My::id() . '/img/markdown.svg'),
@@ -289,9 +301,12 @@ class BackendBehaviors
         if (array_key_exists($format, $images)) {
             $syntax = App::formater()->getFormaterName($format);
 
-            return '<img class="mark mark-generic" src="' . $images[$format] . '" alt="' . $syntax . '" title="' . $syntax . '">';
+            return (new Img($images[$format]))
+                ->class(['mark', 'mark-generic'])
+                ->alt($syntax)
+                ->title($syntax);
         }
 
-        return $format;
+        return (new None());
     }
 }
