@@ -21,6 +21,7 @@ $this->registerModule(
         'requires'    => [['core', '2.30']],
         'permissions' => 'My',
         'type'        => 'plugin',
+        'priority'    => 1005,  // Must be higher than dcLegacyEditor/dcCKEditor priority (ie 1000)
         'settings'    => [
             'pref' => '#user-options.user_options_edition',
             'blog' => '#params.legacy_markdown',
@@ -28,5 +29,6 @@ $this->registerModule(
         'details'    => 'https://open-time.net/?q=legacyMarkdown',
         'support'    => 'https://github.com/franck-paul/legacyMarkdown',
         'repository' => 'https://raw.githubusercontent.com/franck-paul/legacyMarkdown/main/dcstore.xml',
+        'license'    => 'gpl2',
     ]
 );
