@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @brief legacyMarkdown, a plugin for Dotclear 2
  *

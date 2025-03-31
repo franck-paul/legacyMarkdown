@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @brief legacyMarkdown, a plugin for Dotclear 2
  *
@@ -14,6 +15,8 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\legacyMarkdown;
 
+use Dotclear\Plugin\TemplateHelper\Code;
+
 class FrontendTemplate
 {
     public static function CommentHelp(): string
@@ -23,15 +26,8 @@ class FrontendTemplate
         __('Comments can be formatted using a simple wiki syntax.');
         __('HTML code is displayed as text and web addresses are automatically converted.');
 
-        return
-            "<?php if (App::blog()->settings()->system->wiki_comments) {\n" .
-            "    if (App::blog()->settings()->system->markdown_comments) {\n" .
-            "      echo __('Comments can be formatted using the <a href=\"https://michelf.ca/projects/php-markdown/extra/\">Markdown Extra</a> syntax.');\n" .
-            "    } else {\n" .
-            "      echo __('Comments can be formatted using a simple wiki syntax.');\n" .
-            "    }\n" .
-            "} else {\n" .
-            "  echo __('HTML code is displayed as text and web addresses are automatically converted.');\n" .
-            '} ?>';
+        return Code::getPHPCode(
+            FrontendTemplateCode::CommentHelp(...)
+        );
     }
 }

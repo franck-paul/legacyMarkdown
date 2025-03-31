@@ -17,8 +17,11 @@ $this->registerModule(
     'Michel Fortin, Franck Paul and contributors',
     '5.7',
     [
-        'date'        => '2025-03-05T01:18:48+0100',
-        'requires'    => [['core', '2.30']],
+        'date'     => '2025-03-05T01:18:48+0100',
+        'requires' => [
+            ['core', '2.34'],
+            ['TemplateHelper'],
+        ],
         'permissions' => 'My',
         'type'        => 'plugin',
         'priority'    => 1005,  // Must be higher than dcLegacyEditor/dcCKEditor priority (ie 1000)
