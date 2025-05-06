@@ -285,7 +285,7 @@ jsToolBar.prototype.elements.md_details = {
 jsToolBar.prototype.elements.md_details.fn.markdown = function () {
   const title = this.elements.md_details.prompt.call(this);
   if (title !== null) {
-    let stag = '<details>\n';
+    let stag = '<details markdown="1">\n';
     const etag = '\n</details>';
     if (title) {
       stag = `${stag}<summary>${title}</summary>\n`;
@@ -303,7 +303,7 @@ jsToolBar.prototype.elements.md_aside = {
   title: 'Aside',
   fn: {
     markdown() {
-      const stag = '<aside>\n';
+      const stag = '<aside markdown="1">\n';
       const etag = '\n</aside>';
       this.encloseSelection(stag, etag);
     },
