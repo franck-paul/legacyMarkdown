@@ -34,6 +34,12 @@ class BackendRest
         $md = $post['md'] ?? '';
         if ($md !== '') {
             $html = Helper::convert($md);
+
+            # --BEHAVIOR-- coreContentFilter -- string, array<int, array<int, string>> -- since 2.34
+            App::behavior()->callBehavior('coreContentFilter', 'post', [
+                [&$html, 'html'],
+            ]);
+
             if (strlen($html) > 0) {
                 $media_root = App::blog()->host();
                 $html       = preg_replace_callback('/src="([^\"]*)"/', static function (array $matches) use ($media_root): string {
