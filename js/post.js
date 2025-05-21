@@ -447,18 +447,43 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
   const d = this.elements.img_select.data;
   if (d && d.src !== undefined) {
     this.encloseSelection('', '', (str) => {
+      const escapeString = (str) => str.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;');
       const alignments = {
         left: dotclear.md_options.style.left,
         right: dotclear.md_options.style.right,
         center: dotclear.md_options.style.center,
       };
-      const alt = (str ? str : d.title).replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;');
+      const alt = escapeString(str || d.title);
       let legend =
         d.description !== '' && alt.length // No legend if no alt
-          ? d.description.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;')
+          ? escapeString(d.description)
           : false;
+
       // Do not duplicate information
       if (alt === legend) legend = false;
+
+      // Prepare link title if necessary
+      const ltitle = alt ? `${escapeString(dotclear.md_options.img_link_title)}` : '';
+
+      // Check if we can use Markdown syntax for this image:
+      // ![alt](src){.class} for image
+      // [![alt](src){.class}](href "title") for image with link
+
+      if (!legend) {
+        // Not a figure, we will return a Markdown syntax
+        if (!(d.alignment in alignments) || (d.alignment in alignments && dotclear.md_options.style.class)) {
+          const extra = d.alignment in alignments ? `{.${alignments[d.alignment]}}` : '';
+          // No alignement or an alignement with class
+          const img = `![${alt}](${d.src})${extra}`;
+          if (d.link && alt.length && ltitle.length) {
+            // Enclose image in a link
+            return `[${img}](${d.url} "${ltitle}")`;
+          }
+          return img;
+        }
+      }
+
+      // Cannot use Markdown syntax, continue with HTML
       let img = `<img src="${d.src}" alt="${alt}"`;
       let figure = '<figure';
       const caption = legend ? `<figcaption>${legend}</figcaption>\n` : '';
@@ -477,14 +502,7 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
 
       if (d.link && alt.length) {
         // Enclose image with link (only if non empty alt)
-        const ltitle = alt
-          ? ` title="${dotclear.md_options.img_link_title
-              .replace('&', '&amp;')
-              .replace('>', '&gt;')
-              .replace('<', '&lt;')
-              .replace('"', '&quot;')}"`
-          : '';
-        img = `<a href="${d.url}"${ltitle}>${img}</a>`;
+        img = `<a href="${d.url} title="${ltitle}>${img}</a>`;
       }
 
       return legend ? `${figure}\n${img}\n${caption}</figure>` : img;
