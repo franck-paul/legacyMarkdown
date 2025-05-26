@@ -502,7 +502,7 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
 
       if (d.link && alt.length) {
         // Enclose image with link (only if non empty alt)
-        img = `<a href="${d.url} title="${ltitle}">${img}</a>`;
+        img = `<a href="${d.url}" title="${ltitle}">${img}</a>`;
       }
 
       return legend ? `${figure}\n${img}\n${caption}</figure>` : img;
