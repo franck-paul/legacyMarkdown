@@ -101,80 +101,96 @@ class BackendBehaviors
             ],
 
             'md_strong' => [
-                'title' => __('Strong emphasis'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_strong.svg')),
+                'title'     => __('Strong emphasis'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_strong.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_strong-dark.svg')),
             ],
             'md_em' => [
-                'title' => __('Emphasis'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_em.svg')),
+                'title'     => __('Emphasis'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_em.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_em-dark.svg')),
             ],
             'md_ins' => [
-                'title' => __('Inserted'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_ins.svg')),
+                'title'     => __('Inserted'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_ins.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_ins-dark.svg')),
             ],
             'md_del' => [
-                'title' => __('Deleted'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_del.svg')),
+                'title'     => __('Deleted'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_del.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_del-dark.svg')),
             ],
 
             'md_quote' => [
                 'title'       => __('Inline quote'),
                 'icon'        => urldecode(Page::getPF(My::id() . '/img/bt_quote.svg')),
+                'icon_dark'   => urldecode(Page::getPF(My::id() . '/img/bt_quote-dark.svg')),
                 'cite_prompt' => __('Source URL:'),
                 'lang_prompt' => __('Language:'),
             ],
 
             'md_code' => [
-                'title' => __('Code'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_code.svg')),
+                'title'     => __('Code'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_code.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_code-dark.svg')),
             ],
             'md_mark' => [
-                'title' => __('Mark'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_mark.svg')),
+                'title'     => __('Mark'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_mark.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_mark-dark.svg')),
             ],
 
             'md_foreign' => [
                 'title'       => __('Foreign text'),
                 'icon'        => urldecode(Page::getPF(My::id() . '/img/bt_foreign.svg')),
+                'icon_dark'   => urldecode(Page::getPF(My::id() . '/img/bt_foreign-dark.svg')),
                 'lang_prompt' => __('Language:'),
             ],
 
             'md_br' => [
-                'title' => __('Linebreak '),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_br.svg')),
+                'title'     => __('Linebreak '),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_br.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_br-dark.svg')),
             ],
 
             'md_blockquote' => [
-                'title' => __('Blockquote'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_bquote.svg')),
+                'title'     => __('Blockquote'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_bquote.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_bquote-dark.svg')),
             ],
             'md_pre' => [
-                'title' => __('Preformatedtext'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_pre.svg')),
+                'title'     => __('Preformatedtext'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_pre.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_pre-dark.svg')),
             ],
             'md_ul' => [
-                'title' => __('Unorderedlist'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_ul.svg')),
+                'title'     => __('Unorderedlist'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_ul.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_ul-dark.svg')),
             ],
             'md_ol' => [
-                'title' => __('Orderedlist'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_ol.svg')),
+                'title'     => __('Orderedlist'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_ol.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_ol-dark.svg')),
             ],
 
             'md_details' => [
                 'title'        => __('Details block'),
                 'icon'         => urldecode(Page::getPF(My::id() . '/img/bt_details.svg')),
+                'icon_dark'    => urldecode(Page::getPF(My::id() . '/img/bt_details-dark.svg')),
                 'title_prompt' => __('Summary:'),
             ],
 
             'md_aside' => [
-                'title' => __('Aside block'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_aside.svg')),
+                'title'     => __('Aside block'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_aside.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_aside-dark.svg')),
             ],
 
             'md_link' => [
                 'title'        => __('Link'),
                 'icon'         => urldecode(Page::getPF(My::id() . '/img/bt_link.svg')),
+                'icon_dark'    => urldecode(Page::getPF(My::id() . '/img/bt_link-dark.svg')),
                 'href_prompt'  => __('URL:'),
                 'title_prompt' => __('Title:'),
                 'lang_prompt'  => __('Language:'),
@@ -183,32 +199,37 @@ class BackendBehaviors
             'md_img' => [
                 'title'        => __('Externalimage'),
                 'icon'         => urldecode(Page::getPF(My::id() . '/img/bt_img.svg')),
+                'icon_dark'    => urldecode(Page::getPF(My::id() . '/img/bt_img-dark.svg')),
                 'src_prompt'   => __('URL:'),
                 'title_prompt' => __('Title (optional):'),
             ],
 
             'md_img_select' => [
-                'title'    => __('Mediachooser'),
-                'icon'     => urldecode(Page::getPF(My::id() . '/img/bt_img_select.svg')),
-                'open_url' => App::backend()->url()->get('admin.media', ['popup' => 1, 'plugin_id' => 'dcLegacyEditor'], '&'),
-                'disabled' => (!App::auth()->check(App::auth()->makePermissions([
+                'title'     => __('Mediachooser'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_img_select.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_img_select-dark.svg')),
+                'open_url'  => App::backend()->url()->get('admin.media', ['popup' => 1, 'plugin_id' => 'dcLegacyEditor'], '&'),
+                'disabled'  => (!App::auth()->check(App::auth()->makePermissions([
                     App::auth()::PERMISSION_MEDIA,
                     App::auth()::PERMISSION_MEDIA_ADMIN,
                 ]), App::blog()->id())),
             ],
 
             'md_post_link' => [
-                'title'    => __('Linktoanentry'),
-                'icon'     => urldecode(Page::getPF(My::id() . '/img/bt_post.svg')),
-                'open_url' => App::backend()->url()->get('admin.posts.popup', ['plugin_id' => 'dcLegacyEditor'], '&'),
+                'title'     => __('Linktoanentry'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_post.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_post-dark.svg')),
+                'open_url'  => App::backend()->url()->get('admin.posts.popup', ['plugin_id' => 'dcLegacyEditor'], '&'),
             ],
             'md_footnote' => [
-                'title' => __('Footnote'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_footnote.svg')),
+                'title'     => __('Footnote'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_footnote.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_footnote-dark.svg')),
             ],
             'md_preview' => [
-                'title' => __('Preview'),
-                'icon'  => urldecode(Page::getPF(My::id() . '/img/bt_preview.svg')),
+                'title'     => __('Preview'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_preview.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_preview-dark.svg')),
             ],
         ]) .
         My::cssLoad('jsToolBar.css') .
