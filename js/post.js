@@ -219,9 +219,7 @@ jsToolBar.prototype.elements.md_blockquote = {
   title: 'Blockquote',
   fn: {
     markdown() {
-      this.encloseSelection('\n', '', (str) => {
-        return `> ${str.replace(/\r/g, '').replace(/\n/g, '\n> ')}`;
-      });
+      this.encloseSelection('\n', '', (str) => `> ${str.replace(/\r/g, '').replace(/\n/g, '\n> ')}`);
     },
   },
 };
@@ -245,9 +243,7 @@ jsToolBar.prototype.elements.md_ul = {
   title: 'Unordered list',
   fn: {
     markdown() {
-      this.encloseSelection('', '', (str) => {
-        return `* ${str.replace(/\r/g, '').replace(/\n/g, '\n* ')}`;
-      });
+      this.encloseSelection('', '', (str) => `* ${str.replace(/\r/g, '').replace(/\n/g, '\n* ')}`);
     },
   },
 };
@@ -258,9 +254,7 @@ jsToolBar.prototype.elements.md_ol = {
   title: 'Ordered list',
   fn: {
     markdown() {
-      this.encloseSelection('', '', (str) => {
-        return `1. ${str.replace(/\r/g, '').replace(/\n/g, '\n1. ')}`;
-      });
+      this.encloseSelection('', '', (str) => `1. ${str.replace(/\r/g, '').replace(/\n/g, '\n1. ')}`);
     },
   },
 };
@@ -433,18 +427,16 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
       // ![alt](src){.class} for image
       // [![alt](src){.class}](href "title") for image with link
 
-      if (!legend) {
+      if (!legend && (!(d.alignment in alignments) || (d.alignment in alignments && dotclear.md_options.style.class))) {
         // Not a figure, we will return a Markdown syntax
-        if (!(d.alignment in alignments) || (d.alignment in alignments && dotclear.md_options.style.class)) {
-          const extra = d.alignment in alignments ? `{.${alignments[d.alignment]}}` : '';
-          // No alignement or an alignement with class
-          const img = `![${alt}](${d.src})${extra}`;
-          if (d.link && alt.length && ltitle.length) {
-            // Enclose image in a link
-            return `[${img}](${d.url} "${ltitle}")`;
-          }
-          return img;
+        const extra = d.alignment in alignments ? `{.${alignments[d.alignment]}}` : '';
+        // No alignement or an alignement with class
+        const img = `![${alt}](${d.src})${extra}`;
+        if (d.link && alt.length && ltitle.length) {
+          // Enclose image in a link
+          return `[${img}](${d.url} "${ltitle}")`;
         }
+        return img;
       }
 
       // Cannot use Markdown syntax, continue with HTML
@@ -528,7 +520,8 @@ jsToolBar.prototype.elements.link.fncall.markdown = function () {
   const link = this.elements.link.data;
   if (link && link.href !== undefined) {
     const stag = '[';
-    let etag = `](${link.href}${link.title ? ` "${link.title}"` : ''})`;
+    const title = link.title ? ` "${link.title}"` : '';
+    let etag = `](${link.href}${title})`;
 
     if (link?.hreflang) {
       etag = `${etag}{hreflang=${link.hreflang}}`;
@@ -555,7 +548,7 @@ jsToolBar.prototype.elements.md_footnote = {
       const end = this.textarea.selectionEnd;
       const sel = this.textarea.value.substring(start, end);
       // Get next footnote counter
-      const matches = [...this.textarea.value.matchAll(/\[\^([0-9]*)\]/g)];
+      const matches = [...this.textarea.value.matchAll(/\[\^(\d*)\]/g)];
       if (matches.length > 0) {
         counter = Math.max(...matches.map((c) => Number.parseInt(c[1])));
       }

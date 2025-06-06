@@ -10,12 +10,11 @@
 
 use Dotclear\Helper\L10n;
 
-L10n::$locales['Brings you markdown (extra) syntax for your entries (see https://michelf.ca/projects/php-markdown/)'] = 'Ajoute la syntaxe markdown (extra) pour vos publications (voir https://michelf.ca/projects/php-markdown/)';
 L10n::$locales['Markdown syntax'] = 'Syntaxe Markdown';
+L10n::$locales['Brings you markdown (extra) syntax for your entries (see https://michelf.ca/projects/php-markdown/)'] = 'Ajoute la syntaxe markdown (extra) pour vos publications (voir https://michelf.ca/projects/php-markdown/)';
 L10n::$locales['Markdown'] = 'Markdown';
 L10n::$locales['Enable Markdown syntax for comments'] = 'Activer la syntaxe Markdown pour les commentaires';
 L10n::$locales['This option, if enabled, will replace the standard wiki syntax for comments!'] = 'Cette option, si activée, remplacera la syntaxe wiki standard pour les commentaires !';
-L10n::$locales['Open the media'] = 'Ouvrir le média';
 L10n::$locales['Source URL:'] = 'URL source :';
 L10n::$locales['Language:'] = 'Langue :';
 L10n::$locales['Mark'] = 'Surlignage';
@@ -27,9 +26,8 @@ L10n::$locales['Orderedlist'] = 'Liste ordonnée';
 L10n::$locales['Details block'] = 'Bloc détails';
 L10n::$locales['Summary:'] = 'Titre :';
 L10n::$locales['Aside block'] = 'Bloc de côté';
-L10n::$locales['URL:'] = 'URL :';
-L10n::$locales['Title:'] = 'Titre :';
 L10n::$locales['Externalimage'] = 'Image externe';
+L10n::$locales['URL:'] = 'URL :';
 L10n::$locales['Title (optional):'] = 'Titre (facultatif) :';
 L10n::$locales['Mediachooser'] = 'Sélecteur de média';
 L10n::$locales['Linktoanentry'] = 'Liens vers une publication';
