@@ -188,12 +188,10 @@ class BackendBehaviors
             ],
 
             'md_link' => [
-                'title'        => __('Link'),
-                'icon'         => urldecode(Page::getPF(My::id() . '/img/bt_link.svg')),
-                'icon_dark'    => urldecode(Page::getPF(My::id() . '/img/bt_link-dark.svg')),
-                'href_prompt'  => __('URL:'),
-                'title_prompt' => __('Title:'),
-                'lang_prompt'  => __('Language:'),
+                'title'     => __('Link'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_link.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_link-dark.svg')),
+                'open_url'  => App::backend()->url()->get('admin.link.popup', ['popup' => 1, 'plugin_id' => 'dcLegacyEditor'], '&'),
             ],
 
             'md_img' => [

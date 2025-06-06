@@ -109,12 +109,12 @@ jsToolBar.prototype.elements.md_quote = {
   fn: {},
   cite_prompt: 'Source URL:',
   lang_prompt: 'Language:',
-  prompt(cite = '', lang = '') {
-    cite = window.prompt(this.elements.md_quote.cite_prompt, cite);
+  prompt(default_cite = '', default_lang = '') {
+    const cite = window.prompt(this.elements.md_quote.cite_prompt, default_cite);
     if (cite === null) {
       return null;
     }
-    lang = window.prompt(this.elements.md_quote.lang_prompt, lang);
+    const lang = window.prompt(this.elements.md_quote.lang_prompt, default_lang);
     if (lang === null) {
       return null;
     }
@@ -168,9 +168,8 @@ jsToolBar.prototype.elements.md_foreign = {
   fn: {},
   lang_prompt: 'Language:',
   default_lang: 'en',
-  prompt(lang = '') {
-    lang = lang || this.elements.md_foreign.default_lang;
-    return window.prompt(this.elements.md_foreign.lang_prompt, lang);
+  prompt(default_lang = '') {
+    return window.prompt(this.elements.md_foreign.lang_prompt, default_lang || this.elements.md_foreign.default_lang);
   },
 };
 
@@ -221,8 +220,7 @@ jsToolBar.prototype.elements.md_blockquote = {
   fn: {
     markdown() {
       this.encloseSelection('\n', '', (str) => {
-        str = str.replace(/\r/g, '');
-        return `> ${str.replace(/\n/g, '\n> ')}`;
+        return `> ${str.replace(/\r/g, '').replace(/\n/g, '\n> ')}`;
       });
     },
   },
@@ -248,8 +246,7 @@ jsToolBar.prototype.elements.md_ul = {
   fn: {
     markdown() {
       this.encloseSelection('', '', (str) => {
-        str = str.replace(/\r/g, '');
-        return `* ${str.replace(/\n/g, '\n* ')}`;
+        return `* ${str.replace(/\r/g, '').replace(/\n/g, '\n* ')}`;
       });
     },
   },
@@ -262,8 +259,7 @@ jsToolBar.prototype.elements.md_ol = {
   fn: {
     markdown() {
       this.encloseSelection('', '', (str) => {
-        str = str.replace(/\r/g, '');
-        return `1. ${str.replace(/\n/g, '\n1. ')}`;
+        return `1. ${str.replace(/\r/g, '').replace(/\n/g, '\n1. ')}`;
       });
     },
   },
@@ -276,9 +272,8 @@ jsToolBar.prototype.elements.md_details = {
   fn: {},
   title_prompt: 'Summary:',
   default_title: '',
-  prompt(title = '') {
-    title = title || this.elements.md_details.default_title;
-    return window.prompt(this.elements.md_details.title_prompt, title);
+  prompt(default_title = '') {
+    return window.prompt(this.elements.md_details.title_prompt, default_title || this.elements.md_details.default_title);
   },
 };
 
@@ -325,54 +320,23 @@ jsToolBar.prototype.elements.md_link = {
   shortkey: 'KeyL',
   shortkey_name: 'L',
   fn: {},
-  href_prompt: 'Please give URL:',
-  title_prompt: 'Title for this URL:',
-  lang_prompt: 'Language:',
-  default_title: '',
-  default_lang: '',
-  prompt(href = '', title = '', lang = '') {
-    title = title || this.elements.md_link.default_title;
-    lang = lang || this.elements.md_link.default_lang;
+  fncall: {},
+  data: {},
+  popup(args = '') {
+    window.the_toolbar = this;
 
-    href = window.prompt(this.elements.md_link.href_prompt, href);
-    if (!href) {
-      return null;
-    }
+    this.elements.md_link.data = {};
 
-    title = window.prompt(this.elements.md_link.title_prompt, title);
-    if (title === null) {
-      return null;
-    }
-    lang = window.prompt(this.elements.md_link.lang_prompt, lang);
-    if (lang === null) {
-      return null;
-    }
-
-    return {
-      href: this.stripBaseURL(href),
-      title,
-      lang,
-    };
+    window.open(
+      this.elements.md_link.open_url + args,
+      'dc_popup',
+      'alwaysRaised=yes,dependent=yes,toolbar=yes,height=420,width=520,menubar=no,resizable=yes,scrollbars=yes,status=no',
+    );
   },
 };
 
 jsToolBar.prototype.elements.md_link.fn.markdown = function () {
-  const link = this.elements.md_link.prompt.call(this);
-  if (link !== null && link !== '') {
-    const stag = '[';
-    let etag = `](${link.href}`;
-    if (link.title) {
-      etag = `${etag} "${link.title}"`;
-    }
-    etag = `${etag})`;
-    if (link.lang) {
-      etag = `${etag}{hreflang=${link.lang}}`;
-    }
-
-    this.encloseSelection(stag, etag);
-    return;
-  }
-  this.textarea.focus();
+  this.elements.md_link.popup.call(this);
 };
 
 // img
@@ -383,10 +347,10 @@ jsToolBar.prototype.elements.md_img = {
   src_prompt: 'Please give image URL:',
   title_prompt: 'Title for this image:',
   default_title: '',
-  prompt(src = '', title = '') {
-    title = title || this.elements.md_img.default_title;
+  prompt(default_src = '', default_title = '') {
+    let title = default_title || this.elements.md_img.default_title;
 
-    src = window.prompt(this.elements.md_img.src_prompt, src);
+    const src = window.prompt(this.elements.md_img.src_prompt, default_src);
     if (!src) {
       return null;
     }
@@ -512,7 +476,7 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
   }
 };
 
-// MP3 helpers
+// MP3 helper
 //jsToolBar.prototype.elements.mp3_insert = { fncall: {}, data: {} };
 jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function () {
   const d = this.elements.mp3_insert.data;
@@ -523,7 +487,7 @@ jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function () {
   this.encloseSelection('', '', () => `\n${d.player}\n`);
 };
 
-// FLV helpers
+// FLV helper
 //jsToolBar.prototype.elements.flv_insert = { fncall: {}, data: {} };
 jsToolBar.prototype.elements.flv_insert.fncall.markdown = function () {
   const d = this.elements.flv_insert.data;
@@ -557,11 +521,18 @@ jsToolBar.prototype.elements.md_post_link = {
 jsToolBar.prototype.elements.md_post_link.fn.markdown = function () {
   this.elements.md_post_link.popup.call(this);
 };
+
+// Link helper
+// Note link.fncall used by md_post_link is also be used by md_link button (see above)
 jsToolBar.prototype.elements.link.fncall.markdown = function () {
   const link = this.elements.link.data;
   if (link && link.href !== undefined) {
     const stag = '[';
-    const etag = `](${link.href}${link.title ? ` "${link.title}"` : ''})`;
+    let etag = `](${link.href}${link.title ? ` "${link.title}"` : ''})`;
+
+    if (link?.hreflang) {
+      etag = `${etag}{hreflang=${link.hreflang}}`;
+    }
 
     this.encloseSelection(stag, etag);
     return;
