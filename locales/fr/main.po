@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dotclear 2 legacyMarkdown module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-04 08:12+0100\n"
+"POT-Creation-Date: 2025-06-06 11:30+0200\n"
 "PO-Revision-Date: 2023-05-03 13:22+0000\n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>, 2023\n"
 "Language-Team: French (https://app.transifex.com/open-time/teams/109573/fr/)\n"
@@ -20,15 +20,15 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
+msgid "Markdown syntax"
+msgstr "Syntaxe Markdown"
+
 msgid ""
 "Brings you markdown (extra) syntax for your entries (see "
 "https://michelf.ca/projects/php-markdown/)"
 msgstr ""
 "Ajoute la syntaxe markdown (extra) pour vos publications (voir "
 "https://michelf.ca/projects/php-markdown/)"
-
-msgid "Markdown syntax"
-msgstr "Syntaxe Markdown"
 
 msgid "Markdown"
 msgstr "Markdown"
@@ -41,9 +41,6 @@ msgid ""
 msgstr ""
 "Cette option, si activée, remplacera la syntaxe wiki standard pour les "
 "commentaires !"
-
-msgid "Open the media"
-msgstr "Ouvrir le média"
 
 msgid "Source URL:"
 msgstr "URL source :"
@@ -78,14 +75,11 @@ msgstr "Titre :"
 msgid "Aside block"
 msgstr "Bloc de côté"
 
-msgid "URL:"
-msgstr "URL :"
-
-msgid "Title:"
-msgstr "Titre :"
-
 msgid "Externalimage"
 msgstr "Image externe"
+
+msgid "URL:"
+msgstr "URL :"
 
 msgid "Title (optional):"
 msgstr "Titre (facultatif) :"
