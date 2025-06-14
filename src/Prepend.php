@@ -35,14 +35,18 @@ class Prepend extends Process
         // Markdown extra
         Autoloader::me()->addNamespace('Michelf', implode(DIRECTORY_SEPARATOR, [
             My::path(),
-            'lib',
+            'libs',
+            'Michelf',
+            'markdown',
             'Michelf',
         ]));
 
         // HTML Converter
         Autoloader::me()->addNamespace('League\HTMLToMarkdown', implode(DIRECTORY_SEPARATOR, [
             My::path(),
-            'tool',
+            'libs',
+            'League',
+            'HTMLToMarkdown',
             'src',
         ]));
 
