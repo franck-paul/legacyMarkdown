@@ -15,6 +15,8 @@ L10n::$locales['Brings you markdown (extra) syntax for your entries (see https:/
 L10n::$locales['Markdown'] = '';
 L10n::$locales['Enable Markdown syntax for comments'] = '';
 L10n::$locales['This option, if enabled, will replace the standard wiki syntax for comments!'] = '';
+L10n::$locales['Convert to Markdown'] = '';
+L10n::$locales['Don\'t forget to validate your Markdown conversion by saving your post.'] = '';
 L10n::$locales['Source URL:'] = '';
 L10n::$locales['Language:'] = '';
 L10n::$locales['Mark'] = '';

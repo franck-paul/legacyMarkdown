@@ -70,42 +70,49 @@ class BackendBehaviors
      */
     public static function adminPostFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post): string
     {
-        if (version_compare(App::config()->dotclearVersion(), '2.35-dev', '>=')) {
-            if ($post instanceof MetaRecord) {
-                $convert = (new Div())
-                    ->class(['format_control', 'control_no_markdown', 'control_no_wiki'])
-                    ->items([
-                        (new Link('convert-markdown'))
-                            ->class(['button', App::backend()->post_id && App::backend()->post_format !== 'xhtml' ? ' hide' : ''])
-                            ->href(App::backend()->url()->get(
-                                'admin.post',
-                                [
-                                    'id'             => App::backend()->post_id,
-                                    'convert'        => '1',
-                                    'convert-format' => 'markdown',
-                                ]
-                            ))
-                            ->text(__('Convert to Markdown')),
-                    ])
-                ->render();
+        if (version_compare(App::config()->dotclearVersion(), '2.35-dev', '<')) {
+            return '';
+        }
 
-                $sidebar['status-box']['items']['post_format'] .= $convert;
-            }
+        if ($post instanceof MetaRecord) {
+            $convert = (new Div())
+                ->class(['format_control', 'control_no_markdown', 'control_no_wiki'])
+                ->items([
+                    (new Link('convert-markdown'))
+                        ->class(['button', App::backend()->post_id && App::backend()->post_format !== 'xhtml' ? ' hide' : ''])
+                        ->href(App::backend()->url()->get(
+                            'admin.post',
+                            [
+                                'id'             => App::backend()->post_id,
+                                'convert'        => '1',
+                                'convert-format' => 'markdown',
+                            ]
+                        ))
+                        ->text(__('Convert to Markdown')),
+                ])
+            ->render();
+
+            $sidebar['status-box']['items']['post_format'] .= $convert;
         }
 
         return '';
     }
 
+    /**
+     * @param      ArrayObject<string, mixed>   $params  The parameters (excerpt, content, format)
+     */
     public static function adminConvertBeforePostEdit(string $convert, ArrayObject $params): string
     {
-        if (version_compare(App::config()->dotclearVersion(), '2.35-dev', '>=')) {
-            if ($convert === 'markdown') {
-                $params['excerpt'] = Helper::fromHTML($params['excerpt']);
-                $params['content'] = Helper::fromHTML($params['content']);
-                $params['format']  = 'markdown';
+        if (version_compare(App::config()->dotclearVersion(), '2.35-dev', '<')) {
+            return '';
+        }
 
-                return __('Don\'t forget to validate your Markdown conversion by saving your post.');
-            }
+        if ($convert === 'markdown') {
+            $params['excerpt'] = Helper::fromHTML($params['excerpt']);
+            $params['content'] = Helper::fromHTML($params['content']);
+            $params['format']  = 'markdown';
+
+            return __('Don\'t forget to validate your Markdown conversion by saving your post.');
         }
 
         return '';
