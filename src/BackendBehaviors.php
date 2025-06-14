@@ -20,10 +20,12 @@ use Dotclear\App;
 use Dotclear\Core\Backend\Page;
 use Dotclear\Database\MetaRecord;
 use Dotclear\Helper\Html\Form\Checkbox;
+use Dotclear\Helper\Html\Form\Div;
 use Dotclear\Helper\Html\Form\Fieldset;
 use Dotclear\Helper\Html\Form\Img;
 use Dotclear\Helper\Html\Form\Label;
 use Dotclear\Helper\Html\Form\Legend;
+use Dotclear\Helper\Html\Form\Link;
 use Dotclear\Helper\Html\Form\None;
 use Dotclear\Helper\Html\Form\Para;
 use Dotclear\Helper\Html\Form\Td;
@@ -57,6 +59,54 @@ class BackendBehaviors
     public static function adminBeforeBlogSettingsUpdate(BlogSettingsInterface $settings): string
     {
         $settings->system->put('markdown_comments', !empty($_POST['markdown_comments']), 'boolean');
+
+        return '';
+    }
+
+    /**
+     * @param      ArrayObject<string, mixed>   $main     The main
+     * @param      ArrayObject<string, mixed>   $sidebar  The sidebar
+     * @param      MetaRecord|null              $post     The post
+     */
+    public static function adminPostFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post): string
+    {
+        if (version_compare(App::config()->dotclearVersion(), '2.35-dev', '>=')) {
+            if ($post instanceof MetaRecord) {
+                $convert = (new Div())
+                    ->class(['format_control', 'control_no_markdown', 'control_no_wiki'])
+                    ->items([
+                        (new Link('convert-markdown'))
+                            ->class(['button', App::backend()->post_id && App::backend()->post_format !== 'xhtml' ? ' hide' : ''])
+                            ->href(App::backend()->url()->get(
+                                'admin.post',
+                                [
+                                    'id'             => App::backend()->post_id,
+                                    'convert'        => '1',
+                                    'convert-format' => 'markdown',
+                                ]
+                            ))
+                            ->text(__('Convert to Markdown')),
+                    ])
+                ->render();
+
+                $sidebar['status-box']['items']['post_format'] .= $convert;
+            }
+        }
+
+        return '';
+    }
+
+    public static function adminConvertBeforePostEdit(string $convert, ArrayObject $params): string
+    {
+        if (version_compare(App::config()->dotclearVersion(), '2.35-dev', '>=')) {
+            if ($convert === 'markdown') {
+                $params['excerpt'] = Helper::fromHTML($params['excerpt']);
+                $params['content'] = Helper::fromHTML($params['content']);
+                $params['format']  = 'markdown';
+
+                return __('Don\'t forget to validate your Markdown conversion by saving your post.');
+            }
+        }
 
         return '';
     }

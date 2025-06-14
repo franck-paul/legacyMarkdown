@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dotclear 2 legacyMarkdown module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-06 11:30+0200\n"
+"POT-Creation-Date: 2025-06-14 18:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,90 +25,98 @@ msgid "Brings you markdown (extra) syntax for your entries (see https://michelf.
 msgstr ""
 
 #: ../git-plugins/legacyMarkdown/src/Backend.php:39
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:41
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:43
 msgid "Markdown"
 msgstr ""
 
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:46
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:48
 msgid "Enable Markdown syntax for comments"
 msgstr ""
 
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:49
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:51
 msgid "This option, if enabled, will replace the standard wiki syntax for comments!"
 msgstr ""
 
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:128
-msgid "Source URL:"
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:88
+msgid "Convert to Markdown"
 msgstr ""
 
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:129
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:147
-msgid "Language:"
-msgstr ""
-
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:138
-msgid "Mark"
-msgstr ""
-
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:144
-msgid "Foreign text"
-msgstr ""
-
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:151
-msgid "Linebreak "
-msgstr ""
-
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:162
-msgid "Preformatedtext"
-msgstr ""
-
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:167
-msgid "Unorderedlist"
-msgstr ""
-
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:172
-msgid "Orderedlist"
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:107
+msgid "Don't forget to validate your Markdown conversion by saving your post."
 msgstr ""
 
 #: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:178
-msgid "Details block"
+msgid "Source URL:"
 msgstr ""
 
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:181
-msgid "Summary:"
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:179
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:197
+msgid "Language:"
 msgstr ""
 
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:185
-msgid "Aside block"
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:188
+msgid "Mark"
 msgstr ""
 
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:198
-msgid "Externalimage"
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:194
+msgid "Foreign text"
 msgstr ""
 
 #: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:201
-msgid "URL:"
+msgid "Linebreak "
 msgstr ""
 
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:202
-msgid "Title (optional):"
-msgstr ""
-
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:206
-msgid "Mediachooser"
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:212
+msgid "Preformatedtext"
 msgstr ""
 
 #: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:217
+msgid "Unorderedlist"
+msgstr ""
+
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:222
+msgid "Orderedlist"
+msgstr ""
+
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:228
+msgid "Details block"
+msgstr ""
+
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:231
+msgid "Summary:"
+msgstr ""
+
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:235
+msgid "Aside block"
+msgstr ""
+
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:248
+msgid "Externalimage"
+msgstr ""
+
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:251
+msgid "URL:"
+msgstr ""
+
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:252
+msgid "Title (optional):"
+msgstr ""
+
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:256
+msgid "Mediachooser"
+msgstr ""
+
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:267
 msgid "Linktoanentry"
 msgstr ""
 
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:223
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:273
 msgid "Footnote"
 msgstr ""
 
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:242
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:243
-#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:255
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:292
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:293
+#: ../git-plugins/legacyMarkdown/src/BackendBehaviors.php:305
 msgid "Format"
 msgstr ""
 

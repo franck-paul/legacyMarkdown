@@ -42,7 +42,9 @@ class Backend extends Process
             'adminBlogPreferencesFormV2'    => BackendBehaviors::adminBlogPreferencesForm(...),
             'adminBeforeBlogSettingsUpdate' => BackendBehaviors::adminBeforeBlogSettingsUpdate(...),
 
-            'adminPostEditor' => BackendBehaviors::adminPostEditor(...),
+            'adminPostEditor'            => BackendBehaviors::adminPostEditor(...),
+            'adminPostFormItems'         => BackendBehaviors::adminPostFormItems(...),
+            'adminConvertBeforePostEdit' => BackendBehaviors::adminConvertBeforePostEdit(...),
 
             // Add behaviour callback for post/page lists
             'adminColumnsListsV2'    => BackendBehaviors::adminColumnsLists(...),
