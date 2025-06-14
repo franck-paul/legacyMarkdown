@@ -37,7 +37,7 @@ class Prepend extends Process
             My::path(),
             'libs',
             'Michelf',
-            'markdown',
+            'Markdown',
             'Michelf',
         ]));
 

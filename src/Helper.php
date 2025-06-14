@@ -21,6 +21,14 @@ use Michelf\MarkdownExtra;
 
 class Helper
 {
+    /**
+     * Convert Markdown text into HTML
+     *
+     * @param      string  $str    The Markdown text to convert
+     * @param      string  $type   The type (full/comment)
+     *
+     * @return     string  The HTML text
+     */
     public static function convert(string $str, string $type = 'full'): string
     {
         $engine = new MarkdownExtra();
@@ -44,6 +52,9 @@ class Helper
         return $engine->transform($str);
     }
 
+    /**
+     * Register macro:md for Wiki syntax
+     */
     public static function coreInitWikiPost(WikiToHtml $wiki): string
     {
         $wiki->registerFunction('macro:md', self::convert(...));
@@ -51,6 +62,13 @@ class Helper
         return '';
     }
 
+    /**
+     * Convert Markdown (original syntax from J. Gruber) to HTML
+     *
+     * @param      string  $str    The HTML tex to convert
+     *
+     * @return     string  The Markdown text
+     */
     public static function fromHTML(string $str): string
     {
         $config = [
