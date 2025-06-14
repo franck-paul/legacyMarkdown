@@ -16,6 +16,7 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\legacyMarkdown;
 
 use Dotclear\Helper\Html\WikiToHtml;
+use League\HTMLToMarkdown\HtmlConverter;
 use Michelf\MarkdownExtra;
 
 class Helper
@@ -48,5 +49,16 @@ class Helper
         $wiki->registerFunction('macro:md', self::convert(...));
 
         return '';
+    }
+
+    public static function fromHTML(string $str): string
+    {
+        $config = [
+            'header_style' => 'atx',    // Force ATX style for header (even for h1 and h2)
+        ];
+
+        $converter = new HtmlConverter($config);
+
+        return $converter->convert($str);
     }
 }

@@ -1,3 +1,6 @@
 [submodule "lib"]
 	path = lib
 	url = https://github.com/michelf/php-markdown.git
+[submodule "tool"]
+	path = tool
+	url = https://github.com/thephpleague/html-to-markdown

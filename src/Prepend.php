@@ -32,10 +32,18 @@ class Prepend extends Process
             return false;
         }
 
+        // Markdown extra
         Autoloader::me()->addNamespace('Michelf', implode(DIRECTORY_SEPARATOR, [
             My::path(),
             'lib',
             'Michelf',
+        ]));
+
+        // HTML Converter
+        Autoloader::me()->addNamespace('League\HTMLToMarkdown', implode(DIRECTORY_SEPARATOR, [
+            My::path(),
+            'tool',
+            'src',
         ]));
 
         App::behavior()->addBehavior('coreInitWikiPost', Helper::coreInitWikiPost(...));
