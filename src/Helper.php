@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\legacyMarkdown;
 
+use Dotclear\Helper\Html\HtmlFilter;
 use Dotclear\Helper\Html\WikiToHtml;
 use League\HTMLToMarkdown\HtmlConverter;
 use Michelf\MarkdownExtra;
@@ -37,7 +38,6 @@ class Helper
                 // Setup some options in comments
                 $engine->hashtag_protection = true;
 
-                break;
             case 'full':
             default:
                 break;
@@ -49,7 +49,14 @@ class Helper
         $timeofday            = gettimeofday();
         $engine->fn_id_prefix = 'ts' . $timeofday['sec'] . $timeofday['usec'] . '.';
 
-        return $engine->transform($str);
+        $ret = $engine->transform($str);
+
+        if ($type === 'comment') {
+            // For comments remove all interactive content as far as possible
+            $ret = self::stripInteractiveTags($ret);
+        }
+
+        return $ret;
     }
 
     /**
@@ -78,5 +85,38 @@ class Helper
         $converter = new HtmlConverter($config);
 
         return $converter->convert($str);
+    }
+
+    protected static function stripInteractiveTags(string $str): string
+    {
+        // First use HtmlFilter to do the job
+        $filter = new HtmlFilter();
+
+        // Remove interactive tags
+        $interactive_tags = [
+            'applet',
+            'button',
+            'canvas',
+            'dialog',
+            'embed',
+            'form',
+            'frame',
+            'frameset',
+            'html',
+            'iframe',
+            'input',
+            'object',
+            'option',
+            'output',
+            'script',
+            'select',
+            'textarea',
+        ];
+        $filter->removeTags(...$interactive_tags);
+
+        // Use mini tidy in order to use restrictive list of allowed tags
+        $str = $filter->apply($str, false);
+
+        return $str;
     }
 }
