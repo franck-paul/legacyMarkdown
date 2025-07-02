@@ -15,7 +15,6 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\legacyMarkdown;
 
-use Dotclear\Helper\Html\HtmlFilter;
 use Dotclear\Helper\Html\WikiToHtml;
 use League\HTMLToMarkdown\HtmlConverter;
 use Michelf\MarkdownExtra;
@@ -91,34 +90,272 @@ class Helper
 
     protected static function stripInteractiveTags(string $str): string
     {
-        // First use HtmlFilter to do the job
-        $filter = new HtmlFilter();
+        // Non interactive HTML tags
+        $allowed_tags = [
+            // A
+            'a',
+            'abbr',
+            'acronym',
+            'address',
+            // 'applet',
+            'area',
+            'article',
+            'aside',
+            'audio',
 
-        // Remove interactive tags
-        $interactive_tags = [
-            'applet',
-            'button',
-            'canvas',
-            'dialog',
-            'embed',
-            'form',
-            'frame',
-            'frameset',
-            'html',
-            'iframe',
-            'input',
-            'object',
+            // B
+            'b',
+            'base',
+            'basefont',
+            'bdi',
+            'bdo',
+            'big',
+            'blockquote',
+            'body',
+            'br',
+            // 'button',
+
+            // C
+            // 'canvas',
+            'caption',
+            'center',
+            'cite',
+            'code',
+            'col',
+            'colgroup',
+
+            // D
+            'data',
+            'datalist',
+            'dd',
+            'del',
+            'details',
+            'dfn',
+            // 'dialog',
+            'dir',
+            'div',
+            'dl',
+            'dt',
+
+            // E
+            'em',
+            // 'embed',
+
+            // F
+            'fieldset',
+            'figcaption',
+            'figure',
+            'font',
+            'footer',
+            // 'form',
+            // 'frame',
+            // 'frameset',
+
+            // G
+
+            // H
+            'h1',
+            'h2',
+            'h3',
+            'h4',
+            'h5',
+            'h6',
+            'head',
+            'hr',
+            // 'html',
+
+            // I
+            'i',
+            // 'iframe',
+            'img',
+            // 'input',
+            'ins',
+            'isindex',
+
+            // J
+
+            // K
+            'kbd',
+            'keygen',
+
+            // L
+            'label',
+            'legend',
+            'li',
+            'link',
+
+            // M
+            'main',
+            'map',
+            'mark',
+            'menu',
+            'menuitem',
+            'meta',
+            'meter',
+
+            // N
+            'nav',
+            'noframes',
+            'noscript',
+
+            // O
+            // 'object',
+            'ol',
+            'optgroup',
             'option',
             'output',
-            'script',
-            'select',
-            'textarea',
+
+            // P
+            'p',
+            'param',
+            'picture',
+            'pre',
+            'progress',
+
+            // Q
+            'q',
+
+            // R
+            'rp',
+            'rt',
+            'rtc',
+            'ruby',
+
+            // S
+            's',
+            'samp',
+            // 'script',
+            'section',
+            // 'select',
+            'small',
+            'source',
+            'span',
+            'strike',
+            'strong',
+            'style',
+            'sub',
+            'summary',
+            'sup',
+
+            // T
+            'table',
+            'tbody',
+            'td',
+            'template',
+            // 'textarea',
+            'tfoot',
+            'th',
+            'thead',
+            'time',
+            'title',
+            'tr',
+            'track',
+            'tt',
+
+            // U
+            'u',
+            'ul',
+
+            // V
+            'var',
+            'video',
+
+            // W
+            'wbr',
+
+            // X
+
+            // Y
+
+            // Z
         ];
-        $filter->removeTags(...$interactive_tags);
 
-        // Use mini tidy in order to use restrictive list of allowed tags
-        $str = $filter->apply($str, false);
+        // Interactive HTML attributes
+        $interactive_attributes = [
+            'onabort',
+            'onafterprint',
+            'onautocomplete',
+            'onautocompleteerror',
+            'onbeforeprint',
+            'onbeforeunload',
+            'onblur',
+            'oncancel',
+            'oncanplay',
+            'oncanplaythrough',
+            'onchange',
+            'onclick',
+            'onclose',
+            'oncontextmenu',
+            'oncuechange',
+            'ondblclick',
+            'ondrag',
+            'ondragend',
+            'ondragenter',
+            'ondragexit',
+            'ondragleave',
+            'ondragover',
+            'ondragstart',
+            'ondrop',
+            'ondurationchange',
+            'onemptied',
+            'onended',
+            'onerror',
+            'onfocus',
+            'onhashchange',
+            'oninput',
+            'oninvalid',
+            'onkeydown',
+            'onkeypress',
+            'onkeyup',
+            'onlanguagechange',
+            'onload',
+            'onloadeddata',
+            'onloadedmetadata',
+            'onloadstart',
+            'onmessage',
+            'onmousedown',
+            'onmouseenter',
+            'onmouseleave',
+            'onmousemove',
+            'onmouseout',
+            'onmouseover',
+            'onmouseup',
+            'onmousewheel',
+            'onoffline',
+            'ononline',
+            'onpause',
+            'onplay',
+            'onplaying',
+            'onpopstate',
+            'onprogress',
+            'onratechange',
+            'onredo',
+            'onreset',
+            'onresize',
+            'onscroll',
+            'onseeked',
+            'onseeking',
+            'onselect',
+            'onshow',
+            'onsort',
+            'onstalled',
+            'onstorage',
+            'onsubmit',
+            'onsuspend',
+            'ontimeupdate',
+            'ontoggle',
+            'onundo',
+            'onunload',
+            'onvolumechange',
+            'onwaiting',
+        ];
 
-        return $str;
+        // 1. Remove non allowed HTML tags
+        $str = strip_tags($str, $allowed_tags);
+
+        // 2. Dirty remove javascript event attributes
+        $list = implode('|', $interactive_attributes);
+
+        return (string) preg_replace('/(' . $list . ')\s*=\s*".*?"/is', '', $str);
     }
 }
