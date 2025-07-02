@@ -38,6 +38,8 @@ class Helper
                 // Setup some options in comments
                 $engine->hashtag_protection = true;
 
+                break;
+
             case 'full':
             default:
                 break;
