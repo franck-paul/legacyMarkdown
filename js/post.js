@@ -546,12 +546,17 @@ jsToolBar.prototype.elements.md_post_link.fn.markdown = function () {
 jsToolBar.prototype.elements.link.fncall.markdown = function () {
   const link = this.elements.link.data;
   if (link && link.href !== undefined) {
-    const stag = '[';
+    let stag = '[';
     const title = link.title ? ` "${link.title}"` : '';
     let etag = `](${link.href}${title})`;
 
     if (link?.hreflang) {
       etag = `${etag}{hreflang=${link.hreflang}}`;
+    }
+
+    if (!window?.getSelection()?.toString()) {
+      // Add link URL as link text content
+      stag = `${stag}${link.href}`;
     }
 
     this.encloseSelection(stag, etag);
