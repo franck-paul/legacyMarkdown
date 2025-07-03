@@ -107,36 +107,51 @@ jsToolBar.prototype.elements.md_quote = {
   type: 'button',
   title: 'Inline quote',
   fn: {},
-  cite_prompt: 'Source URL:',
-  lang_prompt: 'Language:',
-  prompt(default_cite = '', default_lang = '') {
-    const cite = window.prompt(this.elements.md_quote.cite_prompt, default_cite);
-    if (cite === null) {
-      return null;
-    }
-    const lang = window.prompt(this.elements.md_quote.lang_prompt, default_lang);
-    if (lang === null) {
-      return null;
-    }
-    return {
-      cite,
-      lang,
-    };
+  async prompt(callback = null) {
+    const dialog = new jsDialog({
+      title: this.toolbar.querySelector('.jstb_md_quote')?.title || this.elements.md_quote.title,
+      confirm_label: dotclear.md_options.dialog.ok,
+      cancel_label: dotclear.md_options.dialog.cancel,
+      fields: [
+        {
+          // Quote URL input
+          default: this.elements.md_quote.dialog.default_url,
+          html: this.elements.md_quote.dialog.url,
+        },
+        {
+          // Language select
+          default: this.elements.md_quote.dialog.default_lang,
+          html: this.elements.md_quote.dialog.language,
+        },
+      ],
+    });
+    await dialog.prompt().then((choice) => {
+      if (choice && callback) {
+        const response = JSON.parse(choice);
+        callback({
+          cite: this.stripBaseURL(response[0]),
+          lang: response[1],
+        });
+
+        return;
+      }
+      this.toolbar.querySelector('.jstb_md_quote').focus();
+    });
   },
 };
-jsToolBar.prototype.elements.md_quote.fn.markdown = function () {
-  const quote = this.elements.md_quote.prompt.call(this);
-  if (quote !== null) {
-    let stag = '<q';
-    const etag = '</q>';
-    stag = quote.cite ? `${stag} cite="${quote.cite}"` : stag;
-    stag = quote.lang ? `${stag} lang="${quote.lang}"` : stag;
-    stag = `${stag}>`;
+jsToolBar.prototype.elements.md_quote.fn.markdown = async function () {
+  await this.elements.md_quote.prompt.call(this, (response) => {
+    let start_tag = '<q';
+    if (response.cite) {
+      start_tag = `${start_tag} cite="${response.cite}"`;
+    }
+    if (response.lang) {
+      start_tag = `${start_tag} lang="${response.lang}"`;
+    }
+    start_tag = `${start_tag}>`;
 
-    this.encloseSelection(stag, etag);
-    return;
-  }
-  this.textarea.focus();
+    this.encloseSelection(start_tag, '</q>');
+  });
 };
 
 // code
@@ -166,24 +181,36 @@ jsToolBar.prototype.elements.md_foreign = {
   type: 'button',
   title: 'Foreign text',
   fn: {},
-  lang_prompt: 'Language:',
-  default_lang: 'en',
-  prompt(default_lang = '') {
-    return window.prompt(this.elements.md_foreign.lang_prompt, default_lang || this.elements.md_foreign.default_lang);
+  async prompt(callback = null) {
+    const dialog = new jsDialog({
+      title: this.toolbar.querySelector('.jstb_md_foreign')?.title || this.elements.md_foreign.title,
+      confirm_label: dotclear.md_options.dialog.ok,
+      cancel_label: dotclear.md_options.dialog.cancel,
+      fields: [
+        {
+          // Language select
+          default: this.elements.md_foreign.dialog.default_lang,
+          html: this.elements.md_foreign.dialog.language,
+        },
+      ],
+    });
+    await dialog.prompt().then((choice) => {
+      if (choice && callback) {
+        const response = JSON.parse(choice);
+        callback({
+          lang: response[0],
+        });
+
+        return;
+      }
+      this.toolbar.querySelector('.jstb_md_foreign').focus();
+    });
   },
 };
-
-jsToolBar.prototype.elements.md_foreign.fn.markdown = function () {
-  const lang = this.elements.md_foreign.prompt.call(this);
-  if (lang !== null) {
-    let stag = '<i';
-    const etag = '</i>';
-    stag = lang ? `${stag} lang="${lang}">` : `${stag}>`;
-
-    this.encloseSelection(stag, etag);
-    return;
-  }
-  this.textarea.focus();
+jsToolBar.prototype.elements.md_foreign.fn.markdown = async function () {
+  await this.elements.md_foreign.prompt.call(this, (response) => {
+    this.encloseSelection(`<i lang="${response.lang}">`, '</i>');
+  });
 };
 
 // spacer

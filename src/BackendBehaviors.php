@@ -27,10 +27,14 @@ use Dotclear\Helper\Html\Form\Label;
 use Dotclear\Helper\Html\Form\Legend;
 use Dotclear\Helper\Html\Form\Link;
 use Dotclear\Helper\Html\Form\None;
+use Dotclear\Helper\Html\Form\Option;
 use Dotclear\Helper\Html\Form\Para;
+use Dotclear\Helper\Html\Form\Select;
 use Dotclear\Helper\Html\Form\Td;
 use Dotclear\Helper\Html\Form\Text;
 use Dotclear\Helper\Html\Form\Th;
+use Dotclear\Helper\Html\Form\Url;
+use Dotclear\Helper\L10n;
 use Dotclear\Interface\Core\BlogSettingsInterface;
 
 class BackendBehaviors
@@ -130,6 +134,35 @@ class BackendBehaviors
             return '';
         }
 
+        $language_options = [];
+        $language_codes   = L10n::getISOcodes(true, true);
+        foreach ($language_codes as $language_name => $language_code) {
+            $language_options[] = (new Option($language_name, $language_code))->lang($language_code);
+        }
+
+        $language_select = (new Select('language'))
+            ->items($language_options)
+            ->translate(false)
+            ->label(new Label(__('Language:'), Label::OL_TF))
+        ->render();
+
+        // Add an empty choice
+        array_unshift($language_options, (new Option('', '')));
+
+        $citeurl_input = (new Url('cite_url'))
+            ->size(35)
+            ->maxlength(512)
+            ->autocomplete('url')
+            ->translate(false)
+            ->label((new Label(__('URL:'), Label::OL_TF)))
+        ->render();
+
+        $citelang_select = (new Select('cite_language'))
+            ->items($language_options)
+            ->translate(false)
+            ->label(new Label(__('Language:'), Label::OL_TF))
+        ->render();
+
         $data = [
             'style' => [  // List of classes used
                 'class'  => true,
@@ -138,6 +171,10 @@ class BackendBehaviors
                 'right'  => 'media-right',
             ],
             'img_link_title' => __('Open the media'),
+            'dialog'         => [
+                'ok'     => __('Ok'),
+                'cancel' => __('Cancel'),
+            ],
         ];
 
         return
@@ -179,11 +216,15 @@ class BackendBehaviors
             ],
 
             'md_quote' => [
-                'title'       => __('Inline quote'),
-                'icon'        => urldecode(Page::getPF(My::id() . '/img/bt_quote.svg')),
-                'icon_dark'   => urldecode(Page::getPF(My::id() . '/img/bt_quote-dark.svg')),
-                'cite_prompt' => __('Source URL:'),
-                'lang_prompt' => __('Language:'),
+                'title'     => __('Inline quote'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_quote.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_quote-dark.svg')),
+                'dialog'    => [
+                    'url'          => $citeurl_input,
+                    'default_url'  => '',
+                    'language'     => $citelang_select,
+                    'default_lang' => '',
+                ],
             ],
 
             'md_code' => [
@@ -198,10 +239,13 @@ class BackendBehaviors
             ],
 
             'md_foreign' => [
-                'title'       => __('Foreign text'),
-                'icon'        => urldecode(Page::getPF(My::id() . '/img/bt_foreign.svg')),
-                'icon_dark'   => urldecode(Page::getPF(My::id() . '/img/bt_foreign-dark.svg')),
-                'lang_prompt' => __('Language:'),
+                'title'     => __('Foreign text'),
+                'icon'      => urldecode(Page::getPF(My::id() . '/img/bt_foreign.svg')),
+                'icon_dark' => urldecode(Page::getPF(My::id() . '/img/bt_foreign-dark.svg')),
+                'dialog'    => [
+                    'language'     => $language_select,
+                    'default_lang' => 'en',
+                ],
             ],
 
             'md_br' => [
