@@ -50,6 +50,9 @@ class Helper
         $timeofday            = gettimeofday();
         $engine->fn_id_prefix = 'ts' . $timeofday['sec'] . $timeofday['usec'] . '.';
 
+        // Set backlink title
+        $engine->fn_backlink_title = __('Back to content %%');
+
         $ret = $engine->transform($str);
 
         if ($type === 'comment') {
