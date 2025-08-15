@@ -74,10 +74,6 @@ class BackendBehaviors
      */
     public static function adminPostFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post): string
     {
-        if (version_compare(App::config()->dotclearVersion(), '2.35-dev', '<')) {
-            return '';
-        }
-
         if ($post instanceof MetaRecord) {
             $convert = (new Div())
                 ->class(['format_control', 'control_no_markdown', 'control_no_wiki'])
@@ -107,10 +103,6 @@ class BackendBehaviors
      */
     public static function adminConvertBeforePostEdit(string $convert, ArrayObject $params): string
     {
-        if (version_compare(App::config()->dotclearVersion(), '2.35-dev', '<')) {
-            return '';
-        }
-
         if ($convert === 'markdown') {
             $params['excerpt'] = Helper::fromHTML($params['excerpt']);
             $params['content'] = Helper::fromHTML($params['content']);
