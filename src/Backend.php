@@ -44,6 +44,7 @@ class Backend extends Process
 
             'adminPostEditor'            => BackendBehaviors::adminPostEditor(...),
             'adminPostFormItems'         => BackendBehaviors::adminPostFormItems(...),
+            'adminPageFormItems'         => BackendBehaviors::adminPageFormItems(...),
             'adminConvertBeforePostEdit' => BackendBehaviors::adminConvertBeforePostEdit(...),
 
             // Add behaviour callback for post/page lists

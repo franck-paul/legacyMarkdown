@@ -71,8 +71,9 @@ class BackendBehaviors
      * @param      ArrayObject<string, mixed>   $main     The main
      * @param      ArrayObject<string, mixed>   $sidebar  The sidebar
      * @param      MetaRecord|null              $post     The post
+     * @param      string                       $url      The entry edit URL
      */
-    public static function adminPostFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post): string
+    protected static function adminEntryFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post, string $url): string
     {
         if ($post instanceof MetaRecord) {
             $convert = (new Div())
@@ -80,19 +81,57 @@ class BackendBehaviors
                 ->items([
                     (new Link('convert-markdown'))
                         ->class(['button', App::backend()->post_id && App::backend()->post_format !== 'xhtml' ? ' hide' : ''])
-                        ->href(App::backend()->url()->get(
-                            'admin.post',
-                            [
-                                'id'             => App::backend()->post_id,
-                                'convert'        => '1',
-                                'convert-format' => 'markdown',
-                            ]
-                        ))
+                        ->href($url)
                         ->text(__('Convert to Markdown')),
                 ])
             ->render();
 
             $sidebar['status-box']['items']['post_format'] .= $convert;
+        }
+
+        return '';
+    }
+
+    /**
+     * @param      ArrayObject<string, mixed>   $main     The main
+     * @param      ArrayObject<string, mixed>   $sidebar  The sidebar
+     * @param      MetaRecord|null              $post     The post
+     */
+    public static function adminPostFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post): string
+    {
+        if ($post instanceof MetaRecord) {
+            $url = App::backend()->url()->get(
+                'admin.post',
+                [
+                    'id'             => App::backend()->post_id,
+                    'convert'        => '1',
+                    'convert-format' => 'markdown',
+                ]
+            );
+            self::adminEntryFormItems($main, $sidebar, $post, $url);
+        }
+
+        return '';
+    }
+
+    /**
+     * @param      ArrayObject<string, mixed>   $main     The main
+     * @param      ArrayObject<string, mixed>   $sidebar  The sidebar
+     * @param      MetaRecord|null              $post     The post
+     */
+    public static function adminPageFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post): string
+    {
+        if ($post instanceof MetaRecord) {
+            $url = App::backend()->url()->get(
+                'admin.plugin.pages',
+                [
+                    'act'            => 'page',
+                    'id'             => App::backend()->post_id,
+                    'convert'        => '1',
+                    'convert-format' => 'markdown',
+                ]
+            );
+            self::adminEntryFormItems($main, $sidebar, $post, $url);
         }
 
         return '';
