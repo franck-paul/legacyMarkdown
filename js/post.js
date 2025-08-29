@@ -556,7 +556,7 @@ jsToolBar.prototype.elements.link.fncall.markdown = function () {
 
     if (!window?.getSelection()?.toString()) {
       // Add link URL as link text content
-      stag = `${stag}${link.href}`;
+      stag = `${stag}${link.href_title ?? link.href}`;
     }
 
     this.encloseSelection(stag, etag);
