@@ -17,10 +17,12 @@ namespace Dotclear\Plugin\legacyMarkdown;
 
 use Autoloader;
 use Dotclear\App;
-use Dotclear\Core\Process;
+use Dotclear\Helper\Process\TraitProcess;
 
-class Prepend extends Process
+class Prepend
 {
+    use TraitProcess;
+
     public static function init(): bool
     {
         return self::status(My::checkContext(My::PREPEND));

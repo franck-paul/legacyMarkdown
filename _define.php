@@ -19,7 +19,7 @@ $this->registerModule(
     [
         'date'     => '2025-09-05T19:53:50+0200',
         'requires' => [
-            ['core', '2.35'],
+            ['core', '2.36'],
             ['TemplateHelper'],
         ],
         'permissions' => 'My',
