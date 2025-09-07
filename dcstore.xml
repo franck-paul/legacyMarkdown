@@ -1,12 +1,12 @@
 <modules xmlns:da="http://dotaddict.org/da/">
   <module id="legacyMarkdown">
     <name>Markdown syntax</name>
-    <version>8.8</version>
+    <version>9.0</version>
     <author>Michel Fortin, Franck Paul and contributors</author>
     <desc>Brings you markdown syntax for your entries</desc>
-    <date>2025-09-05T19:53:50+0200</date>
-    <file>https://github.com/franck-paul/legacyMarkdown/releases/download/8.8/plugin-legacyMarkdown-8.8.zip</file>
-    <da:dcmin>2.35</da:dcmin>
+    <date>2025-09-07T15:59:17+0200</date>
+    <file>https://github.com/franck-paul/legacyMarkdown/releases/download/9.0/plugin-legacyMarkdown-9.0.zip</file>
+    <da:dcmin>2.36</da:dcmin>
     <da:details>https://open-time.net/?q=legacyMarkdown</da:details>
     <da:support>https://github.com/franck-paul/legacyMarkdown</da:support>
   </module>
