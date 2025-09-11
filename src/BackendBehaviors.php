@@ -371,8 +371,12 @@ class BackendBehaviors
      */
     public static function adminColumnsLists(ArrayObject $cols): string
     {
-        $cols['posts'][1]['format'] = [true, __('Format')];
-        $cols['pages'][1]['format'] = [true, __('Format')];
+        if (isset($cols['posts'])) {
+            $cols['posts'][1]['format'] = [true, __('Format')];
+        }
+        if (isset($cols['pages'])) {
+            $cols['pages'][1]['format'] = [true, __('Format')];
+        }
 
         return '';
     }
