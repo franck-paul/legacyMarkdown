@@ -382,68 +382,76 @@ class BackendBehaviors
     }
 
     /**
-     * @param      ArrayObject<string, string>    $cols   The cols
+     * @param      ArrayObject<string, mixed>     $cols         The cols
+     * @param      bool                           $component    Component as value is prefered
      */
-    private static function adminEntryListHeader(ArrayObject $cols): string
+    private static function adminEntryListHeader(ArrayObject $cols, bool $component = false): string
     {
-        $cols['format'] = (new Th())
+        $value = (new Th())
             ->scope('col')
-            ->text(__('Format'))
-        ->render();
+            ->text(__('Format'));
+
+        $cols['format'] = $component ? $value : $value->render();
 
         return '';
     }
 
     /**
-     * @param      MetaRecord                     $rs     The recordset
-     * @param      ArrayObject<string, string>    $cols   The cols
+     * @param      MetaRecord                     $rs           The recordset
+     * @param      ArrayObject<string, mixed>     $cols         The cols
+     * @param      bool                           $component    Component as value is prefered
      */
-    public static function adminPostListHeader(MetaRecord $rs, ArrayObject $cols): string
+    public static function adminPostListHeader(MetaRecord $rs, ArrayObject $cols, bool $component = false): string
     {
-        return self::adminEntryListHeader($cols);
+        return self::adminEntryListHeader($cols, $component);
     }
 
     /**
-     * @param      MetaRecord                     $rs     The recordset
-     * @param      ArrayObject<string, string>    $cols   The cols
+     * @param      MetaRecord                     $rs           The recordset
+     * @param      ArrayObject<string, mixed>     $cols         The cols
+     * @param      bool                           $component    Component as value is prefered
      */
-    public static function adminPagesListHeader(MetaRecord $rs, ArrayObject $cols): string
+    public static function adminPagesListHeader(MetaRecord $rs, ArrayObject $cols, bool $component = false): string
     {
-        return self::adminEntryListHeader($cols);
+        return self::adminEntryListHeader($cols, $component);
     }
 
     /**
-     * @param      MetaRecord                     $rs     The recordset
-     * @param      ArrayObject<string, string>    $cols   The cols
+     * @param      MetaRecord                     $rs           The recordset
+     * @param      ArrayObject<string, mixed>     $cols         The cols
+     * @param      bool                           $component    Component as value is prefered
      */
-    private static function adminEntryListValue(MetaRecord $rs, ArrayObject $cols): string
+    private static function adminEntryListValue(MetaRecord $rs, ArrayObject $cols, bool $component = false): string
     {
-        $cols['format'] = (new Td())
+        $value = (new Td())
             ->class('nowrap')
             ->items([
                 self::getFormat($rs->post_format),
-            ])
-        ->render();
+            ]);
+
+        $cols['format'] = $component ? $value : $value->render();
 
         return '';
     }
 
     /**
-     * @param      MetaRecord                     $rs     The recordset
-     * @param      ArrayObject<string, string>    $cols   The cols
+     * @param      MetaRecord                     $rs           The recordset
+     * @param      ArrayObject<string, mixed>     $cols         The cols
+     * @param      bool                           $component    Component as value is prefered
      */
-    public static function adminPostListValue(MetaRecord $rs, ArrayObject $cols): string
+    public static function adminPostListValue(MetaRecord $rs, ArrayObject $cols, bool $component = false): string
     {
-        return self::adminEntryListValue($rs, $cols);
+        return self::adminEntryListValue($rs, $cols, $component);
     }
 
     /**
-     * @param      MetaRecord                     $rs     The recordset
-     * @param      ArrayObject<string, string>    $cols   The cols
+     * @param      MetaRecord                     $rs           The recordset
+     * @param      ArrayObject<string, mixed>     $cols         The cols
+     * @param      bool                           $component    Component as value is prefered
      */
-    public static function adminPagesListValue(MetaRecord $rs, ArrayObject $cols): string
+    public static function adminPagesListValue(MetaRecord $rs, ArrayObject $cols, bool $component = false): string
     {
-        return self::adminEntryListValue($rs, $cols);
+        return self::adminEntryListValue($rs, $cols, $component);
     }
 
     private static function getFormat(string $format = ''): Img|None
