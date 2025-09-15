@@ -7,6 +7,7 @@ dotclear.md_options = dotclear.getData('md_options');
 
 // block format (paragraph, headers)
 jsToolBar.prototype.elements.md_blocks = {
+  group: 'header',
   type: 'combo',
   title: 'block format',
   options: {
@@ -42,16 +43,9 @@ jsToolBar.prototype.elements.md_blocks = {
   },
 };
 
-// spacer
-jsToolBar.prototype.elements.md_space0 = {
-  type: 'space',
-  format: {
-    markdown: true,
-  },
-};
-
 // strong
 jsToolBar.prototype.elements.md_strong = {
+  group: 'format',
   type: 'button',
   title: 'Strong emphasis',
   shortkey: 'KeyB',
@@ -65,6 +59,7 @@ jsToolBar.prototype.elements.md_strong = {
 
 // em
 jsToolBar.prototype.elements.md_em = {
+  group: 'format',
   type: 'button',
   title: 'Emphasis',
   shortkey: 'KeyI',
@@ -78,6 +73,7 @@ jsToolBar.prototype.elements.md_em = {
 
 // ins
 jsToolBar.prototype.elements.md_ins = {
+  group: 'format',
   type: 'button',
   title: 'Inserted',
   shortkey: 'KeyU',
@@ -91,6 +87,7 @@ jsToolBar.prototype.elements.md_ins = {
 
 // del
 jsToolBar.prototype.elements.md_del = {
+  group: 'format',
   type: 'button',
   title: 'Deleted',
   shortkey: 'KeyD',
@@ -104,6 +101,7 @@ jsToolBar.prototype.elements.md_del = {
 
 // quote
 jsToolBar.prototype.elements.md_quote = {
+  group: 'format',
   type: 'button',
   title: 'Inline quote',
   fn: {},
@@ -156,6 +154,7 @@ jsToolBar.prototype.elements.md_quote.fn.markdown = async function () {
 
 // code
 jsToolBar.prototype.elements.md_code = {
+  group: 'format',
   type: 'button',
   title: 'Code',
   fn: {
@@ -167,6 +166,7 @@ jsToolBar.prototype.elements.md_code = {
 
 // mark
 jsToolBar.prototype.elements.md_mark = {
+  group: 'format',
   type: 'button',
   title: 'Mark',
   fn: {
@@ -178,6 +178,7 @@ jsToolBar.prototype.elements.md_mark = {
 
 // foreign text
 jsToolBar.prototype.elements.md_foreign = {
+  group: 'format',
   type: 'button',
   title: 'Foreign text',
   fn: {},
@@ -213,16 +214,9 @@ jsToolBar.prototype.elements.md_foreign.fn.markdown = async function () {
   });
 };
 
-// spacer
-jsToolBar.prototype.elements.md_space1 = {
-  type: 'space',
-  format: {
-    markdown: true,
-  },
-};
-
 // br
 jsToolBar.prototype.elements.md_br = {
+  group: 'br',
   type: 'button',
   title: 'Line break',
   fn: {
@@ -232,16 +226,9 @@ jsToolBar.prototype.elements.md_br = {
   },
 };
 
-// spacer
-jsToolBar.prototype.elements.md_space2 = {
-  type: 'space',
-  format: {
-    markdown: true,
-  },
-};
-
 // blockquote
 jsToolBar.prototype.elements.md_blockquote = {
+  group: 'block',
   type: 'button',
   title: 'Blockquote',
   fn: {
@@ -253,6 +240,7 @@ jsToolBar.prototype.elements.md_blockquote = {
 
 // pre
 jsToolBar.prototype.elements.md_pre = {
+  group: 'block',
   type: 'button',
   title: 'Preformated text',
   fn: {
@@ -266,6 +254,7 @@ jsToolBar.prototype.elements.md_pre = {
 
 // ul
 jsToolBar.prototype.elements.md_ul = {
+  group: 'block',
   type: 'button',
   title: 'Unordered list',
   fn: {
@@ -277,6 +266,7 @@ jsToolBar.prototype.elements.md_ul = {
 
 // ol
 jsToolBar.prototype.elements.md_ol = {
+  group: 'block',
   type: 'button',
   title: 'Ordered list',
   fn: {
@@ -288,6 +278,7 @@ jsToolBar.prototype.elements.md_ol = {
 
 // details
 jsToolBar.prototype.elements.md_details = {
+  group: 'block',
   type: 'button',
   title: 'Details block',
   fn: {},
@@ -315,6 +306,7 @@ jsToolBar.prototype.elements.md_details.fn.markdown = function () {
 
 // aside
 jsToolBar.prototype.elements.md_aside = {
+  group: 'block',
   type: 'button',
   title: 'Aside',
   fn: {
@@ -326,16 +318,9 @@ jsToolBar.prototype.elements.md_aside = {
   },
 };
 
-// spacer
-jsToolBar.prototype.elements.md_space3 = {
-  type: 'space',
-  format: {
-    markdown: true,
-  },
-};
-
 // link
 jsToolBar.prototype.elements.md_link = {
+  group: 'link',
   type: 'button',
   title: 'Link',
   shortkey: 'KeyL',
@@ -362,6 +347,7 @@ jsToolBar.prototype.elements.md_link.fn.markdown = function () {
 
 // img
 jsToolBar.prototype.elements.md_img = {
+  group: 'media',
   type: 'button',
   title: 'External image',
   fn: {},
@@ -407,6 +393,7 @@ jsToolBar.prototype.elements.md_img.fn.markdown = function () {
 /* Image selector
 -------------------------------------------------------- */
 jsToolBar.prototype.elements.md_img_select = {
+  group: 'media',
   type: 'button',
   title: 'Image chooser',
   shortkey: 'KeyM',
@@ -520,6 +507,7 @@ jsToolBar.prototype.elements.flv_insert.fncall.markdown = function () {
 /* Posts selector
 -------------------------------------------------------- */
 jsToolBar.prototype.elements.md_post_link = {
+  group: 'link',
   type: 'button',
   title: 'Link to an entry',
   shortkey: 'KeyE',
@@ -568,6 +556,7 @@ jsToolBar.prototype.elements.link.fncall.markdown = function () {
 /* Footnote helper
 -------------------------------------------------------- */
 jsToolBar.prototype.elements.md_footnote = {
+  group: 'link',
   type: 'button',
   title: 'Footnote',
   shortkey: 'KeyN',
@@ -598,16 +587,9 @@ jsToolBar.prototype.elements.md_footnote = {
   },
 };
 
-// spacer
-jsToolBar.prototype.elements.md_space4 = {
-  type: 'space',
-  format: {
-    markdown: true,
-  },
-};
-
 // Preview
 jsToolBar.prototype.elements.md_preview = {
+  group: 'editor',
   type: 'button',
   title: 'Preview',
   shortkey: 'KeyP',
