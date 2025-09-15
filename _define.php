@@ -15,9 +15,9 @@ $this->registerModule(
     'Markdown syntax',
     'Brings you markdown syntax for your entries',
     'Michel Fortin, Franck Paul and contributors',
-    '9.1',
+    '9.2',
     [
-        'date'     => '2025-09-13T09:04:07+0200',
+        'date'     => '2025-09-15T20:05:18+0200',
         'requires' => [
             ['core', '2.36'],
             ['TemplateHelper'],
