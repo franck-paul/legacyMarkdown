@@ -33,7 +33,6 @@ use Dotclear\Helper\Html\Form\Td;
 use Dotclear\Helper\Html\Form\Text;
 use Dotclear\Helper\Html\Form\Th;
 use Dotclear\Helper\Html\Form\Url;
-use Dotclear\Helper\L10n;
 use Dotclear\Interface\Core\BlogSettingsInterface;
 
 class BackendBehaviors
@@ -165,7 +164,7 @@ class BackendBehaviors
         }
 
         $language_options = [];
-        $language_codes   = L10n::getISOcodes(true, true);
+        $language_codes   = App::lang()->getISOcodes(true, true);
         foreach ($language_codes as $language_name => $language_code) {
             $language_options[] = (new Option($language_name, $language_code))->lang($language_code);
         }
