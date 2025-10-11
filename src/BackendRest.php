@@ -40,7 +40,7 @@ class BackendRest
                 [&$html, 'html'],
             ]);
 
-            if (strlen($html) > 0) {
+            if ($html !== '') {
                 $media_root = App::blog()->host();
                 $html       = preg_replace_callback('/src="([^\"]*)"/', static function (array $matches) use ($media_root): string {
                     if (!preg_match('/^http(s)?:\/\//', $matches[1])) {
