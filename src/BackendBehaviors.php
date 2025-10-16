@@ -470,4 +470,16 @@ class BackendBehaviors
 
         return (new None());
     }
+
+    /**
+     * Add an Markdown help ID.
+     *
+     * @param   ArrayObject<string, mixed>     $blocks     The blocks
+     */
+    public static function adminPageHelpBlock(ArrayObject $blocks): void
+    {
+        if (in_array('core_wiki', $blocks->getArrayCopy(), true)) {
+            $blocks->append('markdown');
+        }
+    }
 }

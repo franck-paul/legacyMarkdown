@@ -49,6 +49,8 @@ class Backend
             'adminPageFormItems'         => BackendBehaviors::adminPageFormItems(...),
             'adminConvertBeforePostEdit' => BackendBehaviors::adminConvertBeforePostEdit(...),
 
+            'adminPageHelpBlock' => BackendBehaviors::adminPageHelpBlock(...),
+
             // Add behaviour callback for post/page lists
             'adminColumnsListsV2'    => BackendBehaviors::adminColumnsLists(...),
             'adminPostListHeaderV2'  => BackendBehaviors::adminPostListHeader(...),

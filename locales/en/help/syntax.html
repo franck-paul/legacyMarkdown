@@ -1,0 +1,78 @@
+<html>
+
+<head>
+  <title>Markdown Syntax</title>
+</head>
+
+<body>
+  <h4>Markdown Syntax</h4>
+  <p>Note: The symbol <code>⎵</code> represents a standard space.</p>
+  <h5>Line break markers</h5>
+  <dl>
+    <dt>Headings</dt>
+    <p><strong>Level 3</strong> = <code>###⎵</code> + Title<br>
+      <strong>Level 4</strong> = <code>####⎵</code> + Title<br>
+      <strong>Level 5</strong> = <code>##### ⎵</code> + Title<br>
+      (Levels 1 and 2 are reserved for the blog title and post title)</p>
+    <dt>Lists</dt>
+    <p><strong>Numbered</strong> = <code>1.⎵</code> + list item<br>
+      <strong>Unnumbered</strong> = <code>*⎵</code> + list item or <code>-⎵</code> + list item</p>
+    <p>2nd level = <code>⎵⎵⎵⎵1.⎵</code> or <code>⎵⎵⎵⎵*⎵</code> / <code>⎵⎵⎵⎵-⎵</code> + list item<br>
+      (indentation = 4 spaces)</p>
+    <dt>Definitions/Descriptions</dt>
+    <p><strong>Term</strong> = term<br>
+      <strong>Definition</strong> = <code>:⎵</code> + definition/description</p>
+    <dt>Miscellaneous</dt>
+    <p><strong>Horizontal line</strong> = <code>----</code></p>
+    <p><strong>Preformatted text</strong> = <code>⎵⎵⎵⎵</code> + text</p>
+    <p><strong>Quotation block</strong> = <code>&gt;⎵</code> + text</p>
+    <dt>Abbreviations</dt>
+    <p><code>*[</code> + abbreviation + <code>]:</code> + title (optional)<br>
+      Abbreviations are applied throughout the text and are then removed from the final result.</p>
+    <dt>Block <abbr title="Hyper Text Markup Language">HTML</abbr></dt>
+    <p>Insert the <abbr title="Hyper Text Markup Language">HTML</abbr> code directly.</p>
+  </dl>
+  <h5>End-of-line markers</h5>
+  <p><strong>Line break</strong> = <code>⎵⎵</code> (2 spaces)</p>
+  <h5><abbr title="Hyper Text Markup Language">HTML</abbr> attributes</h5>
+  <p>Use <code>{ [.class] [#id] [attribute=value] }</code> at the end of the (first) line<br>
+    Valid for titles, images, links, code blocks.</p>
+  <h5>Position-independent markers</h5>
+  <p><strong>Emphasis</strong> = <code>*</code> + text + <code>*</code><br>
+    <strong>Strong emphasis</strong> = <code>**</code> + text + <code>**</code></p>
+  <p><strong>Link</strong> = <code>(</code> + url + <code>)</code><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>[</code> + name + <code>](</code> + URL + <code>)</code><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>[</code> + name + <code>](</code> + url + “title” + <code>)</code><br>
+    <code>[</code> + name + <code>](</code> + url + <code>){ lang=</code> + language + <code>}</code><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>[</code> + name + <code>](</code> + url + “title” + <code>){ lang=</code> + language + <code>}</code></p>
+  <p><strong>Image</strong> = <code>![</code> + name + <code>](</code> + url + <code>)</code><br>
+    No equivalent for more complex forms (positioned and/or with title, caption, etc.); in this case, use <abbr title="Hyper Text Markup Language">HTML</abbr></p>
+  <p><strong>Code</strong> = <code>`</code> + code here + <code>`</code></p>
+  <p><strong>Note</strong> = <code>[^</code> + id + <code>]</code><br>
+    <code>[^</code> + id + <code>]:⎵</code> + Body of the note.</p>
+  <p><strong>Literal</strong> = <code>\</code> + character (prevents Markdown code from being interpreted)</p>
+  <h5>Specific to Markdown</h5>
+  <dl>
+    <dt>Code blocks</dt>
+    <p><code>```</code> + [ <code>language-</code> + language ]<br>
+      Code content<br>
+      <code>```</code></p>
+    <dt>Tables</dt>
+    <p>Example:</p>
+    <pre><code>First Header  | Second Header
+    ------------- | -------------
+    Content Cell  | Content Cell
+    Content Cell  | Content Cell
+    </code></pre>
+    <dt>HTML and Markdown</dt>
+    <p>An <abbr title="Hyper Text Markup Language">HTML</abbr> block can contain content using Markdown syntax, provided that the <code>markdown=“1”</code> attribute is added to the block. In some cases, such as cell tables (where there is a risk of confusion), only inline elements will be interpreted. In this case, use <code>markdown=“block”</code> as the block attribute. </p>
+  </dl>
+  <hr>
+  <p>See also:
+    <ul>
+      <li><a href="https://daringfireball.net/projects/markdown/syntax">Standard syntax</a></li>
+      <li><a href="https://michelf.ca/projects/php-markdown/extra/">Extended syntax</a></li>
+    </ul>
+</body>
+
+</html>
