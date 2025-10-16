@@ -1,78 +1,63 @@
 <html>
-
-<head>
-  <title>Syntaxe Markdown</title>
-</head>
-
+<head><title>Syntaxe Markdown</title></head>
 <body>
   <h4>Syntaxe Markdown</h4>
-  <p>Note&nbsp;: Le symbole <code>⎵</code> représente une espace standard.</p>
-  <h5>Marqueurs de début de ligne</h5>
+  <p>Note : Le symbole <code>⎵</code> représente un espace standard.</p>
+  <h5>Marqueurs de retour à la ligne</h5>
   <dl>
-    <dt>Titres</dt>
-    <p><strong>Niveau 3</strong> = <code>###⎵</code> + Titre<br>
-      <strong>Niveau 4</strong> = <code>####⎵</code> + Titre<br>
-      <strong>Niveau 5</strong> = <code>#####⎵</code> + Titre<br>
-      (les niveaux 1 et 2 sont réservés au titre du blog et au titre du billet)</p>
+<dt>Entêtes</dt>
+    <p><strong>Niveau 3</strong> = <code>###⎵</code> + Titre<br><strong>Niveau 4</strong> = <code>####⎵</code> + Titre<br><strong>Niveau 5</strong> = <code>##### ⎵</code> + Titre<br>
+      (Les niveaux 1 et 2 sont réservés au titre du blog et au titre de l'article)</p>
     <dt>Listes</dt>
-    <p><strong>Numérotées</strong> = <code>1.⎵</code> + élément de liste<br>
-      <strong>Non numérotées</strong> = <code>*⎵</code> + élément de liste ou <code>-⎵</code> + élément de liste</p>
+    <p><strong>Numéroté</strong> = <code>1.⎵</code> + élément de la liste<br><strong>Non numéroté</strong> = <code>*⎵</code> + élément de la liste ou <code>-⎵</code> + élément de la liste</p>
     <p>2e niveau = <code>⎵⎵⎵⎵1.⎵</code> ou <code>⎵⎵⎵⎵*⎵</code> / <code>⎵⎵⎵⎵-⎵</code> + élément de liste<br>
       (indentation = 4 espaces)</p>
     <dt>Définitions/Descriptions</dt>
-    <p><strong>Terme</strong> = terme<br>
-      <strong>Définition</strong> = <code>:⎵</code> + définition/description</p>
+    <p><strong>Terme</strong> = terme<br><strong>Définition</strong> = <code>:⎵</code> + définition/description</p>
     <dt>Divers</dt>
-    <p><strong>Trait horizontal</strong> = <code>----</code></p>
-    <p><strong>Texte préformatté</strong> = <code>⎵⎵⎵⎵</code> + texte</p>
+    <p><strong>Ligne horizontale</strong> = <code>----</code></p>
+    <p><strong>Texte préformaté</strong> = <code>⎵⎵⎵⎵</code> + texte</p>
     <p><strong>Bloc de citation</strong> = <code>&gt;⎵</code> + texte</p>
     <dt>Abréviations</dt>
-    <p><code>*[</code> + abréviation + <code>]:</code> + titre (optionnel)<br>
-      Les abréviations sont appliquées partout dans le texte et sont ensuite supprimées du résultat final.</p>
-    <dt>Bloc <abbr title="Hyper Text Markup Language">HTML</abbr></dt>
+    <p><code>*[</code> + abréviation + <code>] :</code> + titre (facultatif)<br>
+      Les abréviations sont appliquées tout au long du texte et sont ensuite supprimées du résultat final.</p>
+    <dt>Bloc <abbr title="Hyper Text Markup Language">HTML</abbr>
+</dt>
     <p>Insérer directement le code <abbr title="Hyper Text Markup Language">HTML</abbr>.</p>
   </dl>
-  <h5>Marqueurs en fin de ligne</h5>
+<h5>Marqueurs de fin de ligne</h5>
   <p><strong>Retour à la ligne</strong> = <code>⎵⎵</code> (2 espaces)</p>
-  <h5>Attributs <abbr title="Hyper Text Markup Language">HTML</abbr></h5>
-  <p>Utiliser <code>{ [.classe] [#id] [attribut=valeur] }</code> en fin de (1re) ligne<br>
-    Valable pour les titres, images, liens, blocs de code.</p>
+  <h5>Attributs <abbr title="Hyper Text Markup Language">HTML</abbr> </h5>
+  <p>Utilisez <code>{ [.class] [#id] [attribut=valeur] }</code> à la fin de la (première) ligne.<br>
+    Valable pour les titres, les images, les liens, les blocs de code.</p>
   <h5>Marqueurs indépendants de la position</h5>
-  <p><strong>Emphase</strong> = <code>*</code> + texte + <code>*</code><br>
-    <strong>Forte emphase</strong> = <code>**</code> + texte + <code>**</code></p>
-  <p><strong>Lien</strong> = <code>(</code> + url + <code>)</code><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>[</code> + nom + <code>](</code> + url + <code>)</code><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>[</code> + nom + <code>](</code> + url + “titre” + <code>)</code><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>[</code> + nom + <code>](</code> + url + <code>){ lang=</code> + langue + <code>}</code><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>[</code> + nom + <code>](</code> + url + “titre” + <code>){ lang=</code> + langue + <code>}</code></p>
+  <p><strong>Emphase</strong> = <code>*</code> + texte + <code>*</code><br><strong>Emphase forte</strong> = <code>**</code> + texte + <code>**</code></p>
+  <p><strong>Lien</strong> = <code>(</code> + url + <code>)</code><br><code>[</code> + nom + <code>](</code> + URL + <code>)</code><br><code>[</code> + nom + <code>](</code> + url + "titre" + <code>)</code><br><code>[</code> + nom + <code>](</code> + url + <code>){ lang=</code> + langue + <code>}</code><br><code>[</code> + nom + <code>](</code> + url + "titre" + <code>){ lang</code> = + langue + <code>}</code></p>
   <p><strong>Image</strong> = <code>![</code> + nom + <code>](</code> + url + <code>)</code><br>
-    Pas d’équivalence pour les formes plus complexes (positionnées et/ou avec titre, légende, …)&nbsp;; dans ce cas il faut utiliser du <abbr title="Hyper Text Markup Language">HTML</abbr></p>
+    Pas d'équivalent pour les formes plus complexes (positionnées et/ou avec titre, légende, etc.) ; dans ce cas, utiliser <abbr title="Hyper Text Markup Language">HTML</abbr></p>
   <p><strong>Code</strong> = <code>`</code> + code ici + <code>`</code></p>
-  <p><strong>Note</strong> = <code>[^</code> + id + <code>]</code><br>
-    <code>[^</code> + id + <code>]:⎵</code> + Corps de la note.</p>
-  <p><strong>Litéral</strong> = <code>\</code> + caractère (empêche l’interprétation d’un code Markdown)</p>
+  <p><strong>Note</strong> = <code>[^</code> + id + <code>]</code><br><code>[^</code> + id + <code>]:⎵</code> + Corps de la note.</p>
+  <p><strong>Littéral</strong> = <code>\</code> caractère (empêche l'interprétation du code Markdown)</p>
   <h5>Spécifique à Markdown</h5>
   <dl>
-    <dt>Blocs de code</dt>
-    <p><code>```</code> + [ <code>language-</code> + langage ]<br>
-      Contenu du code<br>
-      <code>```</code></p>
-    <dt>Tables</dt>
+<dt>Blocs de code</dt>
+    <p><code>```</code> + [ <code>language-</code> + language ]<br>
+      Contenu du code<br><code>```</code></p>
+    <dt>Tableaux</dt>
     <p>Exemple :</p>
-    <pre><code>First Header  | Second Header
+    <pre><code>Premier en-tête | Deuxième en-tête
     ------------- | -------------
-    Content Cell  | Content Cell
-    Content Cell  | Content Cell
+    Cellule de contenu | Cellule de contenu
+    Cellule de contenu | Cellule de contenu
     </code></pre>
     <dt>HTML et Markdown</dt>
-    <p>Un bloc <abbr title="Hyper Text Markup Language">HTML</abbr> peut contenir du contenu utilisant la syntaxe Markdown, à condition d’ajouter l’attribut <code>markdown="1"</code> au bloc. Dans certains cas, table de cellule par exemple (lorsqu’il y a risque de confusion), seuls les éléments en ligne seront interprétés. Dans ce cas utiliser <code>markdown="block"</code> comme attribut de bloc.</p>
+    <p>Un bloc <abbr title="Hyper Text Markup Language">HTML</abbr> peut contenir un contenu utilisant la syntaxe Markdown, à condition que l'attribut <code>markdown="1"</code> soit ajouté au bloc. Dans certains cas, comme les tableaux cellulaires (où il y a un risque de confusion), seuls les éléments en ligne seront interprétés. Dans ce cas, il convient d'utiliser <code>markdown="block"</code> comme attribut de bloc.</p>
   </dl>
-  <hr>
-  <p>Voir également :
-    <ul>
-      <li><a href="https://daringfireball.net/projects/markdown/syntax" hreflang="en">La syntaxe standard</a></li>
-      <li><a href="https://michelf.ca/projects/php-markdown/extra/" hreflang="en">La syntaxe étendue</a></li>
+<hr>
+<p>Voir aussi :</p>
+<ul>
+<li><a href="https://daringfireball.net/projects/markdown/syntax">Syntaxe standard</a></li>
+      <li><a href="https://michelf.ca/projects/php-markdown/extra/">Syntaxe étendue</a></li>
     </ul>
 </body>
-
 </html>
