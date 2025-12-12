@@ -48,6 +48,7 @@ jsToolBar.prototype.elements.md_strong = {
   group: 'format',
   type: 'button',
   title: 'Strong emphasis',
+  key: 'b',
   shortkey: 'KeyB',
   shortkey_name: 'B',
   fn: {
@@ -62,6 +63,7 @@ jsToolBar.prototype.elements.md_em = {
   group: 'format',
   type: 'button',
   title: 'Emphasis',
+  key: 'i',
   shortkey: 'KeyI',
   shortkey_name: 'I',
   fn: {
@@ -76,6 +78,7 @@ jsToolBar.prototype.elements.md_ins = {
   group: 'format',
   type: 'button',
   title: 'Inserted',
+  key: 'u',
   shortkey: 'KeyU',
   shortkey_name: 'U',
   fn: {
@@ -90,6 +93,7 @@ jsToolBar.prototype.elements.md_del = {
   group: 'format',
   type: 'button',
   title: 'Deleted',
+  key: 'd',
   shortkey: 'KeyD',
   shortkey_name: 'D',
   fn: {
@@ -323,6 +327,7 @@ jsToolBar.prototype.elements.md_link = {
   group: 'link',
   type: 'button',
   title: 'Link',
+  key: 'l',
   shortkey: 'KeyL',
   shortkey_name: 'L',
   fn: {},
@@ -396,6 +401,7 @@ jsToolBar.prototype.elements.md_img_select = {
   group: 'media',
   type: 'button',
   title: 'Image chooser',
+  key: 'm',
   shortkey: 'KeyM',
   shortkey_name: 'M',
   fn: {},
@@ -510,6 +516,7 @@ jsToolBar.prototype.elements.md_post_link = {
   group: 'link',
   type: 'button',
   title: 'Link to an entry',
+  key: 'e',
   shortkey: 'KeyE',
   shortkey_name: 'E',
   fn: {},
@@ -559,6 +566,7 @@ jsToolBar.prototype.elements.md_footnote = {
   group: 'link',
   type: 'button',
   title: 'Footnote',
+  key: 'n',
   shortkey: 'KeyN',
   shortkey_name: 'N',
   fn: {
@@ -592,6 +600,7 @@ jsToolBar.prototype.elements.md_preview = {
   group: 'editor',
   type: 'button',
   title: 'Preview',
+  key: 'p',
   shortkey: 'KeyP',
   shortkey_name: 'P',
   fn: {
