@@ -49,7 +49,6 @@ jsToolBar.prototype.elements.md_strong = {
   type: 'button',
   title: 'Strong emphasis',
   key: 'b',
-  shortkey: 'KeyB',
   shortkey_name: 'B',
   fn: {
     markdown() {
@@ -64,7 +63,6 @@ jsToolBar.prototype.elements.md_em = {
   type: 'button',
   title: 'Emphasis',
   key: 'i',
-  shortkey: 'KeyI',
   shortkey_name: 'I',
   fn: {
     markdown() {
@@ -79,7 +77,6 @@ jsToolBar.prototype.elements.md_ins = {
   type: 'button',
   title: 'Inserted',
   key: 'u',
-  shortkey: 'KeyU',
   shortkey_name: 'U',
   fn: {
     markdown() {
@@ -94,7 +91,6 @@ jsToolBar.prototype.elements.md_del = {
   type: 'button',
   title: 'Deleted',
   key: 'd',
-  shortkey: 'KeyD',
   shortkey_name: 'D',
   fn: {
     markdown() {
@@ -328,7 +324,6 @@ jsToolBar.prototype.elements.md_link = {
   type: 'button',
   title: 'Link',
   key: 'l',
-  shortkey: 'KeyL',
   shortkey_name: 'L',
   fn: {},
   fncall: {},
@@ -402,7 +397,6 @@ jsToolBar.prototype.elements.md_img_select = {
   type: 'button',
   title: 'Image chooser',
   key: 'm',
-  shortkey: 'KeyM',
   shortkey_name: 'M',
   fn: {},
   fncall: {},
@@ -517,7 +511,6 @@ jsToolBar.prototype.elements.md_post_link = {
   type: 'button',
   title: 'Link to an entry',
   key: 'e',
-  shortkey: 'KeyE',
   shortkey_name: 'E',
   fn: {},
   data: {},
@@ -567,7 +560,6 @@ jsToolBar.prototype.elements.md_footnote = {
   type: 'button',
   title: 'Footnote',
   key: 'n',
-  shortkey: 'KeyN',
   shortkey_name: 'N',
   fn: {
     markdown() {
@@ -601,7 +593,6 @@ jsToolBar.prototype.elements.md_preview = {
   type: 'button',
   title: 'Preview',
   key: 'p',
-  shortkey: 'KeyP',
   shortkey_name: 'P',
   fn: {
     markdown() {

@@ -57,7 +57,7 @@ class Helper
 
         if ($type === 'comment') {
             // For comments remove all interactive content as far as possible
-            $ret = self::stripInteractiveTags($ret);
+            return self::stripInteractiveTags($ret);
         }
 
         return $ret;
