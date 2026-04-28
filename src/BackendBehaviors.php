@@ -60,7 +60,7 @@ class BackendBehaviors
 
     public static function adminBeforeBlogSettingsUpdate(BlogSettingsInterface $settings): string
     {
-        $settings->system->put('markdown_comments', !empty($_POST['markdown_comments']), 'boolean');
+        $settings->system->put('markdown_comments', !empty($_POST['markdown_comments']), App::blogWorkspace()::NS_BOOL);
 
         return '';
     }
