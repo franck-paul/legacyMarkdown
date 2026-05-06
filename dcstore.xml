@@ -1,11 +1,11 @@
 <modules xmlns:da="http://dotaddict.org/da/">
   <module id="legacyMarkdown">
     <name>Markdown syntax</name>
-    <version>10.1</version>
+    <version>10.2</version>
     <author>Michel Fortin, Franck Paul and contributors</author>
     <desc>Brings you markdown syntax for your entries</desc>
-    <date>2026-04-06T11:01:09+0200</date>
-    <file>https://github.com/franck-paul/legacyMarkdown/releases/download/10.1/plugin-legacyMarkdown-10.1.zip</file>
+    <date>2026-05-06T17:33:25+0200</date>
+    <file>https://github.com/franck-paul/legacyMarkdown/releases/download/10.2/plugin-legacyMarkdown-10.2.zip</file>
     <da:dcmin>2.37</da:dcmin>
     <da:details>https://dotclear.org/plugin/detail/legacyMarkdown</da:details>
     <da:support>https://github.com/franck-paul/legacyMarkdown</da:support>
