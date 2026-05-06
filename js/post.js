@@ -233,7 +233,7 @@ jsToolBar.prototype.elements.md_blockquote = {
   title: 'Blockquote',
   fn: {
     markdown() {
-      this.encloseSelection('\n', '', (str) => `> ${str.replace(/\r/g, '').replace(/\n/g, '\n> ')}`);
+      this.encloseSelection('\n', '', (str) => `> ${str.replaceAll('\r', '').replaceAll('\n', '\n> ')}`);
     },
   },
 };
@@ -259,7 +259,7 @@ jsToolBar.prototype.elements.md_ul = {
   title: 'Unordered list',
   fn: {
     markdown() {
-      this.encloseSelection('', '', (str) => `* ${str.replace(/\r/g, '').replace(/\n/g, '\n* ')}`);
+      this.encloseSelection('', '', (str) => `* ${str.replaceAll('\r', '').replaceAll('\n', '\n* ')}`);
     },
   },
 };
@@ -271,7 +271,7 @@ jsToolBar.prototype.elements.md_ol = {
   title: 'Ordered list',
   fn: {
     markdown() {
-      this.encloseSelection('', '', (str) => `1. ${str.replace(/\r/g, '').replace(/\n/g, '\n1. ')}`);
+      this.encloseSelection('', '', (str) => `1. ${str.replaceAll('\r', '').replaceAll('\n', '\n1. ')}`);
     },
   },
 };
@@ -417,7 +417,9 @@ jsToolBar.prototype.elements.md_img_select.fn.markdown = function () {
 };
 jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
   const d = this.elements.img_select.data;
-  if (d && d.src !== undefined) {
+  if (d?.src === undefined) {
+    this.textarea.focus();
+  } else {
     this.encloseSelection('', '', (str) => {
       const escapeString = (str) => str.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;').replace('"', '&quot;');
       const alignments = {
@@ -477,8 +479,6 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
 
       return legend ? `${figure}\n${img}\n${caption}</figure>` : img;
     });
-  } else {
-    this.textarea.focus();
   }
 };
 
@@ -533,7 +533,7 @@ jsToolBar.prototype.elements.md_post_link.fn.markdown = function () {
 // Note link.fncall used by md_post_link is also be used by md_link button (see above)
 jsToolBar.prototype.elements.link.fncall.markdown = function () {
   const link = this.elements.link.data;
-  if (link && link.href !== undefined) {
+  if (link?.href !== undefined) {
     let stag = '[';
     const title = link.title ? ` "${link.title}"` : '';
     let etag = `](${link.href}${title})`;
