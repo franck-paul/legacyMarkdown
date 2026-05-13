@@ -1,4 +1,4 @@
-/*global jsToolBar, dotclear */
+/*global dotclear */
 'use strict';
 
 dotclear.md_options = dotclear.getData('md_options');
@@ -6,7 +6,7 @@ dotclear.md_options = dotclear.getData('md_options');
 // Elements definition ------------------------------------
 
 // block format (paragraph, headers)
-jsToolBar.prototype.elements.md_blocks = {
+dotclear.ToolBar.prototype.elements.md_blocks = {
   group: 'header',
   type: 'combo',
   title: 'block format',
@@ -44,7 +44,7 @@ jsToolBar.prototype.elements.md_blocks = {
 };
 
 // strong
-jsToolBar.prototype.elements.md_strong = {
+dotclear.ToolBar.prototype.elements.md_strong = {
   group: 'format',
   type: 'button',
   title: 'Strong emphasis',
@@ -58,7 +58,7 @@ jsToolBar.prototype.elements.md_strong = {
 };
 
 // em
-jsToolBar.prototype.elements.md_em = {
+dotclear.ToolBar.prototype.elements.md_em = {
   group: 'format',
   type: 'button',
   title: 'Emphasis',
@@ -72,7 +72,7 @@ jsToolBar.prototype.elements.md_em = {
 };
 
 // ins
-jsToolBar.prototype.elements.md_ins = {
+dotclear.ToolBar.prototype.elements.md_ins = {
   group: 'format',
   type: 'button',
   title: 'Inserted',
@@ -86,7 +86,7 @@ jsToolBar.prototype.elements.md_ins = {
 };
 
 // del
-jsToolBar.prototype.elements.md_del = {
+dotclear.ToolBar.prototype.elements.md_del = {
   group: 'format',
   type: 'button',
   title: 'Deleted',
@@ -100,13 +100,13 @@ jsToolBar.prototype.elements.md_del = {
 };
 
 // quote
-jsToolBar.prototype.elements.md_quote = {
+dotclear.ToolBar.prototype.elements.md_quote = {
   group: 'format',
   type: 'button',
   title: 'Inline quote',
   fn: {},
   async prompt(callback = null) {
-    const dialog = new jsDialog({
+    const dialog = new dotclear.ToolBar.Dialog({
       title: this.toolbar.querySelector('.jstb_md_quote')?.title || this.elements.md_quote.title,
       confirm_label: dotclear.md_options.dialog.ok,
       cancel_label: dotclear.md_options.dialog.cancel,
@@ -137,7 +137,7 @@ jsToolBar.prototype.elements.md_quote = {
     });
   },
 };
-jsToolBar.prototype.elements.md_quote.fn.markdown = async function () {
+dotclear.ToolBar.prototype.elements.md_quote.fn.markdown = async function () {
   await this.elements.md_quote.prompt.call(this, (response) => {
     let start_tag = '<q';
     if (response.cite) {
@@ -153,7 +153,7 @@ jsToolBar.prototype.elements.md_quote.fn.markdown = async function () {
 };
 
 // code
-jsToolBar.prototype.elements.md_code = {
+dotclear.ToolBar.prototype.elements.md_code = {
   group: 'format',
   type: 'button',
   title: 'Code',
@@ -165,7 +165,7 @@ jsToolBar.prototype.elements.md_code = {
 };
 
 // mark
-jsToolBar.prototype.elements.md_mark = {
+dotclear.ToolBar.prototype.elements.md_mark = {
   group: 'format',
   type: 'button',
   title: 'Mark',
@@ -177,13 +177,13 @@ jsToolBar.prototype.elements.md_mark = {
 };
 
 // foreign text
-jsToolBar.prototype.elements.md_foreign = {
+dotclear.ToolBar.prototype.elements.md_foreign = {
   group: 'format',
   type: 'button',
   title: 'Foreign text',
   fn: {},
   async prompt(callback = null) {
-    const dialog = new jsDialog({
+    const dialog = new dotclear.ToolBar.Dialog({
       title: this.toolbar.querySelector('.jstb_md_foreign')?.title || this.elements.md_foreign.title,
       confirm_label: dotclear.md_options.dialog.ok,
       cancel_label: dotclear.md_options.dialog.cancel,
@@ -208,14 +208,14 @@ jsToolBar.prototype.elements.md_foreign = {
     });
   },
 };
-jsToolBar.prototype.elements.md_foreign.fn.markdown = async function () {
+dotclear.ToolBar.prototype.elements.md_foreign.fn.markdown = async function () {
   await this.elements.md_foreign.prompt.call(this, (response) => {
     this.encloseSelection(`<i lang="${response.lang}">`, '</i>');
   });
 };
 
 // br
-jsToolBar.prototype.elements.md_br = {
+dotclear.ToolBar.prototype.elements.md_br = {
   group: 'br',
   type: 'button',
   title: 'Line break',
@@ -227,7 +227,7 @@ jsToolBar.prototype.elements.md_br = {
 };
 
 // blockquote
-jsToolBar.prototype.elements.md_blockquote = {
+dotclear.ToolBar.prototype.elements.md_blockquote = {
   group: 'block',
   type: 'button',
   title: 'Blockquote',
@@ -239,7 +239,7 @@ jsToolBar.prototype.elements.md_blockquote = {
 };
 
 // pre
-jsToolBar.prototype.elements.md_pre = {
+dotclear.ToolBar.prototype.elements.md_pre = {
   group: 'block',
   type: 'button',
   title: 'Preformated text',
@@ -253,7 +253,7 @@ jsToolBar.prototype.elements.md_pre = {
 };
 
 // ul
-jsToolBar.prototype.elements.md_ul = {
+dotclear.ToolBar.prototype.elements.md_ul = {
   group: 'block',
   type: 'button',
   title: 'Unordered list',
@@ -265,7 +265,7 @@ jsToolBar.prototype.elements.md_ul = {
 };
 
 // ol
-jsToolBar.prototype.elements.md_ol = {
+dotclear.ToolBar.prototype.elements.md_ol = {
   group: 'block',
   type: 'button',
   title: 'Ordered list',
@@ -277,7 +277,7 @@ jsToolBar.prototype.elements.md_ol = {
 };
 
 // details
-jsToolBar.prototype.elements.md_details = {
+dotclear.ToolBar.prototype.elements.md_details = {
   group: 'block',
   type: 'button',
   title: 'Details block',
@@ -285,11 +285,11 @@ jsToolBar.prototype.elements.md_details = {
   title_prompt: 'Summary:',
   default_title: '',
   prompt(default_title = '') {
-    return window.prompt(this.elements.md_details.title_prompt, default_title || this.elements.md_details.default_title);
+    return globalThis.prompt(this.elements.md_details.title_prompt, default_title || this.elements.md_details.default_title);
   },
 };
 
-jsToolBar.prototype.elements.md_details.fn.markdown = function () {
+dotclear.ToolBar.prototype.elements.md_details.fn.markdown = function () {
   const title = this.elements.md_details.prompt.call(this);
   if (title !== null) {
     let stag = '<details markdown="1">\n';
@@ -305,7 +305,7 @@ jsToolBar.prototype.elements.md_details.fn.markdown = function () {
 };
 
 // aside
-jsToolBar.prototype.elements.md_aside = {
+dotclear.ToolBar.prototype.elements.md_aside = {
   group: 'block',
   type: 'button',
   title: 'Aside',
@@ -319,7 +319,7 @@ jsToolBar.prototype.elements.md_aside = {
 };
 
 // link
-jsToolBar.prototype.elements.md_link = {
+dotclear.ToolBar.prototype.elements.md_link = {
   group: 'link',
   type: 'button',
   title: 'Link',
@@ -329,7 +329,7 @@ jsToolBar.prototype.elements.md_link = {
   fncall: {},
   data: {},
   popup(args = '') {
-    window.the_toolbar = this;
+    globalThis.the_toolbar = this;
 
     this.elements.md_link.data = {};
 
@@ -341,12 +341,12 @@ jsToolBar.prototype.elements.md_link = {
   },
 };
 
-jsToolBar.prototype.elements.md_link.fn.markdown = function () {
+dotclear.ToolBar.prototype.elements.md_link.fn.markdown = function () {
   this.elements.md_link.popup.call(this);
 };
 
 // img
-jsToolBar.prototype.elements.md_img = {
+dotclear.ToolBar.prototype.elements.md_img = {
   group: 'media',
   type: 'button',
   title: 'External image',
@@ -357,12 +357,12 @@ jsToolBar.prototype.elements.md_img = {
   prompt(default_src = '', default_title = '') {
     let title = default_title || this.elements.md_img.default_title;
 
-    const src = window.prompt(this.elements.md_img.src_prompt, default_src);
+    const src = globalThis.prompt(this.elements.md_img.src_prompt, default_src);
     if (!src) {
       return null;
     }
 
-    title = window.prompt(this.elements.md_img.title_prompt, title);
+    title = globalThis.prompt(this.elements.md_img.title_prompt, title);
     if (title === null) {
       return null;
     }
@@ -374,7 +374,7 @@ jsToolBar.prototype.elements.md_img = {
   },
 };
 
-jsToolBar.prototype.elements.md_img.fn.markdown = function () {
+dotclear.ToolBar.prototype.elements.md_img.fn.markdown = function () {
   const image = this.elements.md_img.prompt.call(this);
   if (image !== null && image !== '') {
     const stag = '![';
@@ -392,7 +392,7 @@ jsToolBar.prototype.elements.md_img.fn.markdown = function () {
 
 /* Image selector
 -------------------------------------------------------- */
-jsToolBar.prototype.elements.md_img_select = {
+dotclear.ToolBar.prototype.elements.md_img_select = {
   group: 'media',
   type: 'button',
   title: 'Image chooser',
@@ -402,7 +402,7 @@ jsToolBar.prototype.elements.md_img_select = {
   fncall: {},
   data: {},
   popup() {
-    window.the_toolbar = this;
+    globalThis.the_toolbar = this;
     this.elements.md_img_select.data = {};
 
     window.open(
@@ -412,10 +412,10 @@ jsToolBar.prototype.elements.md_img_select = {
     );
   },
 };
-jsToolBar.prototype.elements.md_img_select.fn.markdown = function () {
+dotclear.ToolBar.prototype.elements.md_img_select.fn.markdown = function () {
   this.elements.md_img_select.popup.call(this);
 };
-jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
+dotclear.ToolBar.prototype.elements.img_select.fncall.markdown = function () {
   const d = this.elements.img_select.data;
   if (d?.src === undefined) {
     this.textarea.focus();
@@ -483,8 +483,8 @@ jsToolBar.prototype.elements.img_select.fncall.markdown = function () {
 };
 
 // MP3 helper
-//jsToolBar.prototype.elements.mp3_insert = { fncall: {}, data: {} };
-jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function () {
+//dotclear.ToolBar.prototype.elements.mp3_insert = { fncall: {}, data: {} };
+dotclear.ToolBar.prototype.elements.mp3_insert.fncall.markdown = function () {
   const d = this.elements.mp3_insert.data;
   if (d.player === undefined) {
     return;
@@ -494,8 +494,8 @@ jsToolBar.prototype.elements.mp3_insert.fncall.markdown = function () {
 };
 
 // FLV helper
-//jsToolBar.prototype.elements.flv_insert = { fncall: {}, data: {} };
-jsToolBar.prototype.elements.flv_insert.fncall.markdown = function () {
+//dotclear.ToolBar.prototype.elements.flv_insert = { fncall: {}, data: {} };
+dotclear.ToolBar.prototype.elements.flv_insert.fncall.markdown = function () {
   const d = this.elements.flv_insert.data;
   if (d.player === undefined) {
     return;
@@ -506,7 +506,7 @@ jsToolBar.prototype.elements.flv_insert.fncall.markdown = function () {
 
 /* Posts selector
 -------------------------------------------------------- */
-jsToolBar.prototype.elements.md_post_link = {
+dotclear.ToolBar.prototype.elements.md_post_link = {
   group: 'link',
   type: 'button',
   title: 'Link to an entry',
@@ -515,7 +515,7 @@ jsToolBar.prototype.elements.md_post_link = {
   fn: {},
   data: {},
   popup() {
-    window.the_toolbar = this;
+    globalThis.the_toolbar = this;
     this.elements.link.data = {};
 
     window.open(
@@ -525,13 +525,13 @@ jsToolBar.prototype.elements.md_post_link = {
     );
   },
 };
-jsToolBar.prototype.elements.md_post_link.fn.markdown = function () {
+dotclear.ToolBar.prototype.elements.md_post_link.fn.markdown = function () {
   this.elements.md_post_link.popup.call(this);
 };
 
 // Link helper
 // Note link.fncall used by md_post_link is also be used by md_link button (see above)
-jsToolBar.prototype.elements.link.fncall.markdown = function () {
+dotclear.ToolBar.prototype.elements.link.fncall.markdown = function () {
   const link = this.elements.link.data;
   if (link?.href !== undefined) {
     let stag = '[';
@@ -542,7 +542,7 @@ jsToolBar.prototype.elements.link.fncall.markdown = function () {
       etag = `${etag}{hreflang=${link.hreflang}}`;
     }
 
-    if (!window?.getSelection()?.toString()) {
+    if (!globalThis?.getSelection()?.toString()) {
       // Add link URL as link text content
       stag = `${stag}${link.href_title ?? link.href}`;
     }
@@ -555,7 +555,7 @@ jsToolBar.prototype.elements.link.fncall.markdown = function () {
 
 /* Footnote helper
 -------------------------------------------------------- */
-jsToolBar.prototype.elements.md_footnote = {
+dotclear.ToolBar.prototype.elements.md_footnote = {
   group: 'link',
   type: 'button',
   title: 'Footnote',
@@ -588,7 +588,7 @@ jsToolBar.prototype.elements.md_footnote = {
 };
 
 // Preview
-jsToolBar.prototype.elements.md_preview = {
+dotclear.ToolBar.prototype.elements.md_preview = {
   group: 'editor',
   type: 'button',
   title: 'Preview',
@@ -633,4 +633,4 @@ jsToolBar.prototype.elements.md_preview = {
 
 /* Set options
   ---------------------------------------------------------- */
-dotclear.mergeDeep(jsToolBar.prototype.elements, dotclear.getData('md_editor'));
+dotclear.mergeDeep(dotclear.ToolBar.prototype.elements, dotclear.getData('md_editor'));
