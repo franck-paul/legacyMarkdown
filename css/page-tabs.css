@@ -1,0 +1,26 @@
+.part-tabs li,
+.pseudo-tabs li {
+  &.edit-format-xhtml,
+  &.edit-format-wiki,
+  &.edit-format-markdown {
+    span {
+      display: none;
+    }
+    a {
+      padding-inline-end: 3em;
+      background-repeat: no-repeat;
+      background-position: calc(100% - 1em) 40%;
+      background-color: transparent;
+      background-size: 1.5em;
+    }
+  }
+  &.edit-format-xhtml a {
+    background-image: url(index.php?pf=legacyMarkdown/img/xhtml.svg);
+  }
+  &.edit-format-wiki a {
+    background-image: url(index.php?pf=legacyMarkdown/img/wiki.svg);
+  }
+  &.edit-format-markdown a {
+    background-image: url(index.php?pf=legacyMarkdown/img/markdown.svg);
+  }
+}

@@ -170,8 +170,12 @@ class BackendBehaviors
      */
     public static function adminPostEditor(string $editor = '', string $context = '', array $tags = [], string $syntax = 'markdown'): string
     {
+        // Cope with page-tabs.css for tabs format CSS (2.39+)
+        $buffer = My::cssLoad('page-tabs.css');
+
+        // Specific to Markdown
         if ($editor !== 'dcLegacyEditor' || $syntax !== 'markdown') {
-            return '';
+            return $buffer;
         }
 
         $language_options = [];
@@ -372,7 +376,8 @@ class BackendBehaviors
             ],
         ]) .
         My::cssLoad('jsToolBar.css') .
-        My::jsLoad('post.js');
+        My::jsLoad('post.js') .
+        $buffer;
     }
 
     /**
