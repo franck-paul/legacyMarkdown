@@ -74,19 +74,22 @@ class BackendBehaviors
     protected static function adminEntryFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post, string $url): string
     {
         if ($post instanceof MetaRecord) {
+            $post_id     = $post->intField('post_id');
+            $post_format = $post->strField('post_format');
+
             $convert = (new Div())
                 ->class(['format_control', 'control_no_markdown', 'control_no_wiki'])
                 ->items([
                     (new Link('convert-markdown'))
-                        ->class(['button', App::backend()->post_id && App::backend()->post_format !== 'xhtml' ? ' hide' : ''])
+                        ->class(['button', $post_id !== 0 && $post_format !== 'xhtml' ? 'hide' : ''])
                         ->href($url)
                         ->text(__('Convert to Markdown')),
                 ])
             ->render();
 
-            $post_format = $sidebar['status-box']['items']['post_format'] ?? '';
+            $post_format_old = $sidebar['status-box']['items']['post_format'] ?? '';
 
-            $sidebar['status-box']['items']['post_format'] = $post_format . $convert;
+            $sidebar['status-box']['items']['post_format'] = $post_format_old . $convert;
         }
 
         return '';
@@ -100,10 +103,12 @@ class BackendBehaviors
     public static function adminPostFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post): string
     {
         if ($post instanceof MetaRecord) {
+            $post_id = $post->intField('post_id');
+
             $url = App::backend()->url()->get(
                 'admin.post',
                 [
-                    'id'             => App::backend()->post_id,
+                    'id'             => $post_id,
                     'convert'        => '1',
                     'convert-format' => 'markdown',
                 ]
@@ -122,11 +127,13 @@ class BackendBehaviors
     public static function adminPageFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post): string
     {
         if ($post instanceof MetaRecord) {
+            $post_id = $post->intField('post_id');
+
             $url = App::backend()->url()->get(
                 'admin.plugin.pages',
                 [
                     'act'            => 'page',
-                    'id'             => App::backend()->post_id,
+                    'id'             => $post_id,
                     'convert'        => '1',
                     'convert-format' => 'markdown',
                 ]
