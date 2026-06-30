@@ -449,7 +449,7 @@ class BackendBehaviors
      */
     private static function adminEntryListValue(MetaRecord $rs, ArrayObject $cols, bool $component = false): string
     {
-        $post_format = is_string($post_format = $rs->post_format) ? $post_format : '';
+        $post_format = $rs->strField('post_format');
 
         $value = (new Td())
             ->class('nowrap')
