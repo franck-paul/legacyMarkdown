@@ -45,7 +45,7 @@ class BackendBehaviors
         ->legend((new Legend(__('Markdown'))))
         ->fields([
             (new Para())->items([
-                (new Checkbox('markdown_comments', (bool) $settings->system->markdown_comments))
+                (new Checkbox('markdown_comments', $settings->get('system')->getBool('markdown_comments', false)))
                     ->value(1)
                     ->label((new Label(__('Enable Markdown syntax for comments'), Label::INSIDE_TEXT_AFTER))),
             ]),
@@ -60,7 +60,7 @@ class BackendBehaviors
 
     public static function adminBeforeBlogSettingsUpdate(BlogSettingsInterface $settings): string
     {
-        $settings->system->put('markdown_comments', !empty($_POST['markdown_comments']), App::blogWorkspace()::NS_BOOL);
+        $settings->get('system')->put('markdown_comments', !empty($_POST['markdown_comments']), App::blogWorkspace()::NS_BOOL);
 
         return '';
     }

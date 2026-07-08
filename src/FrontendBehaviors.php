@@ -21,7 +21,7 @@ class FrontendBehaviors
 {
     public static function publicBeforeCommentTransform(string $content): string
     {
-        if (App::blog()->settings()->system->markdown_comments) {
+        if (App::blog()->settings()->get('system')->getBool('markdown_comments')) {
             return Helper::convert($content, 'comment');
         }
 
