@@ -51,6 +51,8 @@ class Backend
 
             'adminPageHelpBlock' => BackendBehaviors::adminPageHelpBlock(...),
 
+            'adminDashboardHeaders' => BackendBehaviors::adminDashboardHeaders(...),
+
             // Add behaviour callback for post/page lists
             'adminColumnsListsV2'    => BackendBehaviors::adminColumnsLists(...),
             'adminPostListHeaderV2'  => BackendBehaviors::adminPostListHeader(...),

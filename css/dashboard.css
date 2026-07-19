@@ -1,0 +1,24 @@
+#quick h3 {
+  &.edit-format-xhtml,
+  &.edit-format-wiki,
+  &.edit-format-markdown {
+    padding-inline-end: 3em;
+    background-repeat: no-repeat;
+    background-position: 100%;
+    background-color: transparent;
+    background-size: 1.5em;
+
+    span {
+      display: none;
+    }
+  }
+  &.edit-format-xhtml {
+    background-image: url(index.php?pf=legacyMarkdown/img/xhtml.svg);
+  }
+  &.edit-format-wiki {
+    background-image: url(index.php?pf=legacyMarkdown/img/wiki.svg);
+  }
+  &.edit-format-markdown {
+    background-image: url(index.php?pf=legacyMarkdown/img/markdown.svg);
+  }
+}

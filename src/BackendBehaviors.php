@@ -37,6 +37,14 @@ use Dotclear\Interface\Core\BlogSettingsInterface;
 
 class BackendBehaviors
 {
+    /**
+     * Dashboard header behavior
+     */
+    public static function adminDashboardHeaders(): string
+    {
+        return My::cssLoad('dashboard.css');
+    }
+
     public static function adminBlogPreferencesForm(BlogSettingsInterface $settings): string
     {
         // Add fieldset for plugin options
