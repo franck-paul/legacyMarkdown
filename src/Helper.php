@@ -31,11 +31,11 @@ class Helper
      */
     public static function convert(string $str, string $type = 'full'): string
     {
-        $engine = new MarkdownExtra();
+        $markdownExtra = new MarkdownExtra();
         switch ($type) {
             case 'comment':
                 // Setup some options in comments
-                $engine->hashtag_protection = true;
+                $markdownExtra->hashtag_protection = true;
 
                 break;
 
@@ -47,13 +47,13 @@ class Helper
         // Use microseconds to avoid collisions between the entry excerpt and
         // the entry content footnotes ID, as the entry excerpt and the entry content
         // are converted independently.
-        $timeofday            = gettimeofday();
-        $engine->fn_id_prefix = 'ts' . $timeofday['sec'] . $timeofday['usec'] . '.';
+        $timeofday                   = gettimeofday();
+        $markdownExtra->fn_id_prefix = 'ts' . $timeofday['sec'] . $timeofday['usec'] . '.';
 
         // Set backlink title
-        $engine->fn_backlink_title = __('Back to content %%');
+        $markdownExtra->fn_backlink_title = __('Back to content %%');
 
-        $ret = $engine->transform($str);
+        $ret = $markdownExtra->transform($str);
 
         if ($type === 'comment') {
             // For comments remove all interactive content as far as possible
@@ -66,9 +66,9 @@ class Helper
     /**
      * Register macro:md for Wiki syntax
      */
-    public static function coreInitWikiPost(WikiToHtml $wiki): string
+    public static function coreInitWikiPost(WikiToHtml $wikiToHtml): string
     {
-        $wiki->registerFunction('macro:md', self::convert(...));
+        $wikiToHtml->registerFunction('macro:md', self::convert(...));
 
         return '';
     }
@@ -86,9 +86,7 @@ class Helper
             'header_style' => 'atx',    // Force ATX style for header (even for h1 and h2)
         ];
 
-        $converter = new HtmlConverter($config);
-
-        return $converter->convert($str);
+        return (new HtmlConverter($config))->convert($str);
     }
 
     protected static function stripInteractiveTags(string $str): string

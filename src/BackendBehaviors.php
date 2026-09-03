@@ -45,7 +45,7 @@ class BackendBehaviors
         return My::cssLoad('dashboard.css');
     }
 
-    public static function adminBlogPreferencesForm(BlogSettingsInterface $settings): string
+    public static function adminBlogPreferencesForm(BlogSettingsInterface $blogSettings): string
     {
         // Add fieldset for plugin options
         echo
@@ -53,7 +53,7 @@ class BackendBehaviors
         ->legend((new Legend(__('Markdown'))))
         ->fields([
             (new Para())->items([
-                (new Checkbox('markdown_comments', $settings->get('system')->getBool('markdown_comments', false)))
+                (new Checkbox('markdown_comments', $blogSettings->get('system')->getBool('markdown_comments', false)))
                     ->value(1)
                     ->label((new Label(__('Enable Markdown syntax for comments'), Label::INSIDE_TEXT_AFTER))),
             ]),
@@ -66,9 +66,9 @@ class BackendBehaviors
         return '';
     }
 
-    public static function adminBeforeBlogSettingsUpdate(BlogSettingsInterface $settings): string
+    public static function adminBeforeBlogSettingsUpdate(BlogSettingsInterface $blogSettings): string
     {
-        $settings->get('system')->put('markdown_comments', !empty($_POST['markdown_comments']), App::blogWorkspace()::NS_BOOL);
+        $blogSettings->get('system')->put('markdown_comments', !empty($_POST['markdown_comments']), App::blogWorkspace()::NS_BOOL);
 
         return '';
     }
@@ -76,14 +76,14 @@ class BackendBehaviors
     /**
      * @param      ArrayObject<string, string>                                              $main     The main
      * @param      ArrayObject<string, array{title: string, items: array<string, string>}>  $sidebar  The sidebar
-     * @param      MetaRecord|null                                                          $post     The post
+     * @param      MetaRecord|null                                                          $metaRecord     The post
      * @param      string                                                                   $url      The entry edit URL
      */
-    protected static function adminEntryFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post, string $url): string
+    protected static function adminEntryFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $metaRecord, string $url): string
     {
-        if ($post instanceof MetaRecord) {
-            $post_id     = $post->intField('post_id');
-            $post_format = $post->strField('post_format');
+        if ($metaRecord instanceof MetaRecord) {
+            $post_id     = $metaRecord->intField('post_id');
+            $post_format = $metaRecord->strField('post_format');
 
             $convert = (new Div())
                 ->class(['format_control', 'control_no_markdown', 'control_no_wiki'])
@@ -106,12 +106,12 @@ class BackendBehaviors
     /**
      * @param      ArrayObject<string, string>                                              $main     The main
      * @param      ArrayObject<string, array{title: string, items: array<string, string>}>  $sidebar  The sidebar
-     * @param      MetaRecord|null                                                          $post     The post
+     * @param      MetaRecord|null                                                          $metaRecord     The post
      */
-    public static function adminPostFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post): string
+    public static function adminPostFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $metaRecord): string
     {
-        if ($post instanceof MetaRecord) {
-            $post_id = $post->intField('post_id');
+        if ($metaRecord instanceof MetaRecord) {
+            $post_id = $metaRecord->intField('post_id');
 
             $url = App::backend()->url()->get(
                 'admin.post',
@@ -121,7 +121,7 @@ class BackendBehaviors
                     'convert-format' => 'markdown',
                 ]
             );
-            self::adminEntryFormItems($main, $sidebar, $post, $url);
+            self::adminEntryFormItems($main, $sidebar, $metaRecord, $url);
         }
 
         return '';
@@ -130,12 +130,12 @@ class BackendBehaviors
     /**
      * @param      ArrayObject<string, string>                                              $main     The main
      * @param      ArrayObject<string, array{title: string, items: array<string, string>}>  $sidebar  The sidebar
-     * @param      MetaRecord|null                                                          $post     The post
+     * @param      MetaRecord|null                                                          $metaRecord     The post
      */
-    public static function adminPageFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $post): string
+    public static function adminPageFormItems(ArrayObject $main, ArrayObject $sidebar, ?MetaRecord $metaRecord): string
     {
-        if ($post instanceof MetaRecord) {
-            $post_id = $post->intField('post_id');
+        if ($metaRecord instanceof MetaRecord) {
+            $post_id = $metaRecord->intField('post_id');
 
             $url = App::backend()->url()->get(
                 'admin.plugin.pages',
@@ -146,30 +146,30 @@ class BackendBehaviors
                     'convert-format' => 'markdown',
                 ]
             );
-            self::adminEntryFormItems($main, $sidebar, $post, $url);
+            self::adminEntryFormItems($main, $sidebar, $metaRecord, $url);
         }
 
         return '';
     }
 
     /**
-     * @param      ArrayObject<string, ?string>   $params  The parameters (excerpt, content, format)
+     * @param      ArrayObject<string, ?string>   $arrayObject  The parameters (excerpt, content, format)
      */
-    public static function adminConvertBeforePostEdit(string $convert, ArrayObject $params): string
+    public static function adminConvertBeforePostEdit(string $convert, ArrayObject $arrayObject): string
     {
         if ($convert === 'markdown') {
-            $excerpt = $params['excerpt'] ?? '';
-            $content = $params['content'] ?? '';
+            $excerpt = $arrayObject['excerpt'] ?? '';
+            $content = $arrayObject['content'] ?? '';
 
             if ($excerpt !== '') {
-                $params['excerpt'] = Helper::fromHTML($excerpt);
+                $arrayObject['excerpt'] = Helper::fromHTML($excerpt);
             }
 
             if ($content !== '') {
-                $params['content'] = Helper::fromHTML($content);
+                $arrayObject['content'] = Helper::fromHTML($content);
             }
 
-            $params['format'] = 'markdown';
+            $arrayObject['format'] = 'markdown';
 
             return __('Don\'t forget to validate your Markdown conversion by saving your post.');
         }
@@ -396,74 +396,74 @@ class BackendBehaviors
     }
 
     /**
-     * @param      ArrayObject<string, mixed>  $cols   The cols
+     * @param      ArrayObject<string, mixed>  $arrayObject   The cols
      */
-    public static function adminColumnsLists(ArrayObject $cols): string
+    public static function adminColumnsLists(ArrayObject $arrayObject): string
     {
         $template = [
             'format' => [true, __('Format')],
         ];
 
-        if (isset($cols['posts'])
-            && is_array($cols['posts'])
-            && is_array($cols['posts'][1])
+        if (isset($arrayObject['posts'])
+            && is_array($arrayObject['posts'])
+            && is_array($arrayObject['posts'][1])
         ) {
-            $cols['posts'][1] = array_merge($cols['posts'][1], $template);
+            $arrayObject['posts'][1] = array_merge($arrayObject['posts'][1], $template);
         }
 
-        if (isset($cols['pages'])
-            && is_array($cols['pages'])
-            && is_array($cols['pages'][1])
+        if (isset($arrayObject['pages'])
+            && is_array($arrayObject['pages'])
+            && is_array($arrayObject['pages'][1])
         ) {
-            $cols['pages'][1] = array_merge($cols['pages'][1], $template);
+            $arrayObject['pages'][1] = array_merge($arrayObject['pages'][1], $template);
         }
 
         return '';
     }
 
     /**
-     * @param      ArrayObject<string, mixed>     $cols         The cols
+     * @param      ArrayObject<string, mixed>     $arrayObject         The cols
      * @param      bool                           $component    Component as value is prefered
      */
-    private static function adminEntryListHeader(ArrayObject $cols, bool $component = false): string
+    private static function adminEntryListHeader(ArrayObject $arrayObject, bool $component = false): string
     {
         $value = (new Th())
             ->scope('col')
             ->text(__('Format'));
 
-        $cols['format'] = $component ? $value : $value->render();
+        $arrayObject['format'] = $component ? $value : $value->render();
 
         return '';
     }
 
     /**
-     * @param      MetaRecord                     $rs           The recordset
-     * @param      ArrayObject<string, mixed>     $cols         The cols
+     * @param      MetaRecord                     $metaRecord           The recordset
+     * @param      ArrayObject<string, mixed>     $arrayObject         The cols
      * @param      bool                           $component    Component as value is prefered
      */
-    public static function adminPostListHeader(MetaRecord $rs, ArrayObject $cols, bool $component = false): string
+    public static function adminPostListHeader(MetaRecord $metaRecord, ArrayObject $arrayObject, bool $component = false): string
     {
-        return self::adminEntryListHeader($cols, $component);
+        return self::adminEntryListHeader($arrayObject, $component);
     }
 
     /**
-     * @param      MetaRecord                     $rs           The recordset
-     * @param      ArrayObject<string, mixed>     $cols         The cols
+     * @param      MetaRecord                     $metaRecord           The recordset
+     * @param      ArrayObject<string, mixed>     $arrayObject         The cols
      * @param      bool                           $component    Component as value is prefered
      */
-    public static function adminPagesListHeader(MetaRecord $rs, ArrayObject $cols, bool $component = false): string
+    public static function adminPagesListHeader(MetaRecord $metaRecord, ArrayObject $arrayObject, bool $component = false): string
     {
-        return self::adminEntryListHeader($cols, $component);
+        return self::adminEntryListHeader($arrayObject, $component);
     }
 
     /**
-     * @param      MetaRecord                     $rs           The recordset
-     * @param      ArrayObject<string, mixed>     $cols         The cols
+     * @param      MetaRecord                     $metaRecord           The recordset
+     * @param      ArrayObject<string, mixed>     $arrayObject         The cols
      * @param      bool                           $component    Component as value is prefered
      */
-    private static function adminEntryListValue(MetaRecord $rs, ArrayObject $cols, bool $component = false): string
+    private static function adminEntryListValue(MetaRecord $metaRecord, ArrayObject $arrayObject, bool $component = false): string
     {
-        $post_format = $rs->strField('post_format');
+        $post_format = $metaRecord->strField('post_format');
 
         $value = (new Td())
             ->class('nowrap')
@@ -471,29 +471,29 @@ class BackendBehaviors
                 self::getFormat($post_format),
             ]);
 
-        $cols['format'] = $component ? $value : $value->render();
+        $arrayObject['format'] = $component ? $value : $value->render();
 
         return '';
     }
 
     /**
-     * @param      MetaRecord                     $rs           The recordset
-     * @param      ArrayObject<string, mixed>     $cols         The cols
+     * @param      MetaRecord                     $metaRecord           The recordset
+     * @param      ArrayObject<string, mixed>     $arrayObject         The cols
      * @param      bool                           $component    Component as value is prefered
      */
-    public static function adminPostListValue(MetaRecord $rs, ArrayObject $cols, bool $component = false): string
+    public static function adminPostListValue(MetaRecord $metaRecord, ArrayObject $arrayObject, bool $component = false): string
     {
-        return self::adminEntryListValue($rs, $cols, $component);
+        return self::adminEntryListValue($metaRecord, $arrayObject, $component);
     }
 
     /**
-     * @param      MetaRecord                     $rs           The recordset
-     * @param      ArrayObject<string, mixed>     $cols         The cols
+     * @param      MetaRecord                     $metaRecord           The recordset
+     * @param      ArrayObject<string, mixed>     $arrayObject         The cols
      * @param      bool                           $component    Component as value is prefered
      */
-    public static function adminPagesListValue(MetaRecord $rs, ArrayObject $cols, bool $component = false): string
+    public static function adminPagesListValue(MetaRecord $metaRecord, ArrayObject $arrayObject, bool $component = false): string
     {
-        return self::adminEntryListValue($rs, $cols, $component);
+        return self::adminEntryListValue($metaRecord, $arrayObject, $component);
     }
 
     private static function getFormat(string $format = ''): Img|None
@@ -518,12 +518,12 @@ class BackendBehaviors
     /**
      * Add an Markdown help ID.
      *
-     * @param   ArrayObject<string, mixed>     $blocks     The blocks
+     * @param   ArrayObject<string, mixed>     $arrayObject     The blocks
      */
-    public static function adminPageHelpBlock(ArrayObject $blocks): void
+    public static function adminPageHelpBlock(ArrayObject $arrayObject): void
     {
-        if (in_array('core_wiki', $blocks->getArrayCopy(), true)) {
-            $blocks->append('markdown');
+        if (in_array('core_wiki', $arrayObject->getArrayCopy(), true)) {
+            $arrayObject->append('markdown');
         }
     }
 }
