@@ -26,11 +26,11 @@ use Dotclear\Helper\Html\Form\Label;
 use Dotclear\Helper\Html\Form\Legend;
 use Dotclear\Helper\Html\Form\Link;
 use Dotclear\Helper\Html\Form\None;
+use Dotclear\Helper\Html\Form\Note;
 use Dotclear\Helper\Html\Form\Option;
 use Dotclear\Helper\Html\Form\Para;
 use Dotclear\Helper\Html\Form\Select;
 use Dotclear\Helper\Html\Form\Td;
-use Dotclear\Helper\Html\Form\Text;
 use Dotclear\Helper\Html\Form\Th;
 use Dotclear\Helper\Html\Form\Url;
 use Dotclear\Interface\Core\BlogSettingsInterface;
@@ -52,14 +52,15 @@ class BackendBehaviors
         (new Fieldset('legacy_markdown'))
         ->legend((new Legend(__('Markdown'))))
         ->fields([
-            (new Para())->items([
-                (new Checkbox('markdown_comments', $blogSettings->get('system')->getBool('markdown_comments', false)))
-                    ->value(1)
-                    ->label((new Label(__('Enable Markdown syntax for comments'), Label::INSIDE_TEXT_AFTER))),
-            ]),
-            (new Para())->class('clear form-note warn')->items([
-                (new Text(null, __('This option, if enabled, will replace the standard wiki syntax for comments!'))),
-            ]),
+            (new Para())
+                ->items([
+                    (new Checkbox('markdown_comments', $blogSettings->get('system')->getBool('markdown_comments', false)))
+                        ->value(1)
+                        ->label((new Label(__('Enable Markdown syntax for comments'), Label::INSIDE_TEXT_AFTER))),
+                ]),
+            (new Note())
+                ->class(['form-note', 'warn'])
+                ->text(__('This option, if enabled, will replace the standard wiki syntax for comments!')),
         ])
         ->render();
 
