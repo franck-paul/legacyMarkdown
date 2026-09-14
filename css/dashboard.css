@@ -8,6 +8,10 @@
     background-color: transparent;
     background-size: 1.5em;
 
+    [dir='rtl'] & {
+      background-position-x: 0;
+    }
+
     span {
       display: none;
     }
