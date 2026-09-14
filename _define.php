@@ -18,9 +18,9 @@ if (isset($this) && is_object($this) && method_exists($this, 'registerModule') &
         'Markdown syntax',
         'Brings you markdown syntax for your entries',
         'Michel Fortin, Franck Paul and contributors',
-        '11.1',
+        '11.2',
         [
-            'date'     => '2026-09-14T09:26:39+0200',
+            'date'     => '2026-09-14T09:32:09+0200',
             'requires' => [
                 ['core', '2.39'],
                 ['TemplateHelper'],
