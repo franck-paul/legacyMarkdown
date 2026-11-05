@@ -36,12 +36,6 @@ class BackendRest
         if ($md !== '') {
             $html = Helper::convert($md);
 
-            # --BEHAVIOR-- coreContentFilter -- string, array<int, array<int, string>> -- since 2.34
-            # deprecated since 2.40 cope with coreContentFilterV2 instead
-            App::behavior()->callBehavior('coreContentFilter', 'post', [
-                [&$html, 'html'],
-            ]);
-
             # --BEHAVIOR-- coreContentFilterV2 -- string, Content[] -- since 2.40
             $content = new Content('html', $html);
             App::behavior()->callBehavior(
